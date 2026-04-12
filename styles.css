@@ -311,13 +311,14 @@ section {
 .home-hero {
   background: var(--bg);
   color: var(--text);
-  padding: 7rem 2.5rem 6rem;
+  padding: 7rem 0 6rem;
   border-bottom: 1px solid var(--border);
 }
 
 .home-hero-inner {
   max-width: var(--site-width);
   margin: 0 auto;
+  padding: 0 2.5rem;
 }
 
 .home-hero h1 {
@@ -371,12 +372,13 @@ section {
 .chapter-hero {
   background: var(--bg);
   border-bottom: 1px solid var(--border);
-  padding: 5rem 2.5rem 4.5rem;
+  padding: 5rem 0 4.5rem;
 }
 
 .chapter-hero-inner {
   max-width: var(--content-width);
   margin: 0 auto;
+  padding: 0 2rem;
 }
 
 .chapter-hero .series-label {
@@ -1206,8 +1208,10 @@ section {
   .site-nav a { padding: 0.7rem 1.5rem; border-radius: 0; }
   .nav-toggle { display: block; }
 
-  .home-hero    { padding: 4rem 1.5rem 3.5rem; }
-  .chapter-hero { padding: 3rem 1.5rem 3rem; }
+  .home-hero    { padding: 4rem 0 3.5rem; }
+  .home-hero-inner { padding: 0 1.25rem; }
+  .chapter-hero { padding: 3rem 0 3rem; }
+  .chapter-hero-inner { padding: 0 1.25rem; }
 
   .page-content,
   .wide-content { padding-left: 1.25rem; padding-right: 1.25rem; }
