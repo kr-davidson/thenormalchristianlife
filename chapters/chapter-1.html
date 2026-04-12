@@ -31,7 +31,7 @@
   .memory-truth { font-style: normal; }
   .key-truth p { font-style: normal; }
 
-  /* Section navigator */
+  /* ── TWO-ROW COLLAPSIBLE SECTION NAVIGATOR ── */
   .section-nav {
     position: sticky;
     top: 60px;
@@ -39,7 +39,9 @@
     background: var(--bg-surface);
     border-bottom: 1px solid var(--border);
   }
-  .section-nav-inner {
+
+  /* Primary row — phase labels */
+  .section-nav-primary {
     max-width: var(--content-width);
     margin: 0 auto;
     padding: 0 2rem;
@@ -50,27 +52,76 @@
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
-  .section-nav-inner::-webkit-scrollbar { display: none; }
-  .section-nav-btn {
+  .section-nav-primary::-webkit-scrollbar { display: none; }
+
+  .phase-btn {
     font-family: var(--font-sans);
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--text-subtle);
     background: none;
     border: none;
     border-bottom: 2px solid transparent;
-    padding: 0.85rem 0.85rem;
+    padding: 0.85rem 1rem;
     cursor: pointer;
     white-space: nowrap;
     transition: color 0.15s, border-color 0.15s;
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
   }
-  .section-nav-btn:hover { color: var(--text-muted); }
-  .section-nav-btn.active { color: var(--text); border-bottom-color: var(--text); }
+  .phase-btn:hover { color: var(--text-muted); }
+  .phase-btn.active { color: var(--text); border-bottom-color: var(--text); }
+  .phase-btn.open { color: var(--text); }
+
+  .phase-chevron {
+    font-size: 8px;
+    transition: transform 0.2s;
+    opacity: 0.5;
+  }
+  .phase-btn.open .phase-chevron { transform: rotate(180deg); opacity: 1; }
+
+  /* Secondary row — sub-section links */
+  .section-nav-secondary {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: none;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    background: var(--bg-raised);
+    border-top: 1px solid var(--border);
+  }
+  .section-nav-secondary::-webkit-scrollbar { display: none; }
+  .section-nav-secondary.visible { display: flex; }
+
+  .sub-btn {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+    background: none;
+    border: none;
+    border-bottom: 1px solid transparent;
+    padding: 0.65rem 0.9rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s;
+    flex-shrink: 0;
+  }
+  .sub-btn:hover { color: var(--text-muted); }
+  .sub-btn.active { color: var(--text); border-bottom-color: var(--text-subtle); }
 
   @media (max-width: 700px) {
-    .section-nav-inner { padding: 0 1.25rem; }
+    .section-nav-primary,
+    .section-nav-secondary { padding: 0 1.25rem; }
+    .phase-btn { padding: 0.8rem 0.75rem; font-size: 9px; }
   }
 </style>
 </head>
@@ -95,21 +146,56 @@
   <span class="current">Week 1: The Blood of Christ</span>
 </nav>
 
-<!-- SECTION NAVIGATOR -->
-<nav class="section-nav" aria-label="Chapter sections">
-  <div class="section-nav-inner">
-    <button class="section-nav-btn active" data-target="why-matters">Why It Matters</button>
-    <button class="section-nav-btn" data-target="guilt">The Problem</button>
-    <button class="section-nav-btn" data-target="distinction">Sins &amp; Sin</button>
-    <button class="section-nav-btn" data-target="blood">The Blood</button>
-    <button class="section-nav-btn" data-target="feelings">Feelings</button>
-    <button class="section-nav-btn" data-target="conscience">Conscience</button>
-    <button class="section-nav-btn" data-target="introspection">Introspection</button>
-    <button class="section-nav-btn" data-target="application">Application</button>
-    <button class="section-nav-btn" data-target="reflection">Reflection</button>
-    <button class="section-nav-btn" data-target="prayer">Prayer</button>
-    <button class="section-nav-btn" data-target="summary">Summary</button>
+<!-- TWO-ROW SECTION NAVIGATOR -->
+<nav class="section-nav" aria-label="Chapter sections" id="chapter-nav">
+
+  <!-- Primary row: phase labels -->
+  <div class="section-nav-primary">
+    <button class="phase-btn active" data-phase="foundation" aria-expanded="false">
+      Foundation <span class="phase-chevron">&#9660;</span>
+    </button>
+    <button class="phase-btn" data-phase="the-blood" aria-expanded="false">
+      The Blood <span class="phase-chevron">&#9660;</span>
+    </button>
+    <button class="phase-btn" data-phase="conscience" aria-expanded="false">
+      Conscience <span class="phase-chevron">&#9660;</span>
+    </button>
+    <button class="phase-btn" data-phase="practice" aria-expanded="false">
+      Practice <span class="phase-chevron">&#9660;</span>
+    </button>
+    <button class="phase-btn" data-phase="close" aria-expanded="false">
+      Reflect &amp; Close <span class="phase-chevron">&#9660;</span>
+    </button>
   </div>
+
+  <!-- Secondary rows: sub-sections per phase (hidden until phase clicked) -->
+  <div class="section-nav-secondary" id="sub-foundation">
+    <button class="sub-btn" data-target="why-matters">Why It Matters</button>
+    <button class="sub-btn" data-target="guilt">The Central Problem</button>
+    <button class="sub-btn" data-target="distinction">Sins &amp; Sin</button>
+  </div>
+
+  <div class="section-nav-secondary" id="sub-the-blood">
+    <button class="sub-btn" data-target="blood">What the Blood Accomplishes</button>
+    <button class="sub-btn" data-target="feelings">Feelings</button>
+  </div>
+
+  <div class="section-nav-secondary" id="sub-conscience">
+    <button class="sub-btn" data-target="conscience">The Cleansed Conscience</button>
+    <button class="sub-btn" data-target="introspection">Danger of Introspection</button>
+  </div>
+
+  <div class="section-nav-secondary" id="sub-practice">
+    <button class="sub-btn" data-target="application">Putting This Into Practice</button>
+  </div>
+
+  <div class="section-nav-secondary" id="sub-close">
+    <button class="sub-btn" data-target="reflection">Guided Reflection</button>
+    <button class="sub-btn" data-target="prayer">Pause and Pray</button>
+    <button class="sub-btn" data-target="summary">Chapter Summary</button>
+    <button class="sub-btn" data-target="looking-ahead">Looking Ahead</button>
+  </div>
+
 </nav>
 
 <nav id="toc-float" aria-label="Page sections">
@@ -568,7 +654,7 @@
     <div>
       <div class="footer-brand">The Normal Christian Life</div>
       <div style="font-family: var(--font-sans); font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 0.25rem; letter-spacing: 0.08em; text-transform: uppercase;">A Guided Weekly Study</div>
-      <div class="footer-sub">&copy; 2025 &nbsp;&bull;&nbsp; A discipleship resource &nbsp;&bull;&nbsp; All rights reserved</div>
+      <div class="footer-sub">&copy; 2026 &nbsp;&bull;&nbsp; A discipleship resource &nbsp;&bull;&nbsp; All rights reserved</div>
     </div>
     <nav class="footer-nav" aria-label="Footer navigation">
       <a href="../index.html">&#8592; Back to Home</a>
@@ -580,38 +666,105 @@
 <button id="back-top" aria-label="Back to top" title="Back to top">&#8593;</button>
 <script src="../script.js"></script>
 <script>
-  // Section navigator — highlight active section on scroll
-  (function() {
-    var btns = document.querySelectorAll('.section-nav-btn');
-    var sections = Array.from(btns).map(function(b) {
-      return document.getElementById(b.dataset.target);
-    }).filter(Boolean);
+(function() {
+  var HEADER_H = 60;
+  var PRIMARY_H = 42;
+  var SECONDARY_H = 34;
+  var SCROLL_OFFSET = HEADER_H + PRIMARY_H + 20;
 
-    btns.forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        var target = document.getElementById(btn.dataset.target);
-        if (!target) return;
-        var navHeight = 60 + 40;
-        var top = target.getBoundingClientRect().top + window.scrollY - navHeight - 24;
-        window.scrollTo({ top: top, behavior: 'smooth' });
-      });
+  // Phase → sub-row mapping
+  var phaseMap = {
+    'foundation': { subId: 'sub-foundation', sections: ['why-matters','guilt','distinction'] },
+    'the-blood':  { subId: 'sub-the-blood',  sections: ['blood','feelings'] },
+    'conscience': { subId: 'sub-conscience', sections: ['conscience','introspection'] },
+    'practice':   { subId: 'sub-practice',   sections: ['application'] },
+    'close':      { subId: 'sub-close',      sections: ['reflection','prayer','summary','looking-ahead'] }
+  };
+
+  var phaseBtns   = document.querySelectorAll('.phase-btn');
+  var subBtns     = document.querySelectorAll('.sub-btn');
+  var openPhase   = null;
+
+  // Close all secondary rows
+  function closeAll() {
+    document.querySelectorAll('.section-nav-secondary').forEach(function(el) {
+      el.classList.remove('visible');
     });
+    phaseBtns.forEach(function(b) {
+      b.classList.remove('open');
+      b.setAttribute('aria-expanded', 'false');
+    });
+    openPhase = null;
+  }
 
-    function updateActive() {
-      var threshold = 60 + 40 + 40;
-      var activeIndex = 0;
-      sections.forEach(function(sec, i) {
-        if (sec && sec.getBoundingClientRect().top < threshold) {
-          activeIndex = i;
-        }
-      });
-      btns.forEach(function(b, i) {
-        b.classList.toggle('active', i === activeIndex);
-      });
+  // Toggle a phase's secondary row
+  phaseBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var phase = btn.dataset.phase;
+      if (openPhase === phase) {
+        closeAll();
+        return;
+      }
+      closeAll();
+      var info = phaseMap[phase];
+      if (!info) return;
+      var subRow = document.getElementById(info.subId);
+      if (!subRow) return;
+      subRow.classList.add('visible');
+      btn.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+      openPhase = phase;
+    });
+  });
+
+  // Sub-button click — scroll to section and close
+  subBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var target = document.getElementById(btn.dataset.target);
+      if (!target) return;
+      var extraOffset = openPhase ? SECONDARY_H : 0;
+      var top = target.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET - extraOffset;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+      closeAll();
+    });
+  });
+
+  // Close secondary row when clicking outside the nav
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.section-nav')) closeAll();
+  });
+
+  // Scroll: highlight the active phase based on which section is in view
+  var allSectionIds = Object.values(phaseMap).reduce(function(acc, info) {
+    return acc.concat(info.sections);
+  }, []);
+
+  function getPhaseForSection(id) {
+    for (var phase in phaseMap) {
+      if (phaseMap[phase].sections.indexOf(id) !== -1) return phase;
     }
+    return null;
+  }
 
-    window.addEventListener('scroll', updateActive, { passive: true });
-    updateActive();
-  }());
+  function updateActivePhase() {
+    var threshold = SCROLL_OFFSET + 20;
+    var activeId = allSectionIds[0];
+    allSectionIds.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top < threshold) activeId = id;
+    });
+    var activePhase = getPhaseForSection(activeId);
+    phaseBtns.forEach(function(b) {
+      b.classList.toggle('active', b.dataset.phase === activePhase);
+    });
+    // Highlight active sub-btn if row is open
+    subBtns.forEach(function(b) {
+      b.classList.toggle('active', b.dataset.target === activeId);
+    });
+  }
+
+  window.addEventListener('scroll', updateActivePhase, { passive: true });
+  updateActivePhase();
+}());
 </script>
 </html>
