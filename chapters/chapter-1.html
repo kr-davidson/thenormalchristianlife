@@ -7,13 +7,71 @@
 <link rel="stylesheet" href="../styles.css">
 <style>
   body { font-size: 18px; }
-  .collapsible-btn { text-transform: uppercase; letter-spacing: 0.05em; font-style: normal; font-size: clamp(0.95rem, 1.8vw, 1.2rem); }
-  h2 { text-transform: uppercase; letter-spacing: 0.05em; font-style: normal; font-size: clamp(0.95rem, 1.8vw, 1.2rem); }
+
+  /* Larger section headings */
+  .collapsible-btn {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-style: normal;
+    font-size: clamp(1rem, 2.2vw, 1.4rem) !important;
+    font-family: var(--font-sans) !important;
+    font-weight: 500 !important;
+  }
+  h2 {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-style: normal;
+    font-size: clamp(1rem, 2.2vw, 1.4rem);
+    font-family: var(--font-sans);
+    font-weight: 500;
+  }
   .card h3 { font-size: 11px; font-weight: 700; color: var(--text); letter-spacing: 0.18em; }
   .reflection-card p.question { font-style: normal; }
   .prayer-section .prayer-text { font-style: normal; }
   .memory-truth { font-style: normal; }
   .key-truth p { font-style: normal; }
+
+  /* Section navigator */
+  .section-nav {
+    position: sticky;
+    top: 60px;
+    z-index: 150;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border);
+  }
+  .section-nav-inner {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .section-nav-inner::-webkit-scrollbar { display: none; }
+  .section-nav-btn {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 0.85rem 0.85rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+    flex-shrink: 0;
+  }
+  .section-nav-btn:hover { color: var(--text-muted); }
+  .section-nav-btn.active { color: var(--text); border-bottom-color: var(--text); }
+
+  @media (max-width: 700px) {
+    .section-nav-inner { padding: 0 1.25rem; }
+  }
 </style>
 </head>
 <body>
@@ -35,6 +93,23 @@
   <a href="../index.html">Home</a>
   <span class="sep" aria-hidden="true">&#8250;</span>
   <span class="current">Week 1: The Blood of Christ</span>
+</nav>
+
+<!-- SECTION NAVIGATOR -->
+<nav class="section-nav" aria-label="Chapter sections">
+  <div class="section-nav-inner">
+    <button class="section-nav-btn active" data-target="why-matters">Why It Matters</button>
+    <button class="section-nav-btn" data-target="guilt">The Problem</button>
+    <button class="section-nav-btn" data-target="distinction">Sins &amp; Sin</button>
+    <button class="section-nav-btn" data-target="blood">The Blood</button>
+    <button class="section-nav-btn" data-target="feelings">Feelings</button>
+    <button class="section-nav-btn" data-target="conscience">Conscience</button>
+    <button class="section-nav-btn" data-target="introspection">Introspection</button>
+    <button class="section-nav-btn" data-target="application">Application</button>
+    <button class="section-nav-btn" data-target="reflection">Reflection</button>
+    <button class="section-nav-btn" data-target="prayer">Prayer</button>
+    <button class="section-nav-btn" data-target="summary">Summary</button>
+  </div>
 </nav>
 
 <nav id="toc-float" aria-label="Page sections">
@@ -504,5 +579,39 @@
 
 <button id="back-top" aria-label="Back to top" title="Back to top">&#8593;</button>
 <script src="../script.js"></script>
-</body>
+<script>
+  // Section navigator — highlight active section on scroll
+  (function() {
+    var btns = document.querySelectorAll('.section-nav-btn');
+    var sections = Array.from(btns).map(function(b) {
+      return document.getElementById(b.dataset.target);
+    }).filter(Boolean);
+
+    btns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var target = document.getElementById(btn.dataset.target);
+        if (!target) return;
+        var navHeight = 60 + 40;
+        var top = target.getBoundingClientRect().top + window.scrollY - navHeight - 24;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      });
+    });
+
+    function updateActive() {
+      var threshold = 60 + 40 + 40;
+      var activeIndex = 0;
+      sections.forEach(function(sec, i) {
+        if (sec && sec.getBoundingClientRect().top < threshold) {
+          activeIndex = i;
+        }
+      });
+      btns.forEach(function(b, i) {
+        b.classList.toggle('active', i === activeIndex);
+      });
+    }
+
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  }());
+</script>
 </html>
