@@ -5,10 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Normal Christian Life — A Guided Weekly Study</title>
 <link rel="stylesheet" href="styles.css">
+<style>
+  body { font-size: 18px; }
+  h2 { text-transform: uppercase; letter-spacing: 0.05em; font-style: normal; font-size: clamp(0.95rem, 1.8vw, 1.2rem); }
+  .home-hero .hero-anchor { font-style: normal; }
+  .resource-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; display: flex; flex-direction: column; gap: 0.6rem; }
+  .resource-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1px; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--border); margin: 1.5rem 0; }
+  .resource-card { border-radius: 0; border: none; }
+  .resource-type { font-family: var(--font-sans); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-subtle); }
+  .resource-title { font-family: var(--font-display); font-size: 1.1rem; font-weight: 300; color: var(--text); }
+  .resource-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.65; }
+  .resource-link { display: inline-block; font-family: var(--font-sans); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); border: 1px solid var(--border-mid); padding: 5px 14px; border-radius: 2px; text-decoration: none; transition: color 0.15s, border-color 0.15s; margin-top: 0.25rem; align-self: flex-start; }
+  .resource-link:hover { color: var(--text); border-color: var(--border-light); text-decoration: none; }
+</style>
 </head>
 <body>
 
-<!-- SITE HEADER -->
 <header class="site-header" role="banner">
   <div class="site-header-inner">
     <a href="index.html" class="site-logo" aria-label="Home">The Normal Christian Life</a>
@@ -20,14 +32,13 @@
   </div>
 </header>
 
-<!-- HERO -->
 <section class="home-hero" aria-labelledby="hero-title">
   <div class="home-hero-inner">
     <span class="hero-eyebrow">A Guided Weekly Study</span>
     <h1 id="hero-title">The Normal<br>Christian Life</h1>
     <span class="hero-subtitle">Watchman Nee</span>
     <p class="hero-body">
-      This study walks through Watchman Nee's foundational work one chapter at a time. Each week focuses on a single central truth, with guided reflection questions, Scripture engagement, and prayer. The goal is not to rush through a book, but to allow its truths to settle deeply into daily life.
+      This study walks through Watchman Nee's foundational work one chapter at a time over thirteen weeks. Each week focuses on a single central truth, with guided reflection questions, Scripture engagement, and prayer. The goal is not to rush through a book, but to allow its truths to take root in daily life. The progression is deliberate: each week builds on the last, and the order matters.
     </p>
     <div class="hero-anchor" role="note">
       The Christian life begins with what God has done in Christ, not with what we do for God.
@@ -35,14 +46,13 @@
   </div>
 </section>
 
-<!-- MAIN CONTENT -->
 <main class="wide-content" role="main">
 
-  <!-- WEEKLY STUDY PATH -->
+  <!-- STUDY PATH -->
   <section id="study-path" aria-labelledby="study-path-title">
     <h2 id="study-path-title">The Study Path</h2>
-    <p style="color: var(--ink-muted); margin-bottom: 1.5rem;">
-      Each week addresses a distinct dimension of the Christian life as Nee presents it. Work through the chapters in order. Each one builds on the last.
+    <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.94rem;">
+      Thirteen weeks. Each chapter addresses a distinct dimension of the Christian life. Work through them in sequence. The earlier chapters lay the foundation that makes the later ones intelligible.
     </p>
 
     <div class="chapter-cards" role="list">
@@ -51,140 +61,229 @@
       <a href="chapters/chapter-1.html" class="chapter-card available" role="listitem" data-chapter="chapter-1" aria-label="Week 1: The Blood of Christ — Available">
         <span class="card-week">Week 1</span>
         <div class="card-title">The Blood of Christ</div>
-        <p class="card-desc">
-          How can a sinful person stand accepted before a holy God? This chapter begins with the most foundational question and answers it with the blood of Christ.
-        </p>
+        <p class="card-desc">How can a sinful person stand accepted before a holy God? This chapter addresses the most foundational question and answers it with the blood of Christ. Everything else in this study rests on what is established here.</p>
         <span class="card-badge badge-available">Available</span>
         <span class="card-cta">Begin Week 1 &#8594;</span>
       </a>
 
-      <!-- WEEK 2 — COMING SOON -->
-      <div class="chapter-card coming-soon" role="listitem" aria-label="Week 2: The Cross of Christ — Coming Soon">
+      <!-- WEEKS 2-13 — COMING SOON -->
+      <div class="chapter-card coming-soon" role="listitem">
         <span class="card-week">Week 2</span>
         <div class="card-title">The Cross of Christ</div>
-        <p class="card-desc">
-          Forgiveness addresses the guilt of sins committed. But what about the power of sin itself? This chapter turns from the blood to the cross.
-        </p>
+        <p class="card-desc">Forgiveness deals with the guilt of sins committed. But what about the power of sin itself? This chapter turns from the blood to the cross, beginning the second movement of the book.</p>
         <span class="card-badge badge-soon">Coming Soon</span>
       </div>
 
-      <!-- WEEK 3 — COMING SOON -->
-      <div class="chapter-card coming-soon" role="listitem" aria-label="Week 3: The Holy Spirit — Coming Soon">
+      <div class="chapter-card coming-soon" role="listitem">
         <span class="card-week">Week 3</span>
+        <div class="card-title">The Path of Progress: Knowing</div>
+        <p class="card-desc">Deliverance from sin's power begins not with effort but with knowledge. This chapter introduces the first of three steps Nee draws from Romans 6: knowing what God declares to be true.</p>
+        <span class="card-badge badge-soon">Coming Soon</span>
+      </div>
+
+      <div class="chapter-card coming-soon" role="listitem">
+        <span class="card-week">Week 4</span>
+        <div class="card-title">The Path of Progress: Reckoning</div>
+        <p class="card-desc">Knowledge must become a reckoning — a deliberate act of faith that treats as true what God has declared. This chapter addresses how the believer appropriates the work of the cross.</p>
+        <span class="card-badge badge-soon">Coming Soon</span>
+      </div>
+
+      <div class="chapter-card coming-soon" role="listitem">
+        <span class="card-week">Week 5</span>
+        <div class="card-title">The Divide of the Cross</div>
+        <p class="card-desc">The cross creates a fundamental division in the believer's life. This chapter explores the nature of that divide and what it means to live on the resurrection side of Christ's death.</p>
+        <span class="card-badge badge-soon">Coming Soon</span>
+      </div>
+
+      <div class="chapter-card coming-soon" role="listitem">
+        <span class="card-week">Week 6</span>
+        <div class="card-title">The Path of Progress: Presenting Ourselves to God</div>
+        <p class="card-desc">The third step in Nee's progression: presenting ourselves to God as those who are alive from the dead. This chapter concludes the second movement of the book.</p>
+        <span class="card-badge badge-soon">Coming Soon</span>
+      </div>
+
+      <div class="chapter-card coming-soon" role="listitem">
+        <span class="card-week">Week 7</span>
+        <div class="card-title">The Eternal Purpose</div>
+        <p class="card-desc">Before addressing the life of the Spirit, Nee steps back to consider God's eternal purpose. Understanding why God is doing what He is doing changes how the believer understands their own life.</p>
+        <span class="card-badge badge-soon">Coming Soon</span>
+      </div>
+
+      <div class="chapter-card coming-soon" role="listitem">
+        <span class="card-week">Week 8</span>
         <div class="card-title">The Holy Spirit</div>
-        <p class="card-desc">
-          The Spirit applies what the cross accomplished. This chapter explores what it means to walk in the Spirit as the ongoing reality of the Christian life.
-        </p>
+        <p class="card-desc">The Spirit applies what the cross accomplished. This chapter explores what it means to walk in the Spirit as the ongoing reality of the Christian life.</p>
+        <span class="card-badge badge-soon">Coming Soon</span>
+      </div>
+
+      <div class="chapter-card coming-soon" role="listitem">
+        <span class="card-week">Week 9</span>
+        <div class="card-title">The Meaning and Value of Romans Seven</div>
+        <p class="card-desc">Romans 7 describes the experience of the believer who is trying to overcome sin by self-effort. This chapter explains what that struggle reveals and how the way through it is not trying harder.</p>
+        <span class="card-badge badge-soon">Coming Soon</span>
+      </div>
+
+      <div class="chapter-card coming-soon" role="listitem">
+        <span class="card-week">Week 10</span>
+        <div class="card-title">The Path of Progress: Walking in the Spirit</div>
+        <p class="card-desc">Walking in the Spirit is not a crisis experience but a continuous way of life. This chapter addresses the practical meaning of Romans 8 for daily Christian living.</p>
+        <span class="card-badge badge-soon">Coming Soon</span>
+      </div>
+
+      <div class="chapter-card coming-soon" role="listitem">
+        <span class="card-week">Week 11</span>
+        <div class="card-title">One Body in Christ</div>
+        <p class="card-desc">The Christian life is not lived in isolation. This chapter addresses the corporate dimension of the life in Christ and what it means to live as a member of His body.</p>
+        <span class="card-badge badge-soon">Coming Soon</span>
+      </div>
+
+      <div class="chapter-card coming-soon" role="listitem">
+        <span class="card-week">Week 12</span>
+        <div class="card-title">The Cross and the Soul Life</div>
+        <p class="card-desc">The cross must deal not only with the old nature but also with the soul life — the natural energies of personality that can substitute for genuine spiritual life.</p>
+        <span class="card-badge badge-soon">Coming Soon</span>
+      </div>
+
+      <div class="chapter-card coming-soon" role="listitem">
+        <span class="card-week">Week 13</span>
+        <div class="card-title">The Path of Progress: Bearing the Cross</div>
+        <p class="card-desc">The final chapter addresses the ongoing nature of the Christian life as a continuous bearing of the cross. This is not a crisis but a direction — a life lived in the fellowship of Christ's sufferings.</p>
         <span class="card-badge badge-soon">Coming Soon</span>
       </div>
 
     </div>
   </section>
 
-  <div class="ornament-divider">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
-
-  <!-- HOW TO USE THIS STUDY -->
-  <section id="how-to-use" aria-labelledby="how-title">
-    <h2 id="how-title">How to Use This Study</h2>
-    <p style="color: var(--ink-muted); margin-bottom: 0.5rem;">
-      This study is designed for personal use, though it works well in small groups as well. Move at a pace that allows the material to be absorbed, not merely read.
-    </p>
-
-    <ul class="steps-list">
-      <li class="step-item">
-        <span class="step-num">1</span>
-        <div class="step-text"><strong>One chapter per week.</strong> Read each chapter of the book slowly before engaging with the study page. The study page is a companion, not a replacement.</div>
-      </li>
-      <li class="step-item">
-        <span class="step-num">2</span>
-        <div class="step-text"><strong>Engage the reflection questions honestly.</strong> These questions are not designed to be answered quickly. Some may take a day to sit with. Write your responses. Return to them.</div>
-      </li>
-      <li class="step-item">
-        <span class="step-num">3</span>
-        <div class="step-text"><strong>Use the Scripture references.</strong> Look up each passage in context. Allow the biblical text to carry the weight, not merely the summary on the page.</div>
-      </li>
-      <li class="step-item">
-        <span class="step-num">4</span>
-        <div class="step-text"><strong>Pray before and after each session.</strong> Each chapter page ends with a written prayer. Use it as a starting point, not a script.</div>
-      </li>
-      <li class="step-item">
-        <span class="step-num">5</span>
-        <div class="step-text"><strong>Progress gradually.</strong> Each chapter depends on the one before it. Nee's argument builds deliberately. Resist the temptation to skip ahead.</div>
-      </li>
-    </ul>
-  </section>
-
-  <div class="ornament-divider">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
 
   <!-- THEOLOGICAL FRAMEWORK -->
   <section id="framework" aria-labelledby="framework-title">
-    <h2 id="framework-title">Theological Framework</h2>
-    <p style="color: var(--ink-muted); margin-bottom: 1.25rem;">
-      Nee structures his book around three interlocking realities. Each addresses a different dimension of the problem every believer faces.
+    <h2 id="framework-title">The Structure of the Christian Life in This Study</h2>
+    <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.94rem;">
+      The Normal Christian Life is not a collection of independent topics. It unfolds in three deliberate movements, each building on the last. Understanding the sequence prevents a great deal of confusion. Many believers have struggled unnecessarily because they tried to enter a later movement without having settled the foundation of an earlier one.
     </p>
 
     <div class="table-scroll">
-      <table class="framework-table" aria-label="Theological framework of the study">
+      <table class="framework-table" aria-label="The three movements of the study">
         <thead>
           <tr>
-            <th style="width: 30%;">Theme</th>
-            <th style="width: 30%;">Focus</th>
+            <th>Movement</th>
+            <th>Focus</th>
             <th>What It Addresses</th>
+            <th>Weeks</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="theme-label">The Blood of Christ</td>
-            <td>Forgiveness</td>
-            <td>The guilt of sins committed before a holy God</td>
+            <td class="theme-label">The Blood</td>
+            <td>Forgiveness of sins</td>
+            <td>The guilt of specific wrongs committed before a holy God. Deals with our record.</td>
+            <td style="color: var(--text-muted); font-family: var(--font-sans); font-size: 0.85rem;">Week 1</td>
           </tr>
           <tr>
-            <td class="theme-label">The Cross of Christ</td>
-            <td>Deliverance</td>
-            <td>The power of indwelling sin and the old nature</td>
+            <td class="theme-label">The Cross</td>
+            <td>Deliverance from sin</td>
+            <td>The power of indwelling sin and the old nature. Deals with our condition through union with Christ in His death and resurrection.</td>
+            <td style="color: var(--text-muted); font-family: var(--font-sans); font-size: 0.85rem;">Weeks 2&ndash;6</td>
           </tr>
           <tr>
-            <td class="theme-label">The Spirit of God</td>
-            <td>Christian Living</td>
-            <td>The ongoing life of the believer in the Spirit</td>
+            <td class="theme-label">The Spirit and the Body</td>
+            <td>Living the Christian life</td>
+            <td>Walking in the Spirit, overcoming inward conflict, corporate life in Christ, the soul life, and ongoing surrender. Deals with our daily walk.</td>
+            <td style="color: var(--text-muted); font-family: var(--font-sans); font-size: 0.85rem;">Weeks 7&ndash;13</td>
           </tr>
         </tbody>
       </table>
     </div>
 
     <div class="callout" style="margin-top: 1.5rem;">
-      <strong>Why This Order Matters</strong>
-      <p>Nee is deliberate about sequence. Guilt must be dealt with before growth can occur. Deliverance from sin's power requires understanding what Christ accomplished. The Spirit works within a framework already established by the blood and the cross.</p>
+      <strong>Why the Order Matters</strong>
+      <p>The Christian life is not random or fragmented. Each movement builds on the one before it. The blood must be understood before the cross can be received. The cross must do its work before the Spirit can flow freely. And the life of the Spirit must be established before the corporate and deeper dimensions of the final weeks make sense. Misunderstanding the order leads to confusion. Following it leads to clarity.</p>
     </div>
   </section>
 
-  <div class="ornament-divider">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- HOW TO USE -->
+  <section id="how-to-use" aria-labelledby="how-title">
+    <h2 id="how-title">How to Use This Study</h2>
+    <p style="color: var(--text-muted); margin-bottom: 0.5rem; font-size: 0.94rem;">
+      This study is designed for personal use, though it works well in small groups as well. Move at a pace that allows the material to be absorbed, not merely read.
+    </p>
+    <ul class="steps-list">
+      <li class="step-item">
+        <span class="step-num">1</span>
+        <div class="step-text"><strong>One chapter per week.</strong> Read each chapter of the book slowly before engaging with the study page. The study page is a companion, not a replacement for reading Nee directly.</div>
+      </li>
+      <li class="step-item">
+        <span class="step-num">2</span>
+        <div class="step-text"><strong>Engage the reflection questions honestly.</strong> These questions are not designed to be answered quickly. Some may take a day to sit with. Consider working through them in a personal journal.</div>
+      </li>
+      <li class="step-item">
+        <span class="step-num">3</span>
+        <div class="step-text"><strong>Look up the Scripture references.</strong> Each passage is provided in context. Allow the biblical text to carry the weight, not merely the summary on the page.</div>
+      </li>
+      <li class="step-item">
+        <span class="step-num">4</span>
+        <div class="step-text"><strong>Pray before and after each session.</strong> Each chapter page ends with a written prayer. Use it as a starting point, not a script. The goal is honest engagement with God, not the completion of an exercise.</div>
+      </li>
+      <li class="step-item">
+        <span class="step-num">5</span>
+        <div class="step-text"><strong>Progress gradually.</strong> Each chapter depends on the one before it. Nee's argument builds deliberately. The discipline of following the sequence is itself part of the formation.</div>
+      </li>
+    </ul>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- REFERENCE MATERIAL -->
+  <section id="resources" aria-labelledby="resources-title">
+    <h2 id="resources-title">Reference Material</h2>
+    <p style="color: var(--text-muted); margin-bottom: 0.5rem; font-size: 0.94rem;">
+      This study is based on Watchman Nee's original text. The following resources are recommended for those who wish to read the book alongside the study or access a digital version.
+    </p>
+    <div class="resource-card-grid">
+      <div class="resource-card">
+        <span class="resource-type">Print Edition</span>
+        <div class="resource-title">The Normal Christian Life</div>
+        <p class="resource-desc">The complete text by Watchman Nee, available through Amazon Canada. Reading each chapter before engaging with the corresponding study page is strongly encouraged.</p>
+        <a href="https://www.amazon.ca/Normal-Christian-Life-Watchman-Nee/dp/1640322205/" class="resource-link" target="_blank" rel="noopener">Purchase on Amazon Canada &#8594;</a>
+      </div>
+      <div class="resource-card">
+        <span class="resource-type">Digital Edition</span>
+        <div class="resource-title">Free PDF &mdash; Christian Classics Ethereal Library</div>
+        <p class="resource-desc">A complete digital edition of the text is available without charge through the Christian Classics Ethereal Library (CCEL), a long-standing repository of public-domain Christian literature.</p>
+        <a href="https://ccel.org/ccel/n/nee/normal/cache/normal.pdf" class="resource-link" target="_blank" rel="noopener">Download PDF &#8594;</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
 
   <!-- ABOUT THE BOOK -->
   <section id="about" aria-labelledby="about-title">
     <h2 id="about-title">About This Book</h2>
-    <p>
-      <em>The Normal Christian Life</em> by Watchman Nee is one of the most enduring works of twentieth-century Christian literature. Originally delivered as a series of addresses in Europe in the 1930s, the book presents the Christian life not as an achievement of spiritual maturity, but as the natural outworking of understanding what God has already accomplished in Christ.
+    <p style="font-size: 0.94rem; color: var(--text-muted);">
+      The Normal Christian Life by Watchman Nee is one of the most enduring works of twentieth-century Christian literature. Originally delivered as a series of addresses in Europe in the 1930s, the book presents the Christian life not as an achievement of spiritual maturity, but as the natural outworking of understanding what God has already accomplished in Christ.
     </p>
-    <p>
-      Nee writes with pastoral clarity and theological precision. His central argument is that the Christian life, in its normal form, is characterised by rest rather than effort, by faith rather than feeling, and by what God has done rather than what the believer must do. This study is designed to help readers encounter those truths slowly and carefully.
+    <p style="font-size: 0.94rem; color: var(--text-muted);">
+      Nee writes with pastoral clarity and theological precision. His central argument is that the Christian life, in its normal form, is characterised by rest rather than effort, by faith rather than feeling, and by what God has done rather than what the believer must do. This study is designed to help readers encounter those truths slowly and carefully, in the order Nee intended.
     </p>
   </section>
 
 </main>
 
-<!-- SITE FOOTER -->
 <footer class="site-footer" role="contentinfo">
   <div class="site-footer-inner">
     <div>
       <div class="footer-brand">The Normal Christian Life</div>
-      <div style="font-family: var(--font-sans); font-size: 12px; color: rgba(255,255,255,0.55); margin-top: 0.25rem;">A Guided Weekly Study</div>
+      <div style="font-family: var(--font-sans); font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 0.25rem; letter-spacing: 0.08em; text-transform: uppercase;">A Guided Weekly Study</div>
       <div class="footer-sub">&copy; 2025 &nbsp;&bull;&nbsp; A discipleship resource &nbsp;&bull;&nbsp; All rights reserved</div>
     </div>
     <nav class="footer-nav" aria-label="Footer navigation">
       <a href="index.html">Home</a>
       <a href="chapters/chapter-1.html">Week 1: The Blood of Christ</a>
-      <a href="chapters/chapter-template.html">Chapter Template</a>
+      <a href="https://ccel.org/ccel/n/nee/normal/cache/normal.pdf" target="_blank" rel="noopener">Download PDF</a>
     </nav>
   </div>
 </footer>
