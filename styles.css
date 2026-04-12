@@ -99,11 +99,12 @@ a:hover { color: var(--accent); }
 
 .site-logo {
   font-family: var(--font-display);
-  font-size: 1.05rem;
-  font-style: italic;
+  font-size: 1rem;
+  font-style: normal;
   font-weight: 400;
   color: var(--text);
-  letter-spacing: 0.01em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   white-space: nowrap;
   flex-shrink: 0;
   text-decoration: none;
@@ -200,10 +201,12 @@ a:hover { color: var(--accent); }
 
 .footer-brand {
   font-family: var(--font-display);
-  font-style: italic;
+  font-style: normal;
   font-weight: 400;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   color: var(--text);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   margin-bottom: 0.35rem;
 }
 
@@ -1033,7 +1036,7 @@ section {
   text-align: left;
   flex: 1;
   max-width: 280px;
-  text-transform: lowercase;
+  text-transform: none;
 }
 
 /* ─── LOOKING AHEAD ───────────────────────────────────────── */

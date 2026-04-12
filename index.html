@@ -102,13 +102,17 @@
   .section-nav-btn:hover { color: var(--text-muted); }
   .section-nav-btn.active { color: var(--text); border-bottom-color: var(--text); }
 
-  /* ── H2 SIZE FOR THIS PAGE ── */
+  /* ── H2 SIZE — matches Week 1 section headings ── */
   h2 {
     text-transform: uppercase;
     letter-spacing: 0.05em;
     font-style: normal;
-    font-size: clamp(0.85rem, 1.5vw, 1rem);
+    font-size: clamp(1rem, 2.2vw, 1.4rem);
+    font-family: var(--font-sans);
+    font-weight: 500;
   }
+  /* Top margin so first section doesn't sit flush against the sticky nav */
+  .wide-content > section:first-child { padding-top: 0.5rem; }
 
   @media (max-width: 700px) {
     .section-nav-inner { padding: 0 1.25rem; }
@@ -389,7 +393,7 @@
     <div>
       <div class="footer-brand">The Normal Christian Life</div>
       <div style="font-family: var(--font-sans); font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 0.25rem; letter-spacing: 0.08em; text-transform: uppercase;">A Guided Weekly Study</div>
-      <div class="footer-sub">&copy; 2025 &nbsp;&bull;&nbsp; A discipleship resource &nbsp;&bull;&nbsp; All rights reserved</div>
+      <div class="footer-sub">&copy; 2026 &nbsp;&bull;&nbsp; A discipleship resource &nbsp;&bull;&nbsp; All rights reserved</div>
     </div>
     <nav class="footer-nav" aria-label="Footer navigation">
       <a href="index.html">Home</a>
