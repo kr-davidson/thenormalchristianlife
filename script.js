@@ -1,453 +1,208 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Normal Christian Life — A Guided Weekly Study</title>
-<link rel="stylesheet" href="styles.css">
-<style>
-  body { font-size: 18px; }
-  .home-hero .hero-anchor { font-style: normal; }
+/* ============================================================
+   THE NORMAL CHRISTIAN LIFE — Guided Study Microsite
+   script.js — Shared JavaScript
+   ============================================================ */
 
-  /* ── RESOURCE CARDS ── */
-  .resource-card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    overflow: hidden;
-    background: var(--border);
-    margin: 1.5rem 0;
+(function () {
+  'use strict';
+
+  /* ----------------------------------------------------------
+     MOBILE NAVIGATION TOGGLE
+  ---------------------------------------------------------- */
+  function initMobileNav() {
+    var toggle = document.querySelector('.nav-toggle');
+    var nav    = document.querySelector('.site-nav');
+    if (!toggle || !nav) return;
+
+    toggle.addEventListener('click', function () {
+      var isOpen = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    // Close when a nav link is clicked
+    nav.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
   }
-  .resource-card {
-    background: var(--bg-surface);
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
+
+  /* ----------------------------------------------------------
+     ACTIVE LINK HIGHLIGHTING
+     Marks the nav link whose href matches the current page.
+  ---------------------------------------------------------- */
+  function initActiveLinks() {
+    var current = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.site-nav a').forEach(function (link) {
+      var href = link.getAttribute('href') || '';
+      var page = href.split('/').pop();
+      if (page === current) {
+        link.classList.add('active');
+        link.setAttribute('aria-current', 'page');
+      }
+    });
   }
-  .resource-type {
-    font-family: var(--font-sans);
-    font-size: 10px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--text-subtle);
+
+  /* ----------------------------------------------------------
+     SMOOTH SCROLLING
+     Intercepts in-page anchor clicks and scrolls smoothly.
+  ---------------------------------------------------------- */
+  function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+      anchor.addEventListener('click', function (e) {
+        var target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
   }
-  .resource-title {
-    font-family: var(--font-display);
-    font-size: 1.1rem;
-    font-weight: 400;
-    color: var(--text);
+
+  /* ----------------------------------------------------------
+     READING PROGRESS BAR (chapter pages only)
+  ---------------------------------------------------------- */
+  function initProgressBar() {
+    var bar = document.getElementById('progress-bar');
+    if (!bar) return;
+
+    function update() {
+      var scrollTop  = window.scrollY || document.documentElement.scrollTop;
+      var docHeight  = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      var pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      bar.style.width = pct + '%';
+    }
+
+    window.addEventListener('scroll', update, { passive: true });
+    update();
   }
-  .resource-desc {
-    font-size: 0.88rem;
-    color: var(--text-muted);
-    line-height: 1.65;
-    flex: 1;
+
+  /* ----------------------------------------------------------
+     BACK TO TOP BUTTON
+  ---------------------------------------------------------- */
+  function initBackTop() {
+    var btn = document.getElementById('back-top');
+    if (!btn) return;
+
+    function updateVisibility() {
+      btn.classList.toggle('visible', window.scrollY > 400);
+    }
+
+    btn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    window.addEventListener('scroll', updateVisibility, { passive: true });
+    updateVisibility();
   }
-  .resource-link {
-    display: inline-block;
-    font-family: var(--font-sans);
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    border: 1px solid var(--border-mid);
-    padding: 5px 14px;
-    border-radius: 2px;
-    text-decoration: none;
-    transition: color 0.15s, border-color 0.15s;
-    margin-top: 0.25rem;
-    align-self: flex-start;
-  }
-  .resource-link:hover { color: var(--text); border-color: var(--border-light); text-decoration: none; }
 
-  /* ── SECTION NAVIGATOR ── */
-  .section-nav {
-    position: sticky;
-    top: 60px;
-    z-index: 150;
-    background: var(--bg-surface);
-    border-bottom: 1px solid var(--border);
-    padding: 0;
-    box-shadow: 0 -4px 0 4px var(--bg-surface);
-  }
-  .section-nav-inner {
-    max-width: var(--site-width);
-    margin: 0 auto;
-    padding: 0 2.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0;
-    overflow-x: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-  .section-nav-inner::-webkit-scrollbar { display: none; }
-  .section-nav-btn {
-    font-family: var(--font-sans);
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text-subtle);
-    background: none;
-    border: none;
-    border-bottom: 2px solid transparent;
-    padding: 0.9rem 1rem;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: color 0.15s, border-color 0.15s;
-    flex-shrink: 0;
-  }
-  .section-nav-btn:hover { color: var(--text-muted); }
-  .section-nav-btn.active { color: var(--text); border-bottom-color: var(--text); }
+  /* ----------------------------------------------------------
+     FLOATING TABLE OF CONTENTS DOTS
+  ---------------------------------------------------------- */
+  function initTocDots() {
+    var dots     = document.querySelectorAll('.toc-dot');
+    if (!dots.length) return;
 
-  /* ── H2 SIZE — matches Week 1 section headings ── */
-  h2 {
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-style: normal;
-    font-size: clamp(1rem, 2.2vw, 1.4rem);
-    font-family: var(--font-sans);
-    font-weight: 500;
-  }
-  /* Top margin so first section breathes below the sticky nav */
-  .wide-content > section:first-child { padding-top: 2.5rem; }
-
-  @media (max-width: 700px) {
-    .section-nav-inner { padding: 0 1.25rem; }
-    .section-nav-btn { padding: 0.8rem 0.75rem; font-size: 9px; }
-  }
-</style>
-</head>
-<body>
-
-<!-- SITE HEADER -->
-<header class="site-header" role="banner">
-  <div class="site-header-inner">
-    <a href="index.html" class="site-logo" aria-label="Home">The Normal Christian Life</a>
-    <nav class="site-nav" id="site-nav" aria-label="Main navigation">
-      <a href="index.html" class="active">Home</a>
-      <a href="chapters/chapter-1.html">Week 1</a>
-      <a href="chapters/chapter-2.html">Week 2</a>
-      <a href="chapters/chapter-3.html">Week 3</a>
-      <a href="chapters/chapter-4.html">Week 4</a>
-    </nav>
-    <button class="nav-toggle" id="nav-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Toggle navigation">&#9776;</button>
-  </div>
-</header>
-
-<!-- HERO -->
-<section class="home-hero" aria-labelledby="hero-title">
-  <div class="home-hero-inner">
-    <span class="hero-eyebrow">A Guided Weekly Study</span>
-    <h1 id="hero-title">The Normal<br>Christian Life</h1>
-    <span class="hero-subtitle">Watchman Nee</span>
-    <p class="hero-body">
-      Thirteen weeks through one of the most important works of twentieth-century Christian literature. Each week engages a single chapter through reading, reflection, and prayer. The progression is deliberate: each week builds on the last, and the order matters.
-    </p>
-    <div class="hero-anchor" role="note">
-      The Christian life begins with what God has done in Christ, not with what we do for God.
-    </div>
-  </div>
-</section>
-
-<!-- STICKY SECTION NAVIGATOR -->
-<nav class="section-nav" aria-label="Page sections">
-  <div class="section-nav-inner">
-    <button class="section-nav-btn active" data-target="about">About the Book</button>
-    <button class="section-nav-btn" data-target="resources">Get the Book</button>
-    <button class="section-nav-btn" data-target="how-to-use">How to Use</button>
-    <button class="section-nav-btn" data-target="weekly-sessions">Weekly Sessions</button>
-    <button class="section-nav-btn" data-target="framework">Study Structure</button>
-  </div>
-</nav>
-
-<main class="wide-content" role="main">
-
-  <!-- 1. ABOUT THE BOOK -->
-  <section id="about" aria-labelledby="about-title">
-    <h2 id="about-title">About the Book</h2>
-    <p style="font-size: 0.94rem; color: var(--text-muted);">
-      The Normal Christian Life by Watchman Nee was originally delivered as a series of addresses in Europe in the 1930s. It presents the Christian life not as an achievement of spiritual maturity, but as the natural outworking of understanding what God has already accomplished in Christ.
-    </p>
-    <p style="font-size: 0.94rem; color: var(--text-muted);">
-      Nee writes with pastoral clarity and theological precision. His central argument is that the Christian life, in its normal form, is characterised by rest rather than effort, by faith rather than feeling, and by what God has done rather than what the believer must do. The book has remained in continuous publication for nearly a century because its diagnosis of the Christian's struggle is accurate, and its answer is grounded in Scripture.
-    </p>
-    <p style="font-size: 0.94rem; color: var(--text-muted);">
-      This study is designed to help readers encounter Nee's argument slowly and carefully, in the sequence he intended. Each weekly session corresponds to one chapter of the book and includes teaching notes, Scripture references, illustrations, and guided reflection questions.
-    </p>
-  </section>
-
-  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
-
-  <!-- 2. REFERENCE MATERIAL -->
-  <section id="resources" aria-labelledby="resources-title">
-    <h2 id="resources-title">Get the Book</h2>
-    <p style="color: var(--text-muted); margin-bottom: 0.5rem; font-size: 0.94rem;">
-      Reading each chapter of the book directly before engaging with the corresponding weekly session is strongly encouraged. The sessions are companions to Nee's text, not substitutes for it. Two editions are available below.
-    </p>
-    <div class="resource-card-grid">
-      <div class="resource-card">
-        <span class="resource-type">Print Edition</span>
-        <div class="resource-title">The Normal Christian Life</div>
-        <p class="resource-desc">The complete text by Watchman Nee. Available through Amazon Canada for purchase and delivery.</p>
-        <a href="https://www.amazon.ca/Normal-Christian-Life-Watchman-Nee/dp/1640322205/" class="resource-link" target="_blank" rel="noopener">Purchase on Amazon Canada &#8594;</a>
-      </div>
-      <div class="resource-card">
-        <span class="resource-type">Free Digital Edition</span>
-        <div class="resource-title">Full Text &mdash; Christian Classics Ethereal Library</div>
-        <p class="resource-desc">A complete digital edition is available at no cost through the Christian Classics Ethereal Library (CCEL), a long-standing repository of public-domain Christian literature.</p>
-        <a href="https://ccel.org/ccel/n/nee/normal/cache/normal.pdf" class="resource-link" target="_blank" rel="noopener">Download PDF &#8594;</a>
-      </div>
-    </div>
-  </section>
-
-  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
-
-  <!-- 3. HOW TO USE THIS STUDY -->
-  <section id="how-to-use" aria-labelledby="how-title">
-    <h2 id="how-title">How to Use This Study</h2>
-    <p style="color: var(--text-muted); margin-bottom: 1rem; font-size: 0.94rem;">
-      This study is designed for personal use, though it works well in small groups. Each of the thirteen weeks follows the same pattern. Move at a pace that allows the material to be absorbed, not merely read.
-    </p>
-    <ul class="steps-list">
-      <li class="step-item">
-        <span class="step-num">1</span>
-        <div class="step-text"><strong>Read the chapter first.</strong> Before opening the weekly session, read the corresponding chapter of the book. The sessions are companions to Nee's text, not replacements for it. What Nee says directly carries a weight that no summary can replicate.</div>
-      </li>
-      <li class="step-item">
-        <span class="step-num">2</span>
-        <div class="step-text"><strong>Work through the weekly session.</strong> Each session includes teaching notes, illustrations, Scripture references, and reflection questions. Use the section navigator at the top of each session to move between parts without losing your place.</div>
-      </li>
-      <li class="step-item">
-        <span class="step-num">3</span>
-        <div class="step-text"><strong>Engage the reflection questions in a journal.</strong> The questions are designed to be sat with, not answered quickly. Writing out responses — even briefly — moves the material from the mind into the life. There is no place to submit answers on the site; they are for you alone.</div>
-      </li>
-      <li class="step-item">
-        <span class="step-num">4</span>
-        <div class="step-text"><strong>Use the closing prayer.</strong> Each session ends with a written prayer that draws together the week's central truth. Use it as a starting point for honest conversation with God, not as a script to complete.</div>
-      </li>
-      <li class="step-item">
-        <span class="step-num">5</span>
-        <div class="step-text"><strong>Follow the sequence.</strong> Each week's chapter depends on the one before it. Nee's argument builds deliberately. Skipping ahead tends to produce confusion rather than clarity. The discipline of the sequence is itself part of the formation.</div>
-      </li>
-    </ul>
-  </section>
-
-  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
-
-  <!-- 4. WEEKLY SESSIONS -->
-  <section id="weekly-sessions" aria-labelledby="weekly-sessions-title">
-    <h2 id="weekly-sessions-title">Weekly Sessions</h2>
-    <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.94rem;">
-      Thirteen weeks. Each session addresses a distinct dimension of the Christian life as Nee presents it. Work through them in sequence. The earlier sessions lay the foundation that makes the later ones intelligible.
-    </p>
-
-    <div class="chapter-cards" role="list">
-
-      <a href="chapters/chapter-1.html" class="chapter-card available" role="listitem" data-chapter="chapter-1" aria-label="Week 1: The Blood of Christ — Available">
-        <span class="card-week">Week 1</span>
-        <div class="card-title">The Blood of Christ</div>
-        <p class="card-desc">How can a sinful person stand accepted before a holy God? This session addresses the most foundational question and answers it with the blood of Christ. Everything else in this study rests on what is established here.</p>
-        <span class="card-badge badge-available">Available</span>
-        <span class="card-cta">Begin Week 1 &#8594;</span>
-      </a>
-
-      <a href="chapters/chapter-2.html" class="chapter-card available" role="listitem" data-chapter="chapter-2" aria-label="Week 2: The Cross of Christ — Available">
-        <span class="card-week">Week 2</span>
-        <div class="card-title">The Cross of Christ</div>
-        <p class="card-desc">Forgiveness deals with the guilt of sins committed. But what about the power of sin itself? This session turns from the blood to the cross, beginning the second movement of the book.</p>
-        <span class="card-badge badge-available">Available</span>
-        <span class="card-cta">Begin Week 2 &#8594;</span>
-      </a>
-
-      <a href="chapters/chapter-3.html" class="chapter-card available" role="listitem" data-chapter="chapter-3" aria-label="Week 3: The Path of Progress: Knowing — Available">
-        <span class="card-week">Week 3</span>
-        <div class="card-title">The Path of Progress: Knowing</div>
-        <p class="card-desc">Deliverance from sin's power begins not with effort but with knowledge. This session introduces the first practical step Nee draws from Romans 6: knowing what God has already done in Christ.</p>
-        <span class="card-badge badge-available">Available</span>
-        <span class="card-cta">Begin Week 3 &#8594;</span>
-      </a>
-
-      <a href="chapters/chapter-4.html" class="chapter-card available" role="listitem" data-chapter="chapter-4" aria-label="Week 4: The Path of Progress: Reckoning — Available">
-        <span class="card-week">Week 4</span>
-        <div class="card-title">The Path of Progress: Reckoning</div>
-        <p class="card-desc">Knowledge must become a reckoning — a deliberate act of faith that counts as true what God has already declared about the believer's union with Christ in His death and resurrection.</p>
-        <span class="card-badge badge-available">Available</span>
-        <span class="card-cta">Begin Week 4 &#8594;</span>
-      </a>
-
-      <div class="chapter-card coming-soon" role="listitem">
-        <span class="card-week">Week 5</span>
-        <div class="card-title">The Divide of the Cross</div>
-        <p class="card-desc">The cross creates a fundamental division in the believer's life. This session explores what it means to live on the resurrection side of Christ's death.</p>
-        <span class="card-badge badge-soon">Coming Soon</span>
-      </div>
-
-      <div class="chapter-card coming-soon" role="listitem">
-        <span class="card-week">Week 6</span>
-        <div class="card-title">The Path of Progress: Presenting Ourselves to God</div>
-        <p class="card-desc">The third step in Nee's progression: presenting ourselves to God as those who are alive from the dead. This session concludes the second movement of the book.</p>
-        <span class="card-badge badge-soon">Coming Soon</span>
-      </div>
-
-      <div class="chapter-card coming-soon" role="listitem">
-        <span class="card-week">Week 7</span>
-        <div class="card-title">The Eternal Purpose</div>
-        <p class="card-desc">Before addressing life in the Spirit, Nee steps back to consider God's eternal purpose — the why behind everything He is doing in and through the believer.</p>
-        <span class="card-badge badge-soon">Coming Soon</span>
-      </div>
-
-      <div class="chapter-card coming-soon" role="listitem">
-        <span class="card-week">Week 8</span>
-        <div class="card-title">The Holy Spirit</div>
-        <p class="card-desc">The Spirit applies what the cross accomplished. This session explores what it means to walk in the Spirit as the ongoing reality of the Christian life.</p>
-        <span class="card-badge badge-soon">Coming Soon</span>
-      </div>
-
-      <div class="chapter-card coming-soon" role="listitem">
-        <span class="card-week">Week 9</span>
-        <div class="card-title">The Meaning and Value of Romans Seven</div>
-        <p class="card-desc">Romans 7 describes the believer trying to overcome sin by self-effort. This session explains what that struggle reveals, and why the way through is not trying harder.</p>
-        <span class="card-badge badge-soon">Coming Soon</span>
-      </div>
-
-      <div class="chapter-card coming-soon" role="listitem">
-        <span class="card-week">Week 10</span>
-        <div class="card-title">The Path of Progress: Walking in the Spirit</div>
-        <p class="card-desc">Walking in the Spirit is not a crisis experience but a continuous way of life. This session addresses the practical meaning of Romans 8 for daily living.</p>
-        <span class="card-badge badge-soon">Coming Soon</span>
-      </div>
-
-      <div class="chapter-card coming-soon" role="listitem">
-        <span class="card-week">Week 11</span>
-        <div class="card-title">One Body in Christ</div>
-        <p class="card-desc">The Christian life is not lived in isolation. This session addresses the corporate dimension of life in Christ and what it means to function as a member of His body.</p>
-        <span class="card-badge badge-soon">Coming Soon</span>
-      </div>
-
-      <div class="chapter-card coming-soon" role="listitem">
-        <span class="card-week">Week 12</span>
-        <div class="card-title">The Cross and the Soul Life</div>
-        <p class="card-desc">The cross must deal not only with the old nature but also with the soul life — the natural energies of personality that can substitute for genuine spiritual life.</p>
-        <span class="card-badge badge-soon">Coming Soon</span>
-      </div>
-
-      <div class="chapter-card coming-soon" role="listitem">
-        <span class="card-week">Week 13</span>
-        <div class="card-title">The Path of Progress: Bearing the Cross</div>
-        <p class="card-desc">The final session addresses the ongoing nature of the Christian life as a continuous bearing of the cross — not a crisis, but a direction and a daily fellowship.</p>
-        <span class="card-badge badge-soon">Coming Soon</span>
-      </div>
-
-    </div>
-  </section>
-
-  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
-
-  <!-- 5. STUDY STRUCTURE -->
-  <section id="framework" aria-labelledby="framework-title">
-    <h2 id="framework-title">The Structure of This Study</h2>
-    <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.94rem;">
-      The Normal Christian Life is not a collection of independent topics. It unfolds in three deliberate movements. Understanding the sequence prevents a great deal of confusion. Many believers struggle unnecessarily because they try to enter a later movement without having settled the foundation of an earlier one.
-    </p>
-
-    <div class="table-scroll">
-      <table class="framework-table" aria-label="The three movements of the study">
-        <thead>
-          <tr>
-            <th>Movement</th>
-            <th>Focus</th>
-            <th>What It Addresses</th>
-            <th>Sessions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="theme-label">The Blood</td>
-            <td>Forgiveness of sins</td>
-            <td>The guilt of specific wrongs committed before a holy God. Deals with our record.</td>
-            <td style="color: var(--text-muted); font-family: var(--font-sans); font-size: 0.85rem; white-space: nowrap;">Week 1</td>
-          </tr>
-          <tr>
-            <td class="theme-label">The Cross</td>
-            <td>Deliverance from sin</td>
-            <td>The power of indwelling sin and the old nature. Deals with our condition through union with Christ in His death and resurrection.</td>
-            <td style="color: var(--text-muted); font-family: var(--font-sans); font-size: 0.85rem; white-space: nowrap;">Weeks 2&ndash;6</td>
-          </tr>
-          <tr>
-            <td class="theme-label">The Spirit and the Body</td>
-            <td>Living the Christian life</td>
-            <td>Walking in the Spirit, overcoming inward conflict, corporate life in Christ, the soul life, and ongoing surrender.</td>
-            <td style="color: var(--text-muted); font-family: var(--font-sans); font-size: 0.85rem; white-space: nowrap;">Weeks 7&ndash;13</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="callout" style="margin-top: 1.5rem;">
-      <strong>Why the Order Matters</strong>
-      <p>The blood must be understood before the cross can be received. The cross must do its work before the Spirit can flow freely. And the life of the Spirit must be established before the corporate and deeper dimensions of the final sessions make sense. Following the sequence is not a formality. It is part of how the truth lands.</p>
-    </div>
-  </section>
-
-</main>
-
-<footer class="site-footer" role="contentinfo">
-  <div class="site-footer-inner">
-    <div>
-      <div class="footer-brand">The Normal Christian Life</div>
-      <div style="font-family: var(--font-sans); font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 0.25rem; letter-spacing: 0.08em; text-transform: uppercase;">A Guided Weekly Study</div>
-      <div class="footer-sub">&copy; 2026 &nbsp;&bull;&nbsp; A discipleship resource &nbsp;&bull;&nbsp; All rights reserved</div>
-    </div>
-    <nav class="footer-nav" aria-label="Footer navigation">
-      <a href="index.html">Home</a>
-      <a href="chapters/chapter-1.html">Week 1: The Blood of Christ</a>
-      <a href="chapters/chapter-2.html">Week 2: The Cross of Christ</a>
-      <a href="chapters/chapter-3.html">Week 3: The Path of Progress: Knowing</a>
-      <a href="chapters/chapter-4.html">Week 4: The Path of Progress: Reckoning</a>
-      <a href="https://ccel.org/ccel/n/nee/normal/cache/normal.pdf" target="_blank" rel="noopener">Download PDF</a>
-    </nav>
-  </div>
-</footer>
-
-<script src="script.js"></script>
-<script>
-  // Section navigator — highlight active section on scroll
-  (function() {
-    var btns = document.querySelectorAll('.section-nav-btn');
-    var sections = Array.from(btns).map(function(b) {
-      return document.getElementById(b.dataset.target);
+    var sections = Array.from(dots).map(function (d) {
+      return document.getElementById(d.dataset.target);
     }).filter(Boolean);
 
-    btns.forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        var target = document.getElementById(btn.dataset.target);
-        if (!target) return;
-        var navHeight = 60 + 42; // header + section-nav
-        var top = target.getBoundingClientRect().top + window.scrollY - navHeight - 24;
-        window.scrollTo({ top: top, behavior: 'smooth' });
+    dots.forEach(function (dot) {
+      dot.addEventListener('click', function () {
+        var target = document.getElementById(dot.dataset.target);
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
       });
     });
 
     function updateActive() {
-      var navHeight = 60 + 42 + 32;
       var activeIndex = 0;
-      sections.forEach(function(sec, i) {
-        if (sec && sec.getBoundingClientRect().top < navHeight) {
+      sections.forEach(function (sec, i) {
+        if (sec && sec.getBoundingClientRect().top < window.innerHeight * 0.45) {
           activeIndex = i;
         }
       });
-      btns.forEach(function(b, i) {
-        b.classList.toggle('active', i === activeIndex);
+      dots.forEach(function (d, i) {
+        d.classList.toggle('active', i === activeIndex);
       });
     }
 
     window.addEventListener('scroll', updateActive, { passive: true });
     updateActive();
-  }());
-</script>
-</body>
-</html>
+  }
+
+  /* ----------------------------------------------------------
+     COLLAPSIBLE SECTIONS
+  ---------------------------------------------------------- */
+  function initCollapsible() {
+    document.querySelectorAll('.collapsible-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var bodyId = btn.dataset.section;
+        var body   = document.getElementById(bodyId);
+        if (!body) return;
+        var isOpen = btn.classList.contains('open');
+        btn.classList.toggle('open', !isOpen);
+        btn.setAttribute('aria-expanded', String(!isOpen));
+        body.classList.toggle('open', !isOpen);
+      });
+    });
+  }
+
+  /* ----------------------------------------------------------
+     MARK AS COMPLETE (local storage, chapter pages only)
+     Adds a simple toggle so readers can track their progress.
+  ---------------------------------------------------------- */
+  function initMarkComplete() {
+    var btn = document.getElementById('mark-complete');
+    if (!btn) return;
+
+    var key       = 'ncl-complete-' + (btn.dataset.chapter || 'unknown');
+    var isComplete = localStorage.getItem(key) === 'true';
+
+    function render(complete) {
+      btn.textContent = complete ? '&#10003; Marked Complete' : 'Mark as Complete';
+      btn.classList.toggle('complete', complete);
+    }
+
+    render(isComplete);
+
+    btn.addEventListener('click', function () {
+      isComplete = !isComplete;
+      localStorage.setItem(key, String(isComplete));
+      render(isComplete);
+    });
+  }
+
+  /* ----------------------------------------------------------
+     HOMEPAGE: update chapter card states from local storage
+  ---------------------------------------------------------- */
+  function initChapterCardStates() {
+    document.querySelectorAll('.chapter-card[data-chapter]').forEach(function (card) {
+      var key       = 'ncl-complete-' + card.dataset.chapter;
+      var isComplete = localStorage.getItem(key) === 'true';
+      if (isComplete) {
+        var badge = card.querySelector('.card-badge');
+        if (badge) {
+          badge.textContent = 'Complete';
+          badge.className   = 'card-badge badge-complete';
+        }
+      }
+    });
+  }
+
+  /* ----------------------------------------------------------
+     INIT
+  ---------------------------------------------------------- */
+  document.addEventListener('DOMContentLoaded', function () {
+    initMobileNav();
+    initActiveLinks();
+    initSmoothScroll();
+    initProgressBar();
+    initBackTop();
+    initTocDots();
+    initCollapsible();
+    initMarkComplete();
+    initChapterCardStates();
+  });
+
+}());

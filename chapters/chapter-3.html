@@ -37,6 +37,8 @@
     z-index: 150;
     background: var(--bg-surface);
     border-bottom: 1px solid var(--border);
+    /* Prevent content from bleeding above on mobile */
+    box-shadow: 0 -4px 0 4px var(--bg-surface);
   }
   .section-nav-primary {
     max-width: var(--content-width);
