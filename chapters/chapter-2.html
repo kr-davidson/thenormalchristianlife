@@ -7,14 +7,127 @@
 <link rel="stylesheet" href="../styles.css">
 <style>
   body { font-size: 18px; }
-  .coming-soon-inner { max-width: 600px; margin: 6rem auto; padding: 0 2rem; text-align: center; }
-  .coming-soon-inner h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1.5rem; }
-  .coming-soon-inner p { color: var(--text-muted); font-size: 0.94rem; line-height: 1.8; margin-bottom: 1rem; }
-  .back-link { display: inline-block; font-family: var(--font-sans); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); border: 1px solid var(--border-mid); padding: 8px 18px; border-radius: 2px; text-decoration: none; margin-top: 1.5rem; transition: color 0.15s, border-color 0.15s; }
-  .back-link:hover { color: var(--text); border-color: var(--border-light); text-decoration: none; }
+
+  /* Larger section headings */
+  .collapsible-btn {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-style: normal;
+    font-size: clamp(1rem, 2.2vw, 1.4rem) !important;
+    font-family: var(--font-sans) !important;
+    font-weight: 500 !important;
+  }
+  h2 {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-style: normal;
+    font-size: clamp(1rem, 2.2vw, 1.4rem);
+    font-family: var(--font-sans);
+    font-weight: 500;
+  }
+  .card h3 { font-size: 11px; font-weight: 700; color: var(--text); letter-spacing: 0.18em; }
+  .reflection-card p.question { font-style: normal; }
+  .prayer-section .prayer-text { font-style: normal; }
+  .memory-truth { font-style: normal; }
+  .key-truth p { font-style: normal; }
+
+  /* ── TWO-ROW COLLAPSIBLE SECTION NAVIGATOR ── */
+  .section-nav {
+    position: sticky;
+    top: 60px;
+    z-index: 150;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Primary row — phase labels */
+  .section-nav-primary {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .section-nav-primary::-webkit-scrollbar { display: none; }
+
+  .phase-btn {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 0.85rem 1rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .phase-btn:hover { color: var(--text-muted); }
+  .phase-btn.active { color: var(--text); border-bottom-color: var(--text); }
+  .phase-btn.open { color: var(--text); }
+
+  .phase-chevron {
+    font-size: 8px;
+    transition: transform 0.2s;
+    opacity: 0.5;
+  }
+  .phase-btn.open .phase-chevron { transform: rotate(180deg); opacity: 1; }
+
+  /* Secondary row — sub-section links */
+  .section-nav-secondary {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: none;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    background: var(--bg-raised);
+    border-top: 1px solid var(--border);
+  }
+  .section-nav-secondary::-webkit-scrollbar { display: none; }
+  .section-nav-secondary.visible { display: flex; }
+
+  .sub-btn {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+    background: none;
+    border: none;
+    border-bottom: 1px solid transparent;
+    padding: 0.65rem 0.9rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s;
+    flex-shrink: 0;
+  }
+  .sub-btn:hover { color: var(--text-muted); }
+  .sub-btn.active { color: var(--text); border-bottom-color: var(--text-subtle); }
+
+  @media (max-width: 700px) {
+    .section-nav-primary,
+    .section-nav-secondary { padding: 0 1.25rem; }
+    .phase-btn { padding: 0.8rem 0.75rem; font-size: 9px; }
+  }
 </style>
 </head>
 <body>
+
+<div id="progress-bar" role="progressbar" aria-label="Reading progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 
 <header class="site-header" role="banner">
   <div class="site-header-inner">
@@ -22,20 +135,522 @@
     <nav class="site-nav" id="site-nav" aria-label="Main navigation">
       <a href="../index.html">Home</a>
       <a href="chapter-1.html">Week 1</a>
+      <a href="chapter-2.html" class="active" aria-current="page">Week 2</a>
+      <a href="chapter-3.html">Week 3</a>
     </nav>
     <button class="nav-toggle" id="nav-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Toggle navigation">&#9776;</button>
   </div>
 </header>
 
-<div class="coming-soon-inner">
-  <span style="font-family: var(--font-sans); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-subtle); display: block; margin-bottom: 1.5rem;">Week 2 &nbsp;&bull;&nbsp; Coming Soon</span>
-  <h1>The Cross<br>of Christ</h1>
-  <p>This chapter is currently in development and will be available soon. It addresses the deeper question of sin as a power and inward condition, and introduces the second major movement of the book: deliverance through the cross.</p>
-  <p>Return to Week 1 to continue your study, or go back to the homepage to review the full study path.</p>
-  <a href="../index.html" class="back-link">&#8592; Back to Home</a>
-  &nbsp;&nbsp;
-  <a href="chapter-1.html" class="back-link">&#8592; Back to Week 1</a>
-</div>
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <a href="../index.html">Home</a>
+  <span class="sep" aria-hidden="true">&#8250;</span>
+  <span class="current">Week 2: The Cross of Christ</span>
+</nav>
+
+<!-- TWO-ROW SECTION NAVIGATOR -->
+<nav class="section-nav" aria-label="Chapter sections" id="chapter-nav">
+
+  <!-- Primary row: phase labels -->
+  <div class="section-nav-primary">
+    <button class="phase-btn active" data-phase="foundation" aria-expanded="false">
+      Foundation <span class="phase-chevron">&#9660;</span>
+    </button>
+    <button class="phase-btn" data-phase="in-adam" aria-expanded="false">
+      In Adam <span class="phase-chevron">&#9660;</span>
+    </button>
+    <button class="phase-btn" data-phase="in-christ" aria-expanded="false">
+      In Christ <span class="phase-chevron">&#9660;</span>
+    </button>
+    <button class="phase-btn" data-phase="deliverance" aria-expanded="false">
+      Deliverance <span class="phase-chevron">&#9660;</span>
+    </button>
+    <button class="phase-btn" data-phase="close" aria-expanded="false">
+      Reflect &amp; Close <span class="phase-chevron">&#9660;</span>
+    </button>
+  </div>
+
+  <!-- Secondary rows -->
+  <div class="section-nav-secondary" id="sub-foundation">
+    <button class="sub-btn" data-target="why-matters">Why It Matters</button>
+    <button class="sub-btn" data-target="sins-to-sin">From Sins to Sin</button>
+  </div>
+
+  <div class="section-nav-secondary" id="sub-in-adam">
+    <button class="sub-btn" data-target="state-by-nature">Man's State by Nature</button>
+    <button class="sub-btn" data-target="in-adam-in-christ">In Adam and In Christ</button>
+  </div>
+
+  <div class="section-nav-secondary" id="sub-in-christ">
+    <button class="sub-btn" data-target="gods-way">God's Way of Deliverance</button>
+    <button class="sub-btn" data-target="representative">Representative and Inclusive</button>
+  </div>
+
+  <div class="section-nav-secondary" id="sub-deliverance">
+    <button class="sub-btn" data-target="last-adam">Last Adam and Second Man</button>
+    <button class="sub-btn" data-target="end-of-self">End of Self-Improvement</button>
+  </div>
+
+  <div class="section-nav-secondary" id="sub-close">
+    <button class="sub-btn" data-target="reflection">Guided Reflection</button>
+    <button class="sub-btn" data-target="prayer">Pause and Pray</button>
+    <button class="sub-btn" data-target="summary">Chapter Summary</button>
+    <button class="sub-btn" data-target="looking-ahead">Looking Ahead</button>
+  </div>
+
+</nav>
+
+<nav id="toc-float" aria-label="Page sections">
+  <div class="toc-dot" data-target="why-matters"      data-label="Why It Matters"></div>
+  <div class="toc-dot" data-target="sins-to-sin"      data-label="From Sins to Sin"></div>
+  <div class="toc-dot" data-target="state-by-nature"  data-label="Man's State by Nature"></div>
+  <div class="toc-dot" data-target="in-adam-in-christ" data-label="In Adam and In Christ"></div>
+  <div class="toc-dot" data-target="gods-way"         data-label="God's Way of Deliverance"></div>
+  <div class="toc-dot" data-target="representative"   data-label="Representative and Inclusive"></div>
+  <div class="toc-dot" data-target="last-adam"        data-label="Last Adam and Second Man"></div>
+  <div class="toc-dot" data-target="end-of-self"      data-label="End of Self-Improvement"></div>
+  <div class="toc-dot" data-target="reflection"       data-label="Reflection"></div>
+  <div class="toc-dot" data-target="prayer"           data-label="Prayer"></div>
+  <div class="toc-dot" data-target="summary"          data-label="Summary"></div>
+  <div class="toc-dot" data-target="looking-ahead"    data-label="Looking Ahead"></div>
+</nav>
+
+<section class="chapter-hero" id="hero" aria-labelledby="chapter-title">
+  <div class="chapter-hero-inner">
+    <span class="series-label">The Normal Christian Life &nbsp;&bull;&nbsp; Watchman Nee</span>
+    <span class="chapter-num">Chapter Two &nbsp;&bull;&nbsp; Week 2 of 13</span>
+    <h1 id="chapter-title">The Cross<br>of Christ</h1>
+    <span class="hero-ornament" aria-hidden="true">&#10022;</span>
+    <p class="hero-intro">
+      Week 1 established that the blood of Christ is God's answer to the problem of sins and guilt. It dealt with what we have done. Week 2 now moves to a deeper problem: sin not as a series of acts but as an inward power and condition, the life we inherited in Adam. The answer to this deeper problem is not the blood but the cross, not forgiveness but deliverance, not pardon but death and resurrection.
+    </p>
+    <div class="key-truth" role="note">
+      <span class="kt-label">The Central Truth of This Chapter</span>
+      <p>My deliverance from sin does not rest on improving the old man, but on my union with Christ in His death and resurrection.</p>
+    </div>
+  </div>
+</section>
+
+<main class="page-content" role="main" style="padding-top: 2.5rem;">
+
+  <!-- SECTION 1: WHY THIS CHAPTER MATTERS -->
+  <section id="why-matters" aria-labelledby="why-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="why-matters-body" id="why-title">
+      Why This Chapter Matters
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="why-matters-body">
+      <p>A believer may have fully received the truth of Week 1. Their sins are forgiven. Their guilt before God has been dealt with through the blood of Christ. They stand accepted. And yet something still troubles them. They return to the same failures. They find the same temptations arising with the same force. They discover, to their honest dismay, that forgiveness has not changed what they are inwardly. The old patterns remain. The old responses assert themselves. The old self seems entirely alive.</p>
+      <p>This is not a failure of Week 1. The blood of Christ accomplished everything it was meant to accomplish. The problem is that the blood addressed one dimension of the human condition and not the other. It dealt with sins, the specific acts of wrongdoing that create a record of guilt before God. But it did not deal with sin, the inward principle from which those acts arise.</p>
+      <p>This chapter matters because it reveals why repeated failure is not simply a matter of insufficient repentance or weak resolve. The problem goes to the root. And God's answer goes there too.</p>
+      <div class="callout">
+        <strong>The Question This Chapter Answers</strong>
+        <p>How can I be delivered not merely from what I have done, but from what I am? That is the question Week 2 addresses. The answer will not be found in effort, in discipline, or in the determined management of behaviour. It will be found in what God has already done in the cross of Christ.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 2: FROM SINS TO SIN -->
+  <section id="sins-to-sin" aria-labelledby="sins-to-sin-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="sins-to-sin-body" id="sins-to-sin-title">
+      From Sins to Sin
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="sins-to-sin-body">
+      <p>The letter to the Romans divides naturally into two major movements. The first movement, running through the early chapters, deals with the problem of sins committed and God's provision of righteousness through justification by faith. The second movement, beginning around chapter five and running through chapter eight, turns to a deeper subject: the reign of sin as a principle, the condition of humanity in Adam, and the provision of life and deliverance through union with Christ.</p>
+      <p>This is not a minor distinction. It reflects two entirely different dimensions of the human problem. A person may be fully justified, entirely forgiven, and completely accepted before God, and still find themselves in bondage to the very principle that produced the sins they have been forgiven for. To address sins without addressing sin is to remove the fruit while leaving the root untouched.</p>
+
+      <div class="table-scroll">
+        <table class="compare-table" aria-label="Sins compared to Sin">
+          <thead>
+            <tr>
+              <th>Sins (Plural)</th>
+              <th>Sin (Singular)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-problem">Specific acts committed</td>
+              <td class="col-answer">The inward principle and condition</td>
+            </tr>
+            <tr>
+              <td class="col-problem">What we have done</td>
+              <td class="col-answer">What we are in Adam</td>
+            </tr>
+            <tr>
+              <td class="col-problem">Creates guilt before God</td>
+              <td class="col-answer">Creates bondage and defeat</td>
+            </tr>
+            <tr>
+              <td class="col-problem">Addressed by the Blood</td>
+              <td class="col-answer">Addressed by the Cross</td>
+            </tr>
+            <tr>
+              <td class="col-problem">Requires forgiveness</td>
+              <td class="col-answer">Requires deliverance</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <strong>Two Provisions, Both Necessary</strong>
+        <p>Neither provision replaces the other. The blood of Christ and the cross of Christ address different dimensions of the same person. A complete understanding of salvation requires both. Week 1 without Week 2 leaves the believer forgiven but not yet delivered. Week 2 without Week 1 leaves the believer seeking deliverance without the foundation of assured acceptance before God.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 3: MAN'S STATE BY NATURE -->
+  <section id="state-by-nature" aria-labelledby="state-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="state-by-nature-body" id="state-title">
+      Man's State by Nature
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="state-by-nature-body">
+      <p>The common assumption is that people become sinners by sinning. On this view, the problem is essentially behavioural: if a person could be trained, disciplined, or sufficiently motivated to stop sinning, the problem would be solved. This assumption underlies most human attempts at moral improvement. It also underlies a great deal of what passes for Christian discipleship when the cross has not been properly understood.</p>
+      <p>But the Scripture reverses the order. We do not become sinners by sinning. We sin because we are sinners. The acts are the expression of a nature, and that nature was not acquired through our own choices. It was inherited. It came to us through our origin in Adam. We were born into a family, and the family carries a character.</p>
+
+      <div class="callout callout-crimson">
+        <strong>Illustration: A Matter of Birth, Not Behaviour</strong>
+        <p>Consider how a family name is passed on. A person does not earn their family name through conduct or achievement. They receive it through birth. They are part of that family's history, that family's inheritance, that family's identity, simply because of where they came from. No amount of good behaviour makes someone part of a different family. And no amount of bad behaviour takes them out of the family into which they were born.</p>
+        <p style="margin-top: 0.75rem;">In the same way, our problem in Adam is not first of all a problem of behaviour. It is a problem of origin. We came from Adam. We received his nature through birth. We carry his tendency, his weakness, his rebellion. The sins we commit are the outworking of what we already are. This is why moral effort, however sincere, cannot reach the root of the problem. A changed name does not change the family. Only a new birth into a new family accomplishes that.</p>
+      </div>
+
+      <p>This understanding does not excuse sinful behaviour. It explains why the solution must be deeper than behaviour modification. If the problem is hereditary, the solution must address origin, not merely conduct. God knows this. His answer in the cross addresses the problem at precisely this level.</p>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 4: IN ADAM AND IN CHRIST -->
+  <section id="in-adam-in-christ" aria-labelledby="adam-christ-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="adam-christ-body" id="adam-christ-title">
+      In Adam and In Christ
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="adam-christ-body">
+      <p>The New Testament makes use of a concept that is foreign to modern individualism but central to the biblical understanding of humanity: the idea of corporate identity. A person does not exist merely as an isolated individual. They exist as a member of a humanity, and the head of that humanity determines the character of all who belong to it.</p>
+      <p>Adam is the head of one humanity. Christ is the head of another. To be in Adam is to share in the history, the condition, and the destiny that Adam represents. To be in Christ is to share in the history, the condition, and the destiny that Christ represents. The question for every human being is not merely what they have done but whose humanity they belong to.</p>
+
+      <div class="table-scroll">
+        <table class="compare-table" aria-label="In Adam compared to In Christ">
+          <thead>
+            <tr>
+              <th>In Adam</th>
+              <th>In Christ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-problem">Sin reigns</td>
+              <td class="col-answer">Righteousness is given</td>
+            </tr>
+            <tr>
+              <td class="col-problem">Death is the inheritance</td>
+              <td class="col-answer">Life is the inheritance</td>
+            </tr>
+            <tr>
+              <td class="col-problem">Old humanity</td>
+              <td class="col-answer">New creation</td>
+            </tr>
+            <tr>
+              <td class="col-problem">Bondage to sin's power</td>
+              <td class="col-answer">Deliverance through His death</td>
+            </tr>
+            <tr>
+              <td class="col-problem">Self as the source of life</td>
+              <td class="col-answer">Christ as the source of life</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout-crimson">
+        <strong>Illustration: Included in Another</strong>
+        <p>The letter to the Hebrews reasons at one point that Levi, the ancestor of the Jewish priesthood, was present in and acted through Abraham, his forefather, even before Levi was born. The argument depends on the principle that a person can be truly included in another person, sharing in what that person does by virtue of being in their line.</p>
+        <p style="margin-top: 0.75rem;">This is not merely an ancient legal convention. It is the interpretive principle by which the New Testament explains both our condition in Adam and our salvation in Christ. We were not consulted when Adam acted. And yet what Adam did counts for us because we were in him. In the same way, when God includes us in Christ, what Christ did counts for us because we are in Him. His death is our death. His resurrection is our resurrection. This is not a figure of speech. It is the ground of our deliverance.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 5: GOD'S WAY OF DELIVERANCE -->
+  <section id="gods-way" aria-labelledby="gods-way-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="gods-way-body" id="gods-way-title">
+      God's Way of Deliverance
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="gods-way-body">
+      <p>Once it is understood that the problem is one of origin and inheritance rather than merely behaviour, the shape of God's solution becomes clearer. The blood of Christ cannot take us out of Adam. Forgiveness deals with the record. It does not change the stock. If we entered Adam by birth, then birth is the category in which our problem exists. And if we entered by birth, then logically we leave by death.</p>
+      <p>But God does not ask the believer to produce their own death to the old nature. He does not offer techniques of self-mortification or strategies of spiritual self-destruction. He does something far more definitive. He includes the believer in a death that has already occurred. He places the believer in Christ, so that Christ's death counts as theirs.</p>
+
+      <div class="callout callout-crimson">
+        <strong>Illustration: The Book and the Paper</strong>
+        <p>Imagine a piece of paper placed inside a book. From that moment, whatever happens to the book happens to the paper. If the book is posted to another city, the paper goes too. If the book is placed on a shelf, the paper rests there as well. The paper does not need to travel independently. Its destiny is determined by the book in which it has been placed.</p>
+        <p style="margin-top: 0.75rem;">This is a simple but exact picture of what God has done with the believer in relation to Christ. God has placed us in Christ. When Christ died, we died. When Christ was buried, we were buried. When Christ rose, we rose with Him. We did not do any of this independently. Our participation in these events is not the result of our effort or achievement. It is the result of our position: we are in Him. Romans 6:3 to 6 and 2 Corinthians 5:14 both affirm this as a completed fact, not an aspiration.</p>
+      </div>
+
+      <div class="callout">
+        <strong>A Completed Fact</strong>
+        <p>The language of Romans 6 is consistently in the past tense: we died, we were buried, we were united with Him, our old self was crucified. This is not a promise awaiting fulfilment. It is a declaration of what God has already accomplished. The believer's task is not to produce this reality but to receive it, to know it as true, and to live accordingly.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 6: REPRESENTATIVE AND INCLUSIVE -->
+  <section id="representative" aria-labelledby="representative-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="representative-body" id="representative-title">
+      Christ's Death: Representative and Inclusive
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="representative-body">
+      <p>There is a distinction within the work of Christ that must be held carefully. Christ did not die in only one way or for only one purpose. His death has both a substitutionary and a representative dimension, and these are not the same thing, even though they are inseparable in the one act of the cross.</p>
+      <p>In His substitutionary work, Christ stands in our place and bears the penalty that our sins deserved. He acts alone. We receive the benefit. This is the dimension addressed by the blood: He shed His blood for us, and we are forgiven because of what He did on our behalf. The transaction is entirely between Him and God. We are the beneficiaries.</p>
+      <p>In His representative and inclusive work, Christ does not simply act on our behalf while we remain outside. He acts as the head of a humanity that is included in Him. When He dies, we are included in that death. When He rises, we are included in that resurrection. This is not substitution, where He acts in our place so that we do not have to. This is inclusion, where we are reckoned to have acted in Him.</p>
+
+      <div class="table-scroll">
+        <table class="compare-table" aria-label="Substitution compared to Inclusion">
+          <thead>
+            <tr>
+              <th>Substitution</th>
+              <th>Inclusion</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-problem">Christ died for me</td>
+              <td class="col-answer">I died with Christ</td>
+            </tr>
+            <tr>
+              <td class="col-problem">His blood brings forgiveness</td>
+              <td class="col-answer">His cross brings deliverance</td>
+            </tr>
+            <tr>
+              <td class="col-problem">Deals with the acts of sin</td>
+              <td class="col-answer">Deals with the old man in Adam</td>
+            </tr>
+            <tr>
+              <td class="col-problem">Ground of pardon</td>
+              <td class="col-answer">Ground of freedom</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <strong>Both Are Needed</strong>
+        <p>Neither dimension of Christ's death is optional. Substitution without inclusion leaves the believer forgiven but still living from Adam's stock. Inclusion without substitution leaves the question of guilt before a holy God unanswered. The full work of the cross holds both together, and both are received by faith directed at what God has declared.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 7: THE LAST ADAM AND THE SECOND MAN -->
+  <section id="last-adam" aria-labelledby="last-adam-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="last-adam-body" id="last-adam-title">
+      The Last Adam and the Second Man
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="last-adam-body">
+      <p>The apostle Paul gives Christ two distinct titles in 1 Corinthians 15 that carry great weight when held together. He calls Him the last Adam and the second Man. These are not simply different names for the same role. They describe two different aspects of Christ's work in relation to humanity.</p>
+      <p>As the last Adam, Christ brings the old Adamic humanity to its end. He takes that humanity into death. Everything that belongs to the old order, everything inherited from the first Adam, is brought to a final terminus in Christ's death. There is no further Adam after Him. The old humanity has come to its appointed close in Him. His death on the cross is not only a personal event. It is a representatively inclusive event that ends one chapter of human history.</p>
+      <p>As the second Man, Christ begins something entirely new. His resurrection introduces a new humanity, a new order of life that does not draw from Adamic stock. This life does not inherit Adam's weakness, his tendency, or his death. It is the resurrection life of a new creation. Those who are in Christ by faith are part of this new humanity. They are not repaired members of the old order. They are members of a new order altogether.</p>
+
+      <div class="key-truth" role="note">
+        <span class="kt-label">Key Truth</span>
+        <p>Christ's death ends the old humanity. Christ's resurrection begins the new. The believer stands in both: identified with His death to the old, and raised with Him into the new.</p>
+      </div>
+
+      <p>This is why the Christian life cannot be reduced to improved Adamic living. It is not a matter of taking Adam and making him behave better. It is a matter of Adam coming to his end in Christ's death, and a new person arising in Christ's resurrection. The cross does not renovate the old creation. It terminates it, so that the new creation can begin.</p>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 8: THE END OF SELF-IMPROVEMENT -->
+  <section id="end-of-self" aria-labelledby="end-of-self-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="end-of-self-body" id="end-of-self-title">
+      The End of Self-Improvement
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="end-of-self-body">
+      <p>The most natural response to the problem of repeated failure is to try harder. To resolve more firmly, to discipline more rigorously, to recommit with greater sincerity. There is something in every person that believes the solution to moral failure is a more determined version of the same effort that has already failed. This is the logic of self-improvement, and it has a certain surface plausibility. But it misunderstands the problem completely.</p>
+      <p>If the problem is not primarily behavioural but hereditary, if the issue is not what we are doing but what we are and where we come from, then improving our performance does not address the root. It addresses the expression of the problem while leaving the source entirely intact.</p>
+
+      <div class="callout callout-crimson">
+        <strong>Illustration: The Source of the Problem</strong>
+        <p>Imagine a factory that is producing defective goods. The shelves are full of flawed products. A manager could spend their entire working life clearing those shelves, removing defective items one by one as they appear. The shelves would be cleared temporarily, and just as quickly refilled. The manager works hard and achieves nothing lasting, because the problem is not on the shelves. The problem is in the production line. The machinery itself is producing the defect.</p>
+        <p style="margin-top: 0.75rem;">No amount of shelf-clearing solves a production problem. The production line must be dealt with at the source. God's answer in the cross is precisely this. He does not deal with sins one by one indefinitely. He goes to the source. He deals with the old man, the very nature that produces the failure. The cross is not shelf-clearing. It is the end of the production line itself.</p>
+      </div>
+
+      <p>God does not improve the old man. He does not make the old nature stronger, more disciplined, or more capable of holy living. His verdict on the old man is death. His provision is not a better version of Adam but a new creation in Christ. This is not a despairing word. It is a liberating one. The believer does not need to succeed at improving what God has already condemned. They need to receive what God has already provided: a new life, in a new Man, risen from the dead.</p>
+
+      <div class="callout">
+        <strong>Rest, Not Effort</strong>
+        <p>This does not mean that the believer is passive or indifferent. It means that the orientation of the Christian life is fundamentally different from self-improvement. The believer is not striving to produce what God has already accomplished. They are learning to live from what is already true in Christ. The effort required is not the effort of self-improvement but the effort of faith: holding the mind to what God has declared, resisting the instinct to return to self-management, and trusting the life of Christ to be sufficient.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 9: GUIDED REFLECTION -->
+  <section id="reflection" aria-labelledby="reflection-title">
+    <h2 id="reflection-title">Guided Reflection</h2>
+    <p style="color: var(--text-muted); margin-bottom: 1.75rem; font-size: 0.94rem;">Take time with each question. These are not meant to be answered quickly. Consider working through them in a journal or in a quiet conversation with God.</p>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 1</span>
+      <p class="question">Do I mostly think of my problem before God as sinful actions, or have I also begun to see the deeper problem of sin as an inward power and inherited condition?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 2</span>
+      <p class="question">Where in my Christian life am I still trying to improve the old man, managing my behaviour through discipline and resolve, rather than receiving God's verdict on him?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 3</span>
+      <p class="question">What does it mean practically that I am not merely forgiven by Christ, but included in Christ, so that His death counts as mine and His resurrection counts as mine?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 4</span>
+      <p class="question">How does the distinction between the blood and the cross clarify the frustration I have experienced when forgiveness did not seem to produce lasting change?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 5</span>
+      <p class="question">Do I genuinely believe that God's way of deliverance through death and resurrection in Christ is better than my own strategies of self-effort and self-management?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 6</span>
+      <p class="question">Where in my daily life do I still measure spiritual progress primarily by my ability to control myself, rather than by my position and life in Christ?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 7</span>
+      <p class="question">What does it mean that my old history in Adam came to its end in Christ's death? Is there a specific area of my life where I need to let that history actually end?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 8</span>
+      <p class="question">How might my daily walk change if I truly rested in God's declared fact that I died with Christ and rose with Him, rather than treating this as a theological idea to be achieved?</p>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 10: PAUSE AND PRAY -->
+  <section id="prayer" aria-labelledby="prayer-title">
+    <div class="prayer-section">
+      <h2 id="prayer-title">Pause and Pray</h2>
+      <div class="prayer-text">
+        <p>Lord Jesus Christ,</p>
+        <br>
+        <p>I thank You for Your blood, which has dealt with all my sins before God. I receive again the truth of Week 1: my guilt has been answered, my record has been cleared, and I stand accepted because of what You have done.</p>
+        <br>
+        <p>But I now come before You with the deeper problem. I confess that I have known forgiveness and yet continued to live from the old man, trying to improve what You have already condemned, striving to manage in Adam what You have ended in Your cross. I have looked for deliverance in effort and found instead exhaustion.</p>
+        <br>
+        <p>I thank You that Your cross has addressed this deeper need. You are the last Adam, and in Your death the old humanity came to its end. You are the second Man, and in Your resurrection a new life began. I am in You. Your death is mine. Your resurrection is mine.</p>
+        <br>
+        <p>Grant me, I pray, a revelation of what this means. Give me eyes to see what You have already accomplished. Deliver me from the reflex of self-improvement. Teach me to live not from the effort of Adam but from the life of Christ. Let the cross be not a doctrine I hold but a reality I rest in.</p>
+        <br>
+        <p>Amen.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 11: CHAPTER SUMMARY -->
+  <section id="summary" aria-labelledby="summary-title">
+    <h2 id="summary-title">Chapter Summary</h2>
+    <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.94rem;">The following points gather together the major threads of this chapter.</p>
+
+    <div class="summary-item">
+      <div class="summary-num" aria-hidden="true">1</div>
+      <div class="summary-text"><strong>The Blood Deals with Sins; the Cross Deals with Sin.</strong> These are two distinct provisions for two distinct dimensions of the human problem. Both are necessary. Neither replaces the other.</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-num" aria-hidden="true">2</div>
+      <div class="summary-text"><strong>Our Problem Is Not Merely What We Have Done but What We Are in Adam.</strong> We sin because we are sinners by birth. The problem is hereditary, not merely behavioural. A change of conduct does not change the nature from which conduct flows.</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-num" aria-hidden="true">3</div>
+      <div class="summary-text"><strong>God's Answer Is Death and Resurrection in Christ, Not Improvement.</strong> God does not repair the old man. His verdict on the old man is death. His provision is a new creation in Christ, risen from the dead.</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-num" aria-hidden="true">4</div>
+      <div class="summary-text"><strong>Believers Are Included in Christ's Death.</strong> God has placed us in Christ so that what happened to Christ counts as true of us. His death is our death to the old man. His resurrection is our life in the new creation.</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-num" aria-hidden="true">5</div>
+      <div class="summary-text"><strong>Christ Is the Last Adam and the Second Man.</strong> As the last Adam He brought the old Adamic humanity to its end in death. As the second Man He began a new humanity in resurrection. The believer belongs to both realities.</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-num" aria-hidden="true">6</div>
+      <div class="summary-text"><strong>Deliverance Begins by Seeing What God Has Already Done.</strong> The believer does not produce their union with Christ in His death. They receive it. They see it. They reckon it to be true. The practical steps of how this works will be the subject of the weeks that follow.</div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 12: LOOKING AHEAD -->
+  <section id="looking-ahead" aria-labelledby="ahead-title">
+    <h2 id="ahead-title">Looking Ahead</h2>
+    <div class="ahead-card">
+      <div class="ahead-arrow" aria-hidden="true">&#8594;</div>
+      <div>
+        <p>Week 2 has established the fact of the believer's death with Christ and resurrection in Him. This is the doctrinal foundation on which everything that follows will rest. The old man has been crucified with Christ. The new creation has begun in His resurrection.</p>
+        <p>But a fact must be known before it can be lived. A reality declared by God must be received and held by faith before it begins to shape daily experience. Week 3 will turn to the first practical step Nee draws from Romans 6: knowing. The believer must come to a clear, settled knowledge of what God has done in Christ before they can reckon it true and present themselves accordingly to God.</p>
+        <p>This is not a retreat from the depth of Week 2. It is the application of it. The cross is not only a doctrine to be understood. It is a reality to be entered into, step by step, through knowing, reckoning, and presenting. That movement begins next week.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMORY AID -->
+  <div class="memory-aid" role="note" aria-label="A simple way to remember this chapter">
+    <span class="ma-label">A Simple Way to Remember This Chapter</span>
+    <div class="memory-line">
+      <span class="memory-label">My deeper problem</span>
+      <span class="memory-colon" aria-hidden="true">&#9135;</span>
+      <span class="memory-truth">Sin as a power in Adam</span>
+    </div>
+    <div class="memory-line">
+      <span class="memory-label">God's answer</span>
+      <span class="memory-colon" aria-hidden="true">&#9135;</span>
+      <span class="memory-truth">The cross of Christ</span>
+    </div>
+    <div class="memory-line">
+      <span class="memory-label">My position</span>
+      <span class="memory-colon" aria-hidden="true">&#9135;</span>
+      <span class="memory-truth">Included in Christ</span>
+    </div>
+    <div class="memory-line">
+      <span class="memory-label">My response</span>
+      <span class="memory-colon" aria-hidden="true">&#9135;</span>
+      <span class="memory-truth">Faith in what God has done</span>
+    </div>
+  </div>
+
+  <!-- CHAPTER NAVIGATION -->
+  <nav class="chapter-nav" aria-label="Chapter navigation">
+    <a href="chapter-1.html" class="nav-prev">&#8592; Week 1: The Blood of Christ</a>
+    <span style="font-family: var(--font-sans); font-size: 10px; color: var(--text-subtle); letter-spacing: 0.1em; text-transform: uppercase;">Week 2 of 13</span>
+    <a href="chapter-3.html" class="nav-next">Week 3: The Path of Progress: Knowing &#8594;</a>
+  </nav>
+
+</main>
 
 <footer class="site-footer" role="contentinfo">
   <div class="site-footer-inner">
@@ -47,10 +662,105 @@
     <nav class="footer-nav" aria-label="Footer navigation">
       <a href="../index.html">&#8592; Back to Home</a>
       <a href="chapter-1.html">Week 1: The Blood of Christ</a>
+      <a href="chapter-2.html">Week 2: The Cross of Christ</a>
+      <a href="chapter-3.html">Week 3: The Path of Progress: Knowing</a>
     </nav>
   </div>
 </footer>
 
+<button id="back-top" aria-label="Back to top" title="Back to top">&#8593;</button>
 <script src="../script.js"></script>
+<script>
+(function() {
+  var HEADER_H = 60;
+  var PRIMARY_H = 42;
+  var SECONDARY_H = 34;
+  var SCROLL_OFFSET = HEADER_H + PRIMARY_H + 20;
+
+  var phaseMap = {
+    'foundation':  { subId: 'sub-foundation', sections: ['why-matters','sins-to-sin'] },
+    'in-adam':     { subId: 'sub-in-adam',    sections: ['state-by-nature','in-adam-in-christ'] },
+    'in-christ':   { subId: 'sub-in-christ',  sections: ['gods-way','representative'] },
+    'deliverance': { subId: 'sub-deliverance',sections: ['last-adam','end-of-self'] },
+    'close':       { subId: 'sub-close',      sections: ['reflection','prayer','summary','looking-ahead'] }
+  };
+
+  var phaseBtns = document.querySelectorAll('.phase-btn');
+  var subBtns   = document.querySelectorAll('.sub-btn');
+  var openPhase = null;
+
+  function closeAll() {
+    document.querySelectorAll('.section-nav-secondary').forEach(function(el) {
+      el.classList.remove('visible');
+    });
+    phaseBtns.forEach(function(b) {
+      b.classList.remove('open');
+      b.setAttribute('aria-expanded', 'false');
+    });
+    openPhase = null;
+  }
+
+  phaseBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var phase = btn.dataset.phase;
+      if (openPhase === phase) { closeAll(); return; }
+      closeAll();
+      var info = phaseMap[phase];
+      if (!info) return;
+      var subRow = document.getElementById(info.subId);
+      if (!subRow) return;
+      subRow.classList.add('visible');
+      btn.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+      openPhase = phase;
+    });
+  });
+
+  subBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var target = document.getElementById(btn.dataset.target);
+      if (!target) return;
+      var extraOffset = openPhase ? SECONDARY_H : 0;
+      var top = target.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET - extraOffset;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+      closeAll();
+    });
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.section-nav')) closeAll();
+  });
+
+  var allSectionIds = Object.values(phaseMap).reduce(function(acc, info) {
+    return acc.concat(info.sections);
+  }, []);
+
+  function getPhaseForSection(id) {
+    for (var phase in phaseMap) {
+      if (phaseMap[phase].sections.indexOf(id) !== -1) return phase;
+    }
+    return null;
+  }
+
+  function updateActivePhase() {
+    var threshold = SCROLL_OFFSET + 20;
+    var activeId = allSectionIds[0];
+    allSectionIds.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top < threshold) activeId = id;
+    });
+    var activePhase = getPhaseForSection(activeId);
+    phaseBtns.forEach(function(b) {
+      b.classList.toggle('active', b.dataset.phase === activePhase);
+    });
+    subBtns.forEach(function(b) {
+      b.classList.toggle('active', b.dataset.target === activeId);
+    });
+  }
+
+  window.addEventListener('scroll', updateActivePhase, { passive: true });
+  updateActivePhase();
+}());
+</script>
 </body>
 </html>

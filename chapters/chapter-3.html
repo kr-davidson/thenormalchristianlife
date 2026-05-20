@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 3: The Path of Progress: Knowing — The Normal Christian Life</title>
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { font-size: 18px; }
+
+  .collapsible-btn {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-style: normal;
+    font-size: clamp(1rem, 2.2vw, 1.4rem) !important;
+    font-family: var(--font-sans) !important;
+    font-weight: 500 !important;
+  }
+  h2 {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-style: normal;
+    font-size: clamp(1rem, 2.2vw, 1.4rem);
+    font-family: var(--font-sans);
+    font-weight: 500;
+  }
+  .card h3 { font-size: 11px; font-weight: 700; color: var(--text); letter-spacing: 0.18em; }
+  .reflection-card p.question { font-style: normal; }
+  .prayer-section .prayer-text { font-style: normal; }
+  .memory-truth { font-style: normal; }
+  .key-truth p { font-style: normal; }
+
+  /* ── TWO-ROW COLLAPSIBLE SECTION NAVIGATOR ── */
+  .section-nav {
+    position: sticky;
+    top: 60px;
+    z-index: 150;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border);
+  }
+  .section-nav-primary {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .section-nav-primary::-webkit-scrollbar { display: none; }
+  .phase-btn {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 0.85rem 1rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .phase-btn:hover { color: var(--text-muted); }
+  .phase-btn.active { color: var(--text); border-bottom-color: var(--text); }
+  .phase-btn.open { color: var(--text); }
+  .phase-chevron {
+    font-size: 8px;
+    transition: transform 0.2s;
+    opacity: 0.5;
+  }
+  .phase-btn.open .phase-chevron { transform: rotate(180deg); opacity: 1; }
+  .section-nav-secondary {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: none;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    background: var(--bg-raised);
+    border-top: 1px solid var(--border);
+  }
+  .section-nav-secondary::-webkit-scrollbar { display: none; }
+  .section-nav-secondary.visible { display: flex; }
+  .sub-btn {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+    background: none;
+    border: none;
+    border-bottom: 1px solid transparent;
+    padding: 0.65rem 0.9rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s;
+    flex-shrink: 0;
+  }
+  .sub-btn:hover { color: var(--text-muted); }
+  .sub-btn.active { color: var(--text); border-bottom-color: var(--text-subtle); }
+
+  @media (max-width: 700px) {
+    .section-nav-primary,
+    .section-nav-secondary { padding: 0 1.25rem; }
+    .phase-btn { padding: 0.8rem 0.75rem; font-size: 9px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="progress-bar" role="progressbar" aria-label="Reading progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+<header class="site-header" role="banner">
+  <div class="site-header-inner">
+    <a href="../index.html" class="site-logo" aria-label="Home">The Normal Christian Life</a>
+    <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="chapter-1.html">Week 1</a>
+      <a href="chapter-2.html">Week 2</a>
+      <a href="chapter-3.html" class="active" aria-current="page">Week 3</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Toggle navigation">&#9776;</button>
+  </div>
+</header>
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <a href="../index.html">Home</a>
+  <span class="sep" aria-hidden="true">&#8250;</span>
+  <span class="current">Week 3: The Path of Progress: Knowing</span>
+</nav>
+
+<!-- TWO-ROW SECTION NAVIGATOR -->
+<nav class="section-nav" aria-label="Chapter sections" id="chapter-nav">
+
+  <div class="section-nav-primary">
+    <button class="phase-btn active" data-phase="foundation" aria-expanded="false">
+      Foundation <span class="phase-chevron">&#9660;</span>
+    </button>
+    <button class="phase-btn" data-phase="historic-fact" aria-expanded="false">
+      Historic Fact <span class="phase-chevron">&#9660;</span>
+    </button>
+    <button class="phase-btn" data-phase="revelation" aria-expanded="false">
+      Revelation <span class="phase-chevron">&#9660;</span>
+    </button>
+    <button class="phase-btn" data-phase="end-of-effort" aria-expanded="false">
+      End of Effort <span class="phase-chevron">&#9660;</span>
+    </button>
+    <button class="phase-btn" data-phase="close" aria-expanded="false">
+      Reflect &amp; Close <span class="phase-chevron">&#9660;</span>
+    </button>
+  </div>
+
+  <div class="section-nav-secondary" id="sub-foundation">
+    <button class="sub-btn" data-target="why-matters">Why It Matters</button>
+    <button class="sub-btn" data-target="path-begins">The Path Begins with Knowing</button>
+  </div>
+
+  <div class="section-nav-secondary" id="sub-historic-fact">
+    <button class="sub-btn" data-target="death-with-christ">Our Death with Christ</button>
+    <button class="sub-btn" data-target="one-event">One Event, Not Two</button>
+  </div>
+
+  <div class="section-nav-secondary" id="sub-revelation">
+    <button class="sub-btn" data-target="knowing-by-revelation">Knowing by Revelation</button>
+    <button class="sub-btn" data-target="seeing-what-god-has-done">Seeing What God Has Done</button>
+  </div>
+
+  <div class="section-nav-secondary" id="sub-end-of-effort">
+    <button class="sub-btn" data-target="not-stronger">Not Stronger, But Weaker</button>
+    <button class="sub-btn" data-target="cross-to-root">The Cross Goes to the Root</button>
+  </div>
+
+  <div class="section-nav-secondary" id="sub-close">
+    <button class="sub-btn" data-target="reflection">Guided Reflection</button>
+    <button class="sub-btn" data-target="prayer">Pause and Pray</button>
+    <button class="sub-btn" data-target="summary">Chapter Summary</button>
+    <button class="sub-btn" data-target="looking-ahead">Looking Ahead</button>
+  </div>
+
+</nav>
+
+<nav id="toc-float" aria-label="Page sections">
+  <div class="toc-dot" data-target="why-matters"            data-label="Why It Matters"></div>
+  <div class="toc-dot" data-target="path-begins"            data-label="Path Begins with Knowing"></div>
+  <div class="toc-dot" data-target="death-with-christ"      data-label="Our Death with Christ"></div>
+  <div class="toc-dot" data-target="one-event"              data-label="One Event, Not Two"></div>
+  <div class="toc-dot" data-target="knowing-by-revelation"  data-label="Knowing by Revelation"></div>
+  <div class="toc-dot" data-target="seeing-what-god-has-done" data-label="Seeing What God Has Done"></div>
+  <div class="toc-dot" data-target="not-stronger"           data-label="Not Stronger, But Weaker"></div>
+  <div class="toc-dot" data-target="cross-to-root"          data-label="Cross Goes to the Root"></div>
+  <div class="toc-dot" data-target="reflection"             data-label="Reflection"></div>
+  <div class="toc-dot" data-target="prayer"                 data-label="Prayer"></div>
+  <div class="toc-dot" data-target="summary"                data-label="Summary"></div>
+  <div class="toc-dot" data-target="looking-ahead"          data-label="Looking Ahead"></div>
+</nav>
+
+<section class="chapter-hero" id="hero" aria-labelledby="chapter-title">
+  <div class="chapter-hero-inner">
+    <span class="series-label">The Normal Christian Life &nbsp;&bull;&nbsp; Watchman Nee</span>
+    <span class="chapter-num">Chapter Three &nbsp;&bull;&nbsp; Week 3 of 13</span>
+    <h1 id="chapter-title">The Path of<br>Progress: Knowing</h1>
+    <span class="hero-ornament" aria-hidden="true">&#10022;</span>
+    <p class="hero-intro">
+      Week 2 established the foundational reality: the believer has been included in Christ's death and resurrection. The old man was crucified with Him. The new life was raised with Him. But a fact declared by God must be seen before it can be lived. Week 3 addresses the first step in the practical path of progress: knowing. Not knowing as mere information, but knowing as the inward apprehension of a divine reality that God opens the eyes of the heart to see.
+    </p>
+    <div class="key-truth" role="note">
+      <span class="kt-label">The Central Truth of This Chapter</span>
+      <p>My deliverance begins when God opens my eyes to see that I have already died with Christ.</p>
+    </div>
+  </div>
+</section>
+
+<main class="page-content" role="main" style="padding-top: 2.5rem;">
+
+  <!-- SECTION 1 -->
+  <section id="why-matters" aria-labelledby="why-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="why-matters-body" id="why-title">
+      Why This Chapter Matters
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="why-matters-body">
+      <p>There is a particular kind of frustration that many sincere believers know well. They have received forgiveness. They believe in the cross. They have heard that they are new creatures in Christ. And yet the same patterns of failure recur. The same temptations assert themselves with the same force. They try harder, resolve more firmly, and pray with greater urgency, and still the old nature seems thoroughly alive.</p>
+      <p>The difficulty is not a lack of sincerity. It is often a lack of seeing. The believer is trying to live from a reality they have not yet inwardly apprehended. They are striving toward something God has already completed. They are asking God to do what He has already done. And because they have not yet truly seen the fact on which the Christian life rests, all their effort produces strain rather than rest.</p>
+      <p>Watchman Nee insists that the path of progress does not begin with more effort. It begins with knowing. Romans 6 does not open with a command to try harder. It opens with the phrase "knowing this": knowing that our old self was crucified with Christ. The whole movement of deliverance starts here, with a divine fact seen and received, not with a human achievement produced.</p>
+      <div class="callout">
+        <strong>The Cost of Skipping This Step</strong>
+        <p>When a believer attempts to reckon themselves dead to sin before they have truly known that they have died with Christ, the reckoning becomes mechanical and unconvincing. They repeat the statement but find no settled rest beneath it. Knowing is not a preliminary formality. It is the necessary first step without which everything that follows will be built on an unstable foundation.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 2 -->
+  <section id="path-begins" aria-labelledby="path-begins-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="path-begins-body" id="path-begins-title">
+      The Path Begins with Knowing
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="path-begins-body">
+      <p>Romans 6 contains within it a progression of steps that Nee identifies as the practical path of progress toward Christian maturity and freedom. This progression is not arbitrary. The steps are ordered, and the order matters. Each step depends on the previous one. Skipping ahead produces confusion; going back to the beginning produces clarity.</p>
+      <p>The first step is knowing. The second is reckoning. Later comes presenting oneself to God, and in due course, walking in the Spirit. These steps will unfold across several weeks of this study. Week 3 focuses entirely on the first: knowing. Not until the knowing is settled can reckoning be exercised with genuine faith rather than anxious repetition.</p>
+
+      <div class="table-scroll">
+        <table class="compare-table" aria-label="The path of progress across weeks">
+          <thead>
+            <tr>
+              <th>Step</th>
+              <th>Meaning</th>
+              <th>Developed In</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="color: var(--text);">Knowing</td>
+              <td style="color: var(--text-muted);">Seeing what God has done as an inward revelation</td>
+              <td style="color: var(--text-muted); font-family: var(--font-sans); font-size: 0.85rem;">Week 3</td>
+            </tr>
+            <tr>
+              <td style="color: var(--text);">Reckoning</td>
+              <td style="color: var(--text-muted);">Counting the divine fact as true by faith</td>
+              <td style="color: var(--text-muted); font-family: var(--font-sans); font-size: 0.85rem;">Week 4</td>
+            </tr>
+            <tr>
+              <td style="color: var(--text);">Presenting</td>
+              <td style="color: var(--text-muted);">Yielding ourselves to God as alive from the dead</td>
+              <td style="color: var(--text-muted); font-family: var(--font-sans); font-size: 0.85rem;">Week 6</td>
+            </tr>
+            <tr>
+              <td style="color: var(--text);">Walking</td>
+              <td style="color: var(--text-muted);">Living continuously in step with the Spirit</td>
+              <td style="color: var(--text-muted); font-family: var(--font-sans); font-size: 0.85rem;">Week 10</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <strong>Why the Order Is Not Optional</strong>
+        <p>A believer who attempts to present themselves to God without having reckoned their death with Christ will find the presentation hollow. A believer who attempts to reckon without first knowing what they are reckoning will find the exercise laboured. The steps build on each other. Knowing is first not because it is easiest but because it is foundational.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 3 -->
+  <section id="death-with-christ" aria-labelledby="death-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="death-body" id="death-title">
+      Our Death with Christ: A Historic Fact
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="death-body">
+      <p>The central fact that must be known is this: the believer's old self was crucified with Christ. This is not a metaphor. It is not a spiritual state to be achieved through sufficient progress. It is a historical event that occurred when Christ was crucified, because the believer was included in Christ at that moment.</p>
+      <p>Romans 6:6 states that our old self was crucified with Him. Romans 6:8 declares that if we died with Christ, we believe that we shall also live with Him. The verb tenses are past. The crucifixion of the old man is presented not as a goal toward which the believer must work, but as a completed reality on which the believer is called to stand.</p>
+      <p>The Scripture that tells me Christ died for my sins is the same Scripture that tells me I died with Him. Both truths appear in the same passage and rest on the same historical event. To receive one and resist the other is not faith. It is a selective reading of what God has plainly declared.</p>
+
+      <div class="key-truth" role="note">
+        <span class="kt-label">A Central Principle</span>
+        <p>The same Scripture that tells me Christ died for me also tells me that I died with Him. These are not two separate events requiring separate acts of faith. They are two dimensions of one finished work.</p>
+      </div>
+
+      <div class="callout callout-crimson">
+        <strong>Not a Future Aspiration</strong>
+        <p>Many believers treat their death with Christ as something they are working toward. They pray, "Lord, crucify me," as though the crucifixion has not yet occurred and awaits their co-operation to be completed. But this is not the New Testament's presentation. The New Testament announces what God has already done and invites the believer to know it, receive it, and live from it.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 4 -->
+  <section id="one-event" aria-labelledby="one-event-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="one-event-body" id="one-event-title">
+      One Event, Not Two
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="one-event-body">
+      <p>A potential misunderstanding must be addressed here. When Nee speaks of the believer dying with Christ, it might seem as though there are two crucifixions to account for: Christ's on Calvary, and a subsequent spiritual crucifixion in the believer's experience. But this misses the point entirely.</p>
+      <p>There was one crucifixion. The believer was included in that one event because they were in Christ. Christ's death and the believer's death are not two separate occurrences requiring two separate acts. They are one event experienced from two vantage points, the head and the members, the representative and those represented.</p>
+
+      <div class="callout callout-crimson">
+        <strong>Illustration: Arriving Together</strong>
+        <p>Consider two people who make a journey together and arrive at the same destination at the same time. Afterwards, either may truthfully say, "I arrived with him," or equally, "He arrived with me." Both statements point to one event: they came together. Neither statement describes two separate arrivals. They describe a single shared journey from two perspectives.</p>
+        <p style="margin-top: 0.75rem;">In the same way, "Christ was crucified" and "I was crucified with Christ" do not describe two events. They describe one event from two perspectives: the head and the one in Him. The phrase "with Christ" does not create a second crucifixion. It describes the inclusive nature of the one that occurred. This is why the believer does not pray, "Lord, crucify me," as though awaiting a second event. They thank Him that the one event already included them.</p>
+      </div>
+
+      <p>The practical weight of this is significant. If the believer is waiting for an experience of crucifixion yet to come, they will live in perpetual striving and periodic disappointment. If they see that the crucifixion has already included them, they are freed to begin from a fact rather than to reach toward an aspiration.</p>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 5 -->
+  <section id="knowing-by-revelation" aria-labelledby="revelation-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="revelation-body" id="revelation-title">
+      Knowing by Revelation
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="revelation-body">
+      <p>If knowing is the first step, then the question becomes: what kind of knowing is meant? Romans 6 has been read by millions of Christians without producing settled deliverance in all of them. The facts of the passage are available to anyone who can read. And yet the experience of freedom from sin's dominance is not universally present among those who have read it. Why?</p>
+      <p>Nee's answer is that the knowing required is not merely intellectual comprehension. It is spiritual revelation. A person may read the statement "our old self was crucified with Him" and mentally agree that it is in the text, without the truth ever landing as a settled, transforming certainty in the depths of their understanding. They know the words. They do not yet know the fact.</p>
+      <p>Divine revelation is when God, by His Spirit, opens the eyes of the heart so that an existing truth becomes inwardly seen. The fact does not change. The believer's perception of it does. What was previously held at arm's length as theological information becomes a living reality the person rests in. This is what Nee means by knowing.</p>
+
+      <div class="callout">
+        <strong>Revelation Does Not Create the Fact</strong>
+        <p>This point must be held clearly. Revelation does not make the believer's death with Christ become true. The death already occurred. Revelation enables the believer to see what God has already accomplished. The work is complete whether the believer sees it or not. But the practical benefit of the work is received only when the eyes are opened to see it.</p>
+      </div>
+
+      <p>This is why the appropriate response to the truth of Romans 6 is not striving to make it real through effort, but prayer for the Spirit to open the eyes of understanding. Paul prays in Ephesians 1:18 for the eyes of the readers' hearts to be enlightened, so that they may know the hope to which they have been called. The same kind of prayer is appropriate for the knowledge needed here.</p>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 6 -->
+  <section id="seeing-what-god-has-done" aria-labelledby="seeing-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="seeing-body" id="seeing-title">
+      Seeing What God Has Done
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="seeing-body">
+      <p>Nee draws a parallel that is both clarifying and practically helpful. Consider how a believer first received forgiveness. They did not ask Christ to come and die for their sins as though it were still to be done. They heard that Christ had already died, that the work was finished, that the blood had already been shed. They thanked Him. They received the benefit of what had already been accomplished.</p>
+      <p>Deliverance follows the same pattern precisely. The believer does not need to ask Christ to crucify them, as though the crucifixion were still pending. They need to see that Christ's crucifixion already included them. The response to this sight is not a request for something to be done. The response is thanksgiving for what has already been done, and faith that receives the reality of it.</p>
+
+      <div class="callout callout-crimson">
+        <strong>Illustration: The Nature of a Thing Already Made</strong>
+        <p>Consider a vessel designed to keep its contents at a certain temperature. It does not need to ask to become what it already is. It does not pray to be given the properties it was made with. Its nature is already settled. What it needs is not to acquire new properties but to function according to the nature it already has.</p>
+        <p style="margin-top: 0.75rem;">In the same way, the believer who is in Christ does not need to pray to be placed in Christ if God has already placed them there. The need is not for God to redo the work but for the believer's eyes to be opened to see what the work has accomplished. The vessel does not become what it is by its prayers. It becomes useful by functioning from what it already is.</p>
+      </div>
+
+      <p>The implications of this pattern are significant for how a believer approaches their spiritual life. The posture is not one of striving to achieve a spiritual state, but of looking to what God has declared and thanking Him that it is so. This is faith. And this faith, when it rests on a clear sight of the divine fact, produces rest rather than strain.</p>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 7 -->
+  <section id="not-stronger" aria-labelledby="not-stronger-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="not-stronger-body" id="not-stronger-title">
+      Not Stronger, But Weaker
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="not-stronger-body">
+      <p>The instinct of most sincere believers when confronted with repeated failure is to seek more strength. If they could just be more disciplined, more committed, more spiritually powerful, surely they could win the battle. This instinct runs deep because it is the natural logic of self-improvement applied to spiritual life. It treats the problem as one of insufficient effort applied to a manageable challenge.</p>
+      <p>Nee teaches the opposite. God does not deliver the believer by making the old man stronger. He does not reinforce the old nature so that it can finally overcome its own tendencies. His way is not the strengthening of what is already there. His way is the removal of the old man from the scene altogether, through the cross of Christ.</p>
+
+      <div class="table-scroll">
+        <table class="compare-table" aria-label="Human way compared to God's way">
+          <thead>
+            <tr>
+              <th>The Human Way</th>
+              <th>God's Way</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-problem">Strengthen the old man</td>
+              <td class="col-answer">Crucify the old man</td>
+            </tr>
+            <tr>
+              <td class="col-problem">Try harder through self-discipline</td>
+              <td class="col-answer">See what Christ has already done</td>
+            </tr>
+            <tr>
+              <td class="col-problem">Suppress sinful behaviour</td>
+              <td class="col-answer">Remove the source of sin</td>
+            </tr>
+            <tr>
+              <td class="col-problem">Depend on willpower and resolve</td>
+              <td class="col-answer">Depend on union with Christ</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>This means that the path forward for the struggling believer is not the gathering of more spiritual resources to fight the old man. It is the recognition that God has already dealt with the old man in Christ's death. The response God looks for is not more effort in the same direction. It is the cessation of effort directed at improvement, and the beginning of trust directed at the finished work.</p>
+
+      <div class="callout">
+        <strong>The End of Self-Effort Is Not Passivity</strong>
+        <p>A common misunderstanding is that if God has already done everything, the believer need do nothing at all. This misses the point. The believer is called to know, to reckon, to present, and to walk. Each of these involves the whole person. But the energy they draw on is not their own natural strength. It is the life of Christ operating through a person who has stopped relying on what God has already declared to be ended.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 8 -->
+  <section id="cross-to-root" aria-labelledby="cross-root-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="cross-root-body" id="cross-root-title">
+      The Cross Goes to the Root
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="cross-root-body">
+      <p>The blood of Christ and the cross of Christ address two different dimensions of the same person. This distinction, introduced in Week 2, comes into sharper practical focus here. The blood deals with the products of the sinful nature: the specific acts committed, the record of guilt, the need for forgiveness and cleansing. The cross deals with the source from which those acts flow: the old man, the sinful nature itself, the life inherited in Adam.</p>
+      <p>It is entirely possible to deal with products while leaving the source untouched. This is precisely what happens in a Christian life that knows forgiveness but has not yet known deliverance. Sins are confessed and forgiven, again and again, while the nature that produces them continues unimpeded. The shelves are cleared repeatedly, but the factory runs on.</p>
+
+      <div class="callout callout-crimson">
+        <strong>Illustration: The Factory and the Production Line</strong>
+        <p>Imagine a factory that consistently produces defective goods. A conscientious worker could spend every working hour clearing the defective items from the shelves as fast as they appear. The shelves are temporarily cleared but just as quickly refilled. The worker is busy, sincere, and exhausted, and the problem remains exactly as it was. The effort addressed the symptom while the cause continued unaddressed.</p>
+        <p style="margin-top: 0.75rem;">The solution is not a more diligent version of shelf-clearing. The solution is to deal with the production line itself. The source of the defective output must be addressed, not merely its products. This is precisely what the cross does. The blood of Christ clears the shelves: the record of specific sins before a holy God is wiped clean through forgiveness. But the cross deals with the production line: the old man, the sinful nature inherited in Adam, is brought to an end through the believer's inclusion in Christ's death.</p>
+      </div>
+
+      <p>Knowing this is what Week 3 is about. Not knowing it as a theory about what God might do, but knowing it as a settled inward apprehension of what God has already done. The production line has been dealt with. The old man was crucified with Christ. This is the fact that, when truly seen, changes the direction of a believer's spiritual life from striving to rest, from effort to faith, from the management of Adam to the life of Christ.</p>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 9: GUIDED REFLECTION -->
+  <section id="reflection" aria-labelledby="reflection-title">
+    <h2 id="reflection-title">Guided Reflection</h2>
+    <p style="color: var(--text-muted); margin-bottom: 1.75rem; font-size: 0.94rem;">Take time with each question. These are not meant to be answered quickly. Consider working through them in a journal or in a quiet conversation with God.</p>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 1</span>
+      <p class="question">Do I think of my death with Christ as something I must achieve through spiritual progress, or as something God has already declared to be true and accomplished in Christ?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 2</span>
+      <p class="question">Where in my Christian life am I still asking God to do what He has already declared to be done? What would it mean to stop asking and start thanking?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 3</span>
+      <p class="question">What is the practical difference between knowing a doctrine intellectually and seeing a divine fact by the Spirit's revelation? Have I experienced that difference with any truth in Scripture?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 4</span>
+      <p class="question">How does my experience of receiving forgiveness help me understand the pattern of receiving deliverance? What did I do when I received forgiveness that I should be doing now?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 5</span>
+      <p class="question">Am I still seeking to become stronger in myself so that I can overcome sin, when God's way is to bring self-effort to an end through the cross? Where does this appear most clearly in my life?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 6</span>
+      <p class="question">What would change in my daily walk if I truly and settledly believed that my old man was crucified with Christ, not as a future possibility but as a present and completed fact?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 7</span>
+      <p class="question">Where do I still look for confirmation of the divine fact in my feelings or in my behaviour, rather than resting on what God has plainly declared in His Word?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 8</span>
+      <p class="question">What would it mean this week to begin from praise for what God has done in Christ, rather than from striving toward what I hope He will yet do in me?</p>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 10: PAUSE AND PRAY -->
+  <section id="prayer" aria-labelledby="prayer-title">
+    <div class="prayer-section">
+      <h2 id="prayer-title">Pause and Pray</h2>
+      <div class="prayer-text">
+        <p>Heavenly Father,</p>
+        <br>
+        <p>I thank You that You have placed me in Christ, so that what is true of Him is counted as true of me. I thank You that my old self was crucified with Him, that the old history in Adam has been brought to its end in His death, and that a new life has been given in His resurrection.</p>
+        <br>
+        <p>I confess that I have too often striven to make this true by my own effort, rather than resting in what You have already accomplished. I have asked You to do what You have already done. I have sought confirmation in my feelings rather than in Your Word. I have relied on willpower where You have provided finished work.</p>
+        <br>
+        <p>I ask now that by Your Spirit You would open the eyes of my heart to truly see this fact: I died with Christ. Not as a future aspiration, but as a present and completed reality. Grant me the sight that produces rest, the revelation that leads to praise, and the knowing that makes reckoning possible.</p>
+        <br>
+        <p>I receive by faith what You have declared. I thank You for it. Let this truth settle in me not as information but as life.</p>
+        <br>
+        <p>Amen.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 11: CHAPTER SUMMARY -->
+  <section id="summary" aria-labelledby="summary-title">
+    <h2 id="summary-title">Chapter Summary</h2>
+    <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.94rem;">The following points gather together the major threads of this chapter.</p>
+
+    <div class="summary-item">
+      <div class="summary-num" aria-hidden="true">1</div>
+      <div class="summary-text"><strong>The Path of Progress Begins with Knowing.</strong> Romans 6 opens not with a command to try harder but with "knowing this." All that follows in the practical path of deliverance depends on this first step being genuinely taken.</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-num" aria-hidden="true">2</div>
+      <div class="summary-text"><strong>Knowing Is Spiritual Revelation, Not Mere Information.</strong> A person may read Romans 6 many times and still not have seen the fact it declares. The knowing Nee describes is an inward apprehension of divine reality, given by the Spirit, in which an existing truth becomes settled and living.</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-num" aria-hidden="true">3</div>
+      <div class="summary-text"><strong>The Believer's Death with Christ Is a Historic Fact.</strong> It is not a future aspiration, not an emotional experience, and not an achievement of spiritual progress. It is a completed event grounded in the believer's inclusion in Christ at the cross.</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-num" aria-hidden="true">4</div>
+      <div class="summary-text"><strong>We Do Not Work Toward Death with Christ. We Begin from It.</strong> The appropriate response is not a prayer for God to crucify us, but praise that He already has. The response is not striving but thanksgiving directed at a completed work.</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-num" aria-hidden="true">5</div>
+      <div class="summary-text"><strong>God's Way Is Not to Strengthen the Old Man, But to Crucify Him.</strong> Human instinct seeks more strength to overcome sin. God's provision removes the source of sin through the cross. The path forward is not increased effort but clearer sight of what has already been done.</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-num" aria-hidden="true">6</div>
+      <div class="summary-text"><strong>The Cross Goes to the Root of the Problem.</strong> The blood deals with the acts of sin. The cross deals with the nature that produces them. Knowing this moves the believer from a life of shelf-clearing to a life resting on God's verdict on the source itself.</div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 12: LOOKING AHEAD -->
+  <section id="looking-ahead" aria-labelledby="ahead-title">
+    <h2 id="ahead-title">Looking Ahead</h2>
+    <div class="ahead-card">
+      <div class="ahead-arrow" aria-hidden="true">&#8594;</div>
+      <div>
+        <p>Week 3 has established the first and most foundational step of the path of progress: knowing. The believer has died with Christ. This is a historic fact, declared in Scripture, grounded in Christ's inclusive death, and made real to the inner person by the Spirit's revelation. The posture it calls for is not striving but thanksgiving, not asking but receiving.</p>
+        <p>Week 4 will move to the second step: reckoning. Reckoning is not make-believe. It is not positive thinking. It is not the repetition of a statement in the hope that it will eventually feel true. Reckoning is faith applied to a divine fact already known. It is the deliberate act of treating as true what God has declared, regardless of what experience or feeling seems to say in a given moment.</p>
+        <p>The knowing of Week 3 makes the reckoning of Week 4 possible. Without the one, the other is strained and unconvincing. With it, reckoning becomes the natural expression of faith in what has been truly seen.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMORY AID -->
+  <div class="memory-aid" role="note" aria-label="A simple way to remember this chapter">
+    <span class="ma-label">A Simple Way to Remember This Chapter</span>
+    <div class="memory-line">
+      <span class="memory-label">My need</span>
+      <span class="memory-colon" aria-hidden="true">&#9135;</span>
+      <span class="memory-truth">To see what God has done</span>
+    </div>
+    <div class="memory-line">
+      <span class="memory-label">God's fact</span>
+      <span class="memory-colon" aria-hidden="true">&#9135;</span>
+      <span class="memory-truth">I died with Christ</span>
+    </div>
+    <div class="memory-line">
+      <span class="memory-label">My mistake</span>
+      <span class="memory-colon" aria-hidden="true">&#9135;</span>
+      <span class="memory-truth">Trying to achieve what God has finished</span>
+    </div>
+    <div class="memory-line">
+      <span class="memory-label">My response</span>
+      <span class="memory-colon" aria-hidden="true">&#9135;</span>
+      <span class="memory-truth">Praise and faith</span>
+    </div>
+  </div>
+
+  <!-- CHAPTER NAVIGATION -->
+  <nav class="chapter-nav" aria-label="Chapter navigation">
+    <a href="chapter-2.html" class="nav-prev">&#8592; Week 2: The Cross of Christ</a>
+    <span style="font-family: var(--font-sans); font-size: 10px; color: var(--text-subtle); letter-spacing: 0.1em; text-transform: uppercase;">Week 3 of 13</span>
+    <span class="nav-disabled" aria-disabled="true">Week 4: The Path of Progress: Reckoning &#8594;</span>
+  </nav>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer-inner">
+    <div>
+      <div class="footer-brand">The Normal Christian Life</div>
+      <div style="font-family: var(--font-sans); font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 0.25rem; letter-spacing: 0.08em; text-transform: uppercase;">A Guided Weekly Study</div>
+      <div class="footer-sub">&copy; 2026 &nbsp;&bull;&nbsp; A discipleship resource &nbsp;&bull;&nbsp; All rights reserved</div>
+    </div>
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <a href="../index.html">&#8592; Back to Home</a>
+      <a href="chapter-1.html">Week 1: The Blood of Christ</a>
+      <a href="chapter-2.html">Week 2: The Cross of Christ</a>
+      <a href="chapter-3.html">Week 3: The Path of Progress: Knowing</a>
+    </nav>
+  </div>
+</footer>
+
+<button id="back-top" aria-label="Back to top" title="Back to top">&#8593;</button>
+<script src="../script.js"></script>
+<script>
+(function() {
+  var HEADER_H    = 60;
+  var PRIMARY_H   = 42;
+  var SECONDARY_H = 34;
+  var SCROLL_OFFSET = HEADER_H + PRIMARY_H + 20;
+
+  var phaseMap = {
+    'foundation':    { subId: 'sub-foundation',    sections: ['why-matters','path-begins'] },
+    'historic-fact': { subId: 'sub-historic-fact', sections: ['death-with-christ','one-event'] },
+    'revelation':    { subId: 'sub-revelation',    sections: ['knowing-by-revelation','seeing-what-god-has-done'] },
+    'end-of-effort': { subId: 'sub-end-of-effort', sections: ['not-stronger','cross-to-root'] },
+    'close':         { subId: 'sub-close',         sections: ['reflection','prayer','summary','looking-ahead'] }
+  };
+
+  var phaseBtns = document.querySelectorAll('.phase-btn');
+  var subBtns   = document.querySelectorAll('.sub-btn');
+  var openPhase = null;
+
+  function closeAll() {
+    document.querySelectorAll('.section-nav-secondary').forEach(function(el) {
+      el.classList.remove('visible');
+    });
+    phaseBtns.forEach(function(b) {
+      b.classList.remove('open');
+      b.setAttribute('aria-expanded', 'false');
+    });
+    openPhase = null;
+  }
+
+  phaseBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var phase = btn.dataset.phase;
+      if (openPhase === phase) { closeAll(); return; }
+      closeAll();
+      var info = phaseMap[phase];
+      if (!info) return;
+      var subRow = document.getElementById(info.subId);
+      if (!subRow) return;
+      subRow.classList.add('visible');
+      btn.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+      openPhase = phase;
+    });
+  });
+
+  subBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var target = document.getElementById(btn.dataset.target);
+      if (!target) return;
+      var extraOffset = openPhase ? SECONDARY_H : 0;
+      var top = target.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET - extraOffset;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+      closeAll();
+    });
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.section-nav')) closeAll();
+  });
+
+  var allSectionIds = Object.values(phaseMap).reduce(function(acc, info) {
+    return acc.concat(info.sections);
+  }, []);
+
+  function getPhaseForSection(id) {
+    for (var phase in phaseMap) {
+      if (phaseMap[phase].sections.indexOf(id) !== -1) return phase;
+    }
+    return null;
+  }
+
+  function updateActivePhase() {
+    var threshold = SCROLL_OFFSET + 20;
+    var activeId  = allSectionIds[0];
+    allSectionIds.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top < threshold) activeId = id;
+    });
+    var activePhase = getPhaseForSection(activeId);
+    phaseBtns.forEach(function(b) {
+      b.classList.toggle('active', b.dataset.phase === activePhase);
+    });
+    subBtns.forEach(function(b) {
+      b.classList.toggle('active', b.dataset.target === activeId);
+    });
+  }
+
+  window.addEventListener('scroll', updateActivePhase, { passive: true });
+  updateActivePhase();
+}());
+</script>
+</body>
+</html>
