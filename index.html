@@ -3,80 +3,182 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Normal Christian Life — A Guided Weekly Study</title>
-<link rel="stylesheet" href="styles.css">
+<title>Two Goats, One Atonement — Reflection Papers</title>
+<link rel="stylesheet" href="../styles.css">
 <style>
-  body { font-size: 18px; }
-  .home-hero .hero-anchor { font-style: normal; }
+  /* ── ARTICLE TYPOGRAPHY ── */
+  .article-body h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    text-transform: lowercase;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
 
-  /* ── RESOURCE CARDS ── */
-  .resource-card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1px;
+  .article-body h2 {
+    font-family: var(--font-sans);
+    font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-style: normal;
+    color: var(--text);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .article-body h3 {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text);
+    margin-top: 1.75rem;
+    margin-bottom: 0.75rem;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  .article-body p {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: var(--text-muted);
+    margin-bottom: 1.1rem;
+  }
+
+  .article-body p:last-child { margin-bottom: 0; }
+
+  .article-body strong { color: var(--text); font-weight: 500; }
+
+  .article-body em { font-style: italic; }
+
+  /* Pull quote / italic emphasis */
+  .article-body .pull-quote {
+    border-left: 2px solid var(--border-light);
+    padding: 0.75rem 1.25rem;
+    margin: 1.75rem 0;
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 0.97rem;
+    line-height: 1.75;
+  }
+
+  /* Section number badge */
+  .section-num {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+
+  /* Article table */
+  .article-table-wrap { overflow-x: auto; margin: 1.75rem 0; }
+
+  .article-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
     border: 1px solid var(--border);
     border-radius: var(--radius);
     overflow: hidden;
-    background: var(--border);
-    margin: 1.5rem 0;
   }
-  .resource-card {
-    background: var(--bg-surface);
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-  }
-  .resource-type {
+
+  .article-table th {
+    background: var(--bg-raised);
+    color: var(--text-muted);
+    padding: 0.75rem 1rem;
     font-family: var(--font-sans);
     font-size: 10px;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-align: left;
+    border-bottom: 1px solid var(--border-mid);
+  }
+
+  .article-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  .article-table tbody tr:last-child td { border-bottom: none; }
+  .article-table tbody tr:nth-child(even) td { background: var(--bg-surface); }
+  .article-table td strong { color: var(--text); }
+
+  /* Key texts section */
+  .key-texts h3 {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--text-subtle);
+    font-weight: 500;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-style: normal;
+    border: none;
+    padding: 0;
   }
-  .resource-title {
-    font-family: var(--font-display);
-    font-size: 1.1rem;
-    font-weight: 400;
-    color: var(--text);
-  }
-  .resource-desc {
-    font-size: 0.88rem;
-    color: var(--text-muted);
-    line-height: 1.65;
-    flex: 1;
-  }
-  .resource-link {
-    display: inline-block;
-    font-family: var(--font-sans);
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    border: 1px solid var(--border-mid);
-    padding: 5px 14px;
-    border-radius: 2px;
-    text-decoration: none;
-    transition: color 0.15s, border-color 0.15s;
-    margin-top: 0.25rem;
-    align-self: flex-start;
-  }
-  .resource-link:hover { color: var(--text); border-color: var(--border-light); text-decoration: none; }
 
-  /* ── SECTION NAVIGATOR ── */
+  .key-texts ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+  }
+
+  .key-texts li {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    padding: 0.3rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .key-texts li:last-child { border-bottom: none; }
+
+  /* Conclusion table special styling */
+  .conclusion-table th:first-child { width: 20%; }
+  .conclusion-table th:nth-child(2) { width: 20%; }
+  .conclusion-table th:nth-child(3) { width: 25%; }
+
+  /* Soli Deo Gloria */
+  .sdg {
+    text-align: right;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--text-subtle);
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  /* TOC float override for paper — wider labels */
+  #toc-float .toc-dot::before { max-width: 200px; }
+
+  /* Section navigator */
   .section-nav {
     position: sticky;
     top: 60px;
     z-index: 150;
     background: var(--bg-surface);
     border-bottom: 1px solid var(--border);
-    padding: 0;
     box-shadow: 0 -4px 0 4px var(--bg-surface);
   }
+
   .section-nav-inner {
-    max-width: var(--site-width);
+    max-width: 760px;
     margin: 0 auto;
-    padding: 0 2.5rem;
+    padding: 0 2rem;
     display: flex;
     align-items: center;
     gap: 0;
@@ -84,344 +186,366 @@
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
+
   .section-nav-inner::-webkit-scrollbar { display: none; }
-  .section-nav-btn {
+
+  .sec-btn {
     font-family: var(--font-sans);
-    font-size: 10px;
-    letter-spacing: 0.12em;
+    font-size: 9px;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--text-subtle);
     background: none;
     border: none;
     border-bottom: 2px solid transparent;
-    padding: 0.9rem 1rem;
+    padding: 0.8rem 0.85rem;
     cursor: pointer;
     white-space: nowrap;
     transition: color 0.15s, border-color 0.15s;
     flex-shrink: 0;
   }
-  .section-nav-btn:hover { color: var(--text-muted); }
-  .section-nav-btn.active { color: var(--text); border-bottom-color: var(--text); }
 
-  /* ── H2 SIZE — matches Week 1 section headings ── */
-  h2 {
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-style: normal;
-    font-size: clamp(1rem, 2.2vw, 1.4rem);
-    font-family: var(--font-sans);
-    font-weight: 500;
-  }
-  /* Top margin so first section breathes below the sticky nav */
-  .wide-content > section:first-child { padding-top: 2.5rem; }
+  .sec-btn:hover { color: var(--text-muted); }
+  .sec-btn.active { color: var(--text); border-bottom-color: var(--text); }
 
   @media (max-width: 700px) {
     .section-nav-inner { padding: 0 1.25rem; }
-    .section-nav-btn { padding: 0.8rem 0.75rem; font-size: 9px; }
   }
 </style>
+<script>
+  (function(){var s=localStorage.getItem('ncl-font-size');if(s&&s!=='standard')document.documentElement.setAttribute('data-font',s);})();
+</script>
 </head>
 <body>
 
-<!-- SITE HEADER -->
+<div id="progress-bar" role="progressbar" aria-label="Reading progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
 <header class="site-header" role="banner">
   <div class="site-header-inner">
-    <a href="index.html" class="site-logo" aria-label="Home">The Normal Christian Life</a>
+    <a href="../index.html" class="site-logo" aria-label="Home">The Normal Christian Life</a>
     <nav class="site-nav" id="site-nav" aria-label="Main navigation">
-      <a href="index.html" class="active">Home</a>
-      <a href="chapters/chapter-1.html">Week 1</a>
-      <a href="chapters/chapter-2.html">Week 2</a>
-      <a href="chapters/chapter-3.html">Week 3</a>
-      <a href="chapters/chapter-4.html">Week 4</a>
-      <a href="reflections/index.html">Reflections</a>
+      <a href="../index.html">Home</a>
+      <a href="../chapters/chapter-1.html">Study</a>
+      <a href="index.html" class="active">Reflections</a>
     </nav>
     <button class="nav-toggle" id="nav-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Toggle navigation">&#9776;</button>
   </div>
 </header>
 
-<!-- HERO -->
-<section class="home-hero" aria-labelledby="hero-title">
-  <div class="home-hero-inner">
-    <span class="hero-eyebrow">A Guided Weekly Study</span>
-    <h1 id="hero-title">The Normal<br>Christian Life</h1>
-    <span class="hero-subtitle">Watchman Nee</span>
-    <p class="hero-body">
-      Thirteen weeks through one of the most important works of twentieth-century Christian literature. Each week engages a single chapter through reading, reflection, and prayer. The progression is deliberate: each week builds on the last, and the order matters.
-    </p>
-    <div class="hero-anchor" role="note">
-      The Christian life begins with what God has done in Christ, not with what we do for God.
-    </div>
-  </div>
-</section>
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <a href="../index.html">Home</a>
+  <span class="sep" aria-hidden="true">&#8250;</span>
+  <a href="index.html">Reflection Papers</a>
+  <span class="sep" aria-hidden="true">&#8250;</span>
+  <span class="current">Two Goats, One Atonement</span>
+</nav>
 
-<!-- STICKY SECTION NAVIGATOR -->
-<nav class="section-nav" aria-label="Page sections">
+<!-- SECTION NAVIGATOR -->
+<nav class="section-nav" aria-label="Article sections">
   <div class="section-nav-inner">
-    <button class="section-nav-btn active" data-target="about">About the Book</button>
-    <button class="section-nav-btn" data-target="resources">Get the Book</button>
-    <button class="section-nav-btn" data-target="how-to-use">How to Use</button>
-    <button class="section-nav-btn" data-target="weekly-sessions">Weekly Sessions</button>
-    <button class="section-nav-btn" data-target="framework">Study Structure</button>
+    <button class="sec-btn active" data-target="preface">Preface</button>
+    <button class="sec-btn" data-target="sec-i">I. The Problem</button>
+    <button class="sec-btn" data-target="sec-ii">II. The Blood</button>
+    <button class="sec-btn" data-target="sec-iii">III. The Scapegoat</button>
+    <button class="sec-btn" data-target="sec-iv">IV. The Active Taking</button>
+    <button class="sec-btn" data-target="sec-v">V. Two Reconciliations</button>
+    <button class="sec-btn" data-target="sec-vi">VI. What Paul Adds</button>
+    <button class="sec-btn" data-target="sec-vii">VII. Irreversibility</button>
+    <button class="sec-btn" data-target="sec-viii">VIII. Faith as Reception</button>
+    <button class="sec-btn" data-target="conclusion">Conclusion</button>
+    <button class="sec-btn" data-target="key-texts">Key Texts</button>
   </div>
 </nav>
 
-<main class="wide-content" role="main">
+<nav id="toc-float" aria-label="Article sections">
+  <div class="toc-dot" data-target="preface"    data-label="Preface"></div>
+  <div class="toc-dot" data-target="sec-i"      data-label="I. The Problem"></div>
+  <div class="toc-dot" data-target="sec-ii"     data-label="II. The Blood"></div>
+  <div class="toc-dot" data-target="sec-iii"    data-label="III. The Scapegoat"></div>
+  <div class="toc-dot" data-target="sec-iv"     data-label="IV. The Active Taking"></div>
+  <div class="toc-dot" data-target="sec-v"      data-label="V. Two Reconciliations"></div>
+  <div class="toc-dot" data-target="sec-vi"     data-label="VI. What Paul Adds"></div>
+  <div class="toc-dot" data-target="sec-vii"    data-label="VII. Irreversibility"></div>
+  <div class="toc-dot" data-target="sec-viii"   data-label="VIII. Faith as Reception"></div>
+  <div class="toc-dot" data-target="conclusion" data-label="Conclusion"></div>
+  <div class="toc-dot" data-target="key-texts"  data-label="Key Texts"></div>
+</nav>
 
-  <!-- 1. ABOUT THE BOOK -->
-  <section id="about" aria-labelledby="about-title">
-    <h2 id="about-title">About the Book</h2>
-    <p style="font-size: 0.94rem; color: var(--text-muted);">
-      The Normal Christian Life by Watchman Nee was originally delivered as a series of addresses in Europe in the 1930s. It presents the Christian life not as an achievement of spiritual maturity, but as the natural outworking of understanding what God has already accomplished in Christ.
-    </p>
-    <p style="font-size: 0.94rem; color: var(--text-muted);">
-      Nee writes with pastoral clarity and theological precision. His central argument is that the Christian life, in its normal form, is characterised by rest rather than effort, by faith rather than feeling, and by what God has done rather than what the believer must do. The book has remained in continuous publication for nearly a century because its diagnosis of the Christian's struggle is accurate, and its answer is grounded in Scripture.
-    </p>
-    <p style="font-size: 0.94rem; color: var(--text-muted);">
-      This study is designed to help readers encounter Nee's argument slowly and carefully, in the sequence he intended. Each weekly session corresponds to one chapter of the book and includes teaching notes, Scripture references, illustrations, and guided reflection questions.
-    </p>
-  </section>
+<!-- ARTICLE HERO -->
+<section class="chapter-hero" id="hero" aria-labelledby="article-title">
+  <div class="chapter-hero-inner">
+    <span class="series-label">Reflection Paper &nbsp;&bull;&nbsp; April 2026</span>
+    <h1 id="article-title" style="text-transform: lowercase; font-weight: 300;">Two Goats,<br>One Atonement</h1>
+    <span class="hero-ornament" aria-hidden="true">&#10022;</span>
+    <p class="hero-intro" style="font-style: italic;">The Sacrifice of Christ, the Cry of Dereliction, and the Double Reconciliation of Leviticus 16</p>
+  </div>
+</section>
 
-  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+<main class="page-content" role="main" style="padding-top: 2.5rem; max-width: 760px;">
 
-  <!-- 2. REFERENCE MATERIAL -->
-  <section id="resources" aria-labelledby="resources-title">
-    <h2 id="resources-title">Get the Book</h2>
-    <p style="color: var(--text-muted); margin-bottom: 0.5rem; font-size: 0.94rem;">
-      Reading each chapter of the book directly before engaging with the corresponding weekly session is strongly encouraged. The sessions are companions to Nee's text, not substitutes for it. Three formats are available below.
-    </p>
-    <div class="resource-card-grid">
-      <div class="resource-card">
-        <span class="resource-type">Print Edition</span>
-        <div class="resource-title">The Normal Christian Life</div>
-        <p class="resource-desc">The complete text by Watchman Nee. Available through Amazon Canada for purchase and delivery.</p>
-        <a href="https://www.amazon.ca/Normal-Christian-Life-Watchman-Nee/dp/1640322205/" class="resource-link" target="_blank" rel="noopener">Purchase on Amazon Canada &#8594;</a>
+  <!-- ABOUT THIS PAPER -->
+  <div class="callout" style="margin-bottom: 2.5rem;">
+    <strong>About This Paper</strong>
+    <p>This paper was developed through an extended theological exploration using artificial intelligence as a research, dialogue, and writing partner. The underlying questions, themes, theological concerns, and editorial direction originated through engagement with Scripture, Watchman Nee's The Normal Christian Life, Leviticus 16, and broader questions surrounding atonement, propitiation, expiation, reconciliation, and union with Christ. The paper was generated through iterative dialogue, refinement, critique, and editorial oversight.</p>
+    <p style="margin-top: 0.75rem;">It should therefore be understood as an AI-assisted theological reflection rather than a traditional academic publication.</p>
+    <p style="margin-top: 0.75rem; font-size: 0.88rem; color: var(--text-subtle);">Original prompt direction: "Create a paper recognising that I am not an academic but I am a lawyer, so I want it advanced in its positioning but still accessible in its delivery (somewhat like Watchman Nee). I want to be able to associate the sacrifice of Jesus Christ and His active taking on of our sins, His removal from the presence of God and to correlate this with Leviticus 16 and the conclusions that have been arrived at in this thread."</p>
+    <p style="margin-top: 0.75rem;">Readers interested in the development of the argument may also consult the accompanying <a href="theological-dialogue-leviticus16.html" style="color: var(--text-muted);">Theological Dialogue &amp; Research Notes</a>.</p>
+  </div>
+
+  <div class="article-body">
+
+    <!-- PREFACE -->
+    <section id="preface" aria-labelledby="preface-title">
+      <span class="section-num">Preface</span>
+      <h2 id="preface-title" style="margin-top:0;">Preface</h2>
+      <p>This paper grows out of a question that began simply enough: what does the scapegoat of Leviticus 16 have to do with the cross of Jesus Christ?</p>
+      <p>The question, it turns out, is not simple at all. It reaches into the deepest mechanics of how atonement works, why Paul separates the language of blood from the language of the cross, what Watchman Nee understood when he structured <em>The Normal Christian Life</em> the way he did, and why the cry of dereliction from Calvary is not merely an expression of suffering but a theological event of the first order.</p>
+      <p>This paper is written for the serious reader who does not need to be protected from difficult ideas but who also does not want to wade through academic apparatus to find them. The argument is advanced. The language, I hope, is clear. The goal throughout is not novelty but coherence: to show that what looks like a tension in the biblical text is in fact a precision, and that when Leviticus 16 is read with the care it deserves, the atonement becomes not simpler but larger.</p>
+    </section>
+
+    <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+    <!-- SECTION I -->
+    <section id="sec-i" aria-labelledby="sec-i-title">
+      <span class="section-num">Section I</span>
+      <h2 id="sec-i-title">The Problem We Begin With</h2>
+
+      <h3>A Mechanism Mismatch</h3>
+      <p>Anyone reading the New Testament carefully will notice that its writers use two distinct and seemingly different categories to describe what happened at the cross when dealing with sin.</p>
+      <p>The first category is death. Romans 6 is its clearest expression. Sin is dealt with because the person who was enslaved to it died. Not that sin was removed to a safe distance, not that it was forgiven and left in place, but that the old self was crucified, buried, and a new self raised in its place. The mechanism here is execution and resurrection. Sin loses its dominion not because it has been relocated but because its host has died.</p>
+      <p>The second category is removal. The great Old Testament image here is Psalm 103:12: as far as the east is from the west, so far has He removed our transgressions from us. The direction of movement is outward, away, gone. Sin is not executed; it is expelled.</p>
+      <p>These look like different models. And in a sense they are. But the question is whether they are competing models or complementary ones. Leviticus 16, read with precision, gives us the answer.</p>
+
+      <h3>The Two Animals That Are One Offering</h3>
+      <p>The Day of Atonement described in Leviticus 16 is one of the most carefully choreographed rituals in all of Scripture. At its centre are two goats, designated together as a single sin offering (Leviticus 16:5), yet treated in radically different ways.</p>
+      <p>The first goat is slaughtered. Its blood is collected and carried by the High Priest alone into the Holy of Holies, the innermost chamber of the Tabernacle, where it is sprinkled on the <em>kapporeth</em>, the mercy seat, the covering of the Ark of the Covenant. This act takes place entirely out of sight of the congregation. Israel waits outside. They cannot see what is happening. The entire transaction is between the High Priest and God.</p>
+      <p>The second goat is not killed. The High Priest emerges from the sanctuary, lays both hands on the head of this living goat, and confesses over it all the iniquities of the people of Israel. The goat is then led away into the wilderness by a designated man and released. It carries the sins of the nation into a desolate place, to Azazel, and does not return.</p>
+      <p>What we have, then, is not two separate atonements but one atonement with two irreducible movements. The first is Godward and hidden. The second is humanward and visible. Together they constitute the full picture of what it means for sin to be dealt with.</p>
+      <div class="pull-quote">The blood answers what God requires. The scapegoat announces what has consequently become true for the people. Neither is complete without the other. And the order is not interchangeable: blood must be shed before sin can be sent away.</div>
+    </section>
+
+    <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+    <!-- SECTION II -->
+    <section id="sec-ii" aria-labelledby="sec-ii-title">
+      <span class="section-num">Section II</span>
+      <h2 id="sec-ii-title">What the Blood Does and Does Not Do</h2>
+
+      <h3>Watchman Nee's Three Directions</h3>
+      <p>Watchman Nee, in the opening chapter of <em>The Normal Christian Life</em>, establishes what is perhaps the most precise popular treatment of the blood of Christ available in evangelical literature. He does not organise it in formal academic categories, but the logic is unmistakable: the blood operates in three directions, and the order in which it operates those directions is not arbitrary.</p>
+      <p>The first direction is Godward. The blood of Christ answers the righteousness of God. Before anything else is possible, before any human experience of forgiveness or peace, before any claim can be made on the accuser's silence, God must be satisfied. The blood of Christ does this. It is the propitiation, the <em>hilasterion</em> of Romans 3:25, the mercy seat on which divine wrath and divine mercy meet. Nee's insistence, drawing on Hebrews, is that this transaction does not depend on whether you feel forgiven. It depends on whether God has accepted the blood. And He has.</p>
+      <p>The second direction is manward. Once the Godward foundation is established, the blood turns toward the conscience of the believer. Hebrews 9:14 is the key text: the blood of Christ, through the eternal Spirit, cleanses the conscience from dead works to serve the living God. This is not therapy. It is not primarily about emotional relief, though relief may follow. It is about the restoration of priestly access.</p>
+      <p>The third direction is Satanward. Revelation 12:10–11 describes the accuser of the brethren being overcome by the blood of the Lamb. The accusations the enemy levels are not groundless fabrications; they are legal claims based on genuine guilt. What silences them is not denial but payment. The blood removes the legal ground on which accusation stands.</p>
+
+      <h3>Mapping the Blood onto Leviticus 16</h3>
+      <p>What is striking, once Nee's three directions are clear, is that they map almost entirely onto the first goat. Every movement of the blood operates through the mechanism of death and sacrifice.</p>
+      <p>The Godward direction corresponds to the blood sprinkled on the mercy seat: a hidden transaction between the High Priest and God, conducted inside the Holy of Holies, independent of any congregational awareness or participation.</p>
+      <p>The manward direction corresponds to what Israel received when the High Priest emerged: not a sight of blood, but an assurance, grounded in the priestly act completed on their behalf, that the barrier between them and God had been removed.</p>
+      <p>The Satanward direction has no direct counterpart in the Levitical liturgy, but its logic is embedded in the whole: when the ground of guilt is removed, accusation loses its authority.</p>
+      <p><strong>All three directions of the blood, as Nee presents them, operate through the mechanism of the sin offering goat: death, blood, satisfaction of holiness, and the consequent silencing of every claim against the worshipper. The scapegoat is absent from this analysis. That is not an oversight. It is a precision. The scapegoat is doing something else entirely.</strong></p>
+    </section>
+
+    <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+    <!-- SECTION III -->
+    <section id="sec-iii" aria-labelledby="sec-iii-title">
+      <span class="section-num">Section III</span>
+      <h2 id="sec-iii-title">What the Scapegoat Does</h2>
+
+      <h3>A Different Question</h3>
+      <p>The sin offering goat answers the question: what does God require before sin can be addressed? The answer is death. Blood must be shed. Holiness must be satisfied.</p>
+      <p>The scapegoat answers a different question entirely: where has the sin gone, and how do we know it will not return?</p>
+      <p>These are not the same question, and they do not have the same answer. The blood establishes the ground. The scapegoat declares the consequence. Both are necessary for the full reality of atonement to be communicated, and the sequence between them is theologically mandatory: the scapegoat cannot precede the blood. Sin cannot be sent away before the ground on which it is being addressed has been established.</p>
+
+      <h3>The Ritual of Transfer</h3>
+      <p>When the High Priest emerges from the Holy of Holies, the sacrificial work is complete. Now he does something that involves, symbolically, the whole nation. He lays both hands on the head of the living goat. In Hebrew ritual, the laying on of hands signifies transfer and identification. Over the goat, the High Priest then confesses all the iniquities of the children of Israel, and all their transgressions in all their sins, putting them on the head of the goat (Leviticus 16:21). The Hebrew verb <em>nasa</em> carries the sense of lifting, bearing, carrying away. The sins do not merely touch the goat; they are placed on it, loaded onto it, and it departs bearing them.</p>
+
+      <h3>Confessional, Not Constitutive</h3>
+      <p>At this point a distinction must be drawn carefully, because a great deal depends on getting it right. The laying on of hands and the confession of sins do not produce the atonement. They do not cause the transfer to happen in some ontological sense. What the confessional act does is enact, visibly and corporately, the recognition of what is true.</p>
+      <div class="pull-quote">The confession is not what makes the sin go. It is what makes the going of the sin real to the one who has been forgiven. The difference between these two things is the difference between works and faith.</div>
+      <p>This distinction maps directly onto the New Testament. John 1:12 is the hinge: to all who received Him, who believed in His name, He gave the right to become children of God. The word translated <em>received</em> is <em>elabon</em>, the Greek verb for taking or receiving. It is not a creative act. It does not produce what it receives. It lays hold of what already exists and makes it one's own. This is faith. And this is the scapegoat's posture, translated into the New Testament register.</p>
+    </section>
+
+    <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+    <!-- SECTION IV -->
+    <section id="sec-iv" aria-labelledby="sec-iv-title">
+      <span class="section-num">Section IV</span>
+      <h2 id="sec-iv-title">Christ and the Scapegoat: The Active Taking</h2>
+
+      <h3>He Chose to Bear</h3>
+      <p>One of the most important theological affirmations about the cross is that it was not imposed on Christ from outside but embraced by Him from within. John 10:18 is unambiguous: no one takes my life from me, but I lay it down of my own accord. The incarnation was voluntary. The submission to the Father's will in Gethsemane was voluntary. And the taking on of sin was voluntary.</p>
+      <p>Isaiah 53:6 says that the Lord laid on Him the iniquity of us all. But the same chapter says He bore the sin of many and made intercession for the transgressors (Isaiah 53:12). The passive and active dimensions are both present: it was laid on Him, and He bore it. He was not merely a passive vessel into whom sin was poured. He was the willing bearer who took what was placed and carried it to the place it needed to go.</p>
+
+      <h3>The Transfer and Its Cost</h3>
+      <p>Second Corinthians 5:21 is one of the densest theological statements in the Pauline corpus: God made Him who knew no sin to be sin for us, that we might become the righteousness of God in Him. The Greek here is stark. Christ was made sin. Not a sinner. Not sinful. Sin itself, in some sense that the text refuses to domesticate. What did Christ's bearing of sin mean for Christ? It meant removal from the presence of the Father.</p>
+
+      <h3>The Cry of Dereliction as Theological Event</h3>
+      <p>Matthew 27:46 records the moment: about the ninth hour Jesus cried out with a loud voice, <em>Eli, Eli, lema sabachthani?</em> which means, My God, My God, why have you forsaken me? The position that does most justice to both the text and the theology is this: the cry is real, it describes a genuine rupture in the experienced relationship between Father and Son, and it is the direct consequence of what Christ was bearing.</p>
+      <p>When sin came upon Christ, the One who is of purer eyes than to behold evil (Habakkuk 1:13) turned away. Not because the Father stopped loving the Son, but because the sin the Son was bearing required the same consequence it had always required: separation from the holy God.</p>
+      <div class="pull-quote">Christ did not merely die. He was forsaken. And the forsakenness was the scapegoat's wilderness entered, not from the outside in, but from the inside of the Godhead out.</div>
+    </section>
+
+    <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+    <!-- SECTION V -->
+    <section id="sec-v" aria-labelledby="sec-v-title">
+      <span class="section-num">Section V</span>
+      <h2 id="sec-v-title">Two Reconciliations, Not One</h2>
+
+      <h3>The Problem Was Never Only One Thing</h3>
+      <p>When Paul describes the human condition apart from Christ, he uses two distinct categories that correspond precisely to the two problems the Day of Atonement was designed to address. The first is guilt. The second is separation. Ephesians 2:12 describes the condition as separated from Christ, alienated from the commonwealth of Israel, strangers to the covenants of promise, having no hope and without God in the world. These two problems are related, because it is sin that produces both the guilt and the separation. But they are not identical, and their resolution is correspondingly double.</p>
+
+      <h3>Reconciled from Judgment</h3>
+      <p>The first reconciliation addresses guilt. Christ as High Priest takes His own blood into the presence of the Father and presents it as the satisfaction of divine justice. Romans 3:25–26 states this with legal precision: God put forward Christ as a propitiation to demonstrate His righteousness, so that He would be just and the justifier of the one who has faith in Jesus. The blood speaks. It speaks to God's righteousness on our behalf. It silences accusation because it answers the charge rather than dismissing it.</p>
+
+      <h3>Reconciled to Presence</h3>
+      <p>The second reconciliation addresses the separation. If sin created exile from the presence of God, then the removal of sin restores access to that presence. Colossians 1:21–22 captures this precisely: you who once were alienated and hostile in mind, doing evil deeds, He has now reconciled in His body of flesh by His death, in order to present you holy and blameless and above reproach before Him. The movement is from alienation to presentation. From outside to inside. From the wilderness to the presence.</p>
+      <p>He went into the wilderness of Godforsakenness bearing our sin, and He came back. The resurrection is not an afterthought; it is the return of the sin-bearer from the place of exile, and His return without the sin He bore is the announcement that the exile is over for those who are in Him.</p>
+    </section>
+
+    <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+    <!-- SECTION VI -->
+    <section id="sec-vi" aria-labelledby="sec-vi-title">
+      <span class="section-num">Section VI</span>
+      <h2 id="sec-vi-title">What Paul Adds That Leviticus Cannot Reach</h2>
+
+      <h3>The Dominion Problem</h3>
+      <p>The Day of Atonement addresses two things: the guilt of sin and the separation caused by sin. What it does not address, and was never designed to address, is the power of sin as a reigning principle within the person. This is the problem Romans 6 is written to solve. And it is striking that when Paul takes up this problem, he does not reach for any sacrificial image at all. He speaks of death and burial and resurrection. The old man, he says, was crucified with Christ (Romans 6:6). We were buried therefore with Him by baptism into death (Romans 6:4).</p>
+
+      <h3>Why the Shift in Mechanism Matters</h3>
+      <p>This is not a contradiction between Paul and the Levitical system. It is an extension. The Day of Atonement dealt with sins — the discrete acts of transgression that accumulated as a corporate burden on the nation. Romans 6 deals with Sin in the singular, the governing power that produces the acts of transgression and that holds the person in bondage regardless of how many individual sins are forgiven.</p>
+      <p>You can forgive every debt a slave has incurred without setting the slave free. The debt is cleared, but the condition of bondage remains. What is needed is not just forgiveness of debt but liberation from the condition that produces debt. Nee understood this precisely, which is why <em>The Normal Christian Life</em> moves in the sequence it does.</p>
+      <p><strong>The blood answers the question: what has been done about what I have done? The cross answers the question: what has been done about what I am?</strong></p>
+    </section>
+
+    <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+    <!-- SECTION VII -->
+    <section id="sec-vii" aria-labelledby="sec-vii-title">
+      <span class="section-num">Section VII</span>
+      <h2 id="sec-vii-title">The Irreversibility of Both Acts</h2>
+
+      <h3>Two Kinds of Permanence</h3>
+      <p>One of the deepest pastoral fruits of understanding Leviticus 16 correctly is the recognition that the atonement it enacts has an irreversible directionality on both sides.</p>
+      <p>The blood of Christ, Hebrews tells us, continues to speak. Unlike the blood of Abel, which cried out for vengeance (Hebrews 12:24), the blood of Christ speaks better things. It speaks permanently, interceding before the Father in the ongoing High Priesthood of the risen Christ. Christ entered once for all into the holy places, obtaining eternal redemption (Hebrews 9:12).</p>
+      <p>The scapegoat, by contrast, departed. It did not circle back. It went into the wilderness of Azazel and did not return. Psalm 103:12 maps this spatially: as far as the east is from the west, so far has He removed our transgressions from us. East and west, on a sphere, never converge.</p>
+
+      <h3>Why the Accuser Has No Ground</h3>
+      <p>This double permanence is precisely what dismantles the logic of accusation. Revelation 12:10–11 describes the accuser as one who accuses the brethren before God day and night, and who is overcome by the blood of the Lamb. The accuser's argument is always the same: these people are guilty, and guilt has consequences. What the blood answers is not the facts but the legal resolution of the facts. The charge has been met in full. There is now no condemnation for those who are in Christ Jesus (Romans 8:1). And the accuser cannot retrieve sins that have been carried to the place of no return.</p>
+    </section>
+
+    <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+    <!-- SECTION VIII -->
+    <section id="sec-viii" aria-labelledby="sec-viii-title">
+      <span class="section-num">Section VIII</span>
+      <h2 id="sec-viii-title">Faith as Reception</h2>
+
+      <h3>The Human Posture</h3>
+      <p>Throughout this paper, the atonement has been described primarily from the side of what God has done. This is intentional, and it reflects the priority of the biblical text. The initiative is entirely divine. But there is a human posture that corresponds to this divine act, and its character is significant.</p>
+      <p>The congregation of Israel did not passively ignore the Day of Atonement. They gathered. They afflicted their souls (Leviticus 16:29), an expression of humility and acknowledgment. And they watched the scapegoat depart. The watching was not incidental. It was the designed mechanism by which the reality of the removal became real to them.</p>
+      <p>The New Testament equivalent is faith. And John 1:12 names it with precision: to all who received Him, who believed in His name, He gave the right to become children of God. The word received, <em>elabon</em>, is the key. Receiving is not creating. It is not earning. It is the act of taking hold of what is being given, of allowing what has already been done to become yours.</p>
+
+      <h3>The Scapegoat and Salvation by Faith</h3>
+      <p>The scapegoat ritual has, embedded within it, a picture of exactly this posture. The community did not earn the removal of sins by their quality of confession. What the ritual required of Israel was recognition and reception: the acknowledgment that these are our sins, and the willingness to see them depart on the one who bears them.</p>
+      <div class="pull-quote">Christ chose to bear our sins. We did not commission Him to do so. We were not even aware He was doing it. But in the mystery of grace, we are invited, after the fact, to place our hands on what He has done, to confess it as ours, and to watch it depart with Him into the wilderness of Godforsakenness, never to be charged to us again.</div>
+    </section>
+
+    <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+    <!-- CONCLUSION -->
+    <section id="conclusion" aria-labelledby="conclusion-title">
+      <span class="section-num">Conclusion</span>
+      <h2 id="conclusion-title">Three Problems, Three Solutions, One Salvation</h2>
+      <p>We began with what looked like a mechanism mismatch. The blood deals with guilt by death. The scapegoat deals with sin by removal. Romans 6 deals with the old man by execution and new creation. These appear to be three different answers to three different problems.</p>
+      <p>They are. And that is precisely the point. The gospel is not a single transaction but a comprehensive salvation. The atonement accomplished by Christ addresses every dimension of the human problem, and Leviticus 16, read with care, already contains the structure of what the New Testament will fully articulate.</p>
+
+      <div class="article-table-wrap">
+        <table class="article-table conclusion-table" aria-label="Three problems and their solutions">
+          <thead>
+            <tr>
+              <th>The Problem</th>
+              <th>The Solution</th>
+              <th>The Mechanism</th>
+              <th>The Biblical Locus</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Guilt before God</strong></td>
+              <td>Propitiation</td>
+              <td>Blood of the sin offering goat; Christ's death as sacrifice</td>
+              <td style="font-family: var(--font-sans); font-size: 0.82rem;">Romans 3:25; Hebrews 9; Rev 12:11</td>
+            </tr>
+            <tr>
+              <td><strong>Separation from God's presence</strong></td>
+              <td>Expiation and reconciliation</td>
+              <td>The scapegoat bearing sin away; Christ's Godforsakenness and resurrection return</td>
+              <td style="font-family: var(--font-sans); font-size: 0.82rem;">2 Cor 5:21; Matt 27:46; Col 1:21–22</td>
+            </tr>
+            <tr>
+              <td><strong>Dominion of sin within</strong></td>
+              <td>Liberation through death and new creation</td>
+              <td>Co-crucifixion; burial; resurrection; union with Christ</td>
+              <td style="font-family: var(--font-sans); font-size: 0.82rem;">Romans 6; Galatians 2:20</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <div class="resource-card">
-        <span class="resource-type">Free Digital Edition</span>
-        <div class="resource-title">Full Text &mdash; Christian Classics Ethereal Library</div>
-        <p class="resource-desc">A complete digital edition is available at no cost through the Christian Classics Ethereal Library (CCEL), a long-standing repository of public-domain Christian literature.</p>
-        <a href="https://ccel.org/ccel/n/nee/normal/cache/normal.pdf" class="resource-link" target="_blank" rel="noopener">Download PDF &#8594;</a>
-      </div>
-      <div class="resource-card">
-        <span class="resource-type">Audio Edition</span>
-        <div class="resource-title">Full Audiobook &mdash; YouTube</div>
-        <p class="resource-desc">A complete audio recording of the book is available on YouTube. Listening to each chapter before engaging with the weekly session is an equally valid way to prepare.</p>
-        <a href="https://youtu.be/gYZ_K0UV5kY?si=6sM2rODmu8EcXmik" class="resource-link" target="_blank" rel="noopener">Listen on YouTube &#8594;</a>
-      </div>
-    </div>
-  </section>
 
-  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+      <p>The blood satisfies God and cleanses the conscience, establishing the objective ground on which every claim of guilt is answered. The scapegoat declares the irreversible removal of what caused separation, and the believer receives this through the confessional act of faith. The cross, understood as the death of the old man in union with Christ, addresses the power of sin at its root, not by relocating it but by killing the one it ruled.</p>
+      <p>Three solutions. But one Saviour who accomplished them all: the High Priest who carried His own blood into the presence of God, the willing sin-bearer who entered the wilderness of dereliction bearing what we laid on Him, and the crucified and risen Lord in whom the old man died and the new creation lives.</p>
+      <p><strong>The atonement is not a single note but a chord. And Leviticus 16 gives us the score.</strong></p>
 
-  <!-- 3. HOW TO USE THIS STUDY -->
-  <section id="how-to-use" aria-labelledby="how-title">
-    <h2 id="how-title">How to Use This Study</h2>
-    <p style="color: var(--text-muted); margin-bottom: 1rem; font-size: 0.94rem;">
-      This study is designed for personal use, though it works well in small groups. Each of the thirteen weeks follows the same pattern. Move at a pace that allows the material to be absorbed, not merely read.
-    </p>
-    <ul class="steps-list">
-      <li class="step-item">
-        <span class="step-num">1</span>
-        <div class="step-text"><strong>Read the chapter first.</strong> Before opening the weekly session, read the corresponding chapter of the book. The sessions are companions to Nee's text, not replacements for it. What Nee says directly carries a weight that no summary can replicate.</div>
-      </li>
-      <li class="step-item">
-        <span class="step-num">2</span>
-        <div class="step-text"><strong>Work through the weekly session.</strong> Each session includes teaching notes, illustrations, Scripture references, and reflection questions. Use the section navigator at the top of each session to move between parts without losing your place.</div>
-      </li>
-      <li class="step-item">
-        <span class="step-num">3</span>
-        <div class="step-text"><strong>Engage the reflection questions in a journal.</strong> The questions are designed to be sat with, not answered quickly. Writing out responses — even briefly — moves the material from the mind into the life. There is no place to submit answers on the site; they are for you alone.</div>
-      </li>
-      <li class="step-item">
-        <span class="step-num">4</span>
-        <div class="step-text"><strong>Use the closing prayer.</strong> Each session ends with a written prayer that draws together the week's central truth. Use it as a starting point for honest conversation with God, not as a script to complete.</div>
-      </li>
-      <li class="step-item">
-        <span class="step-num">5</span>
-        <div class="step-text"><strong>Follow the sequence.</strong> Each week's chapter depends on the one before it. Nee's argument builds deliberately. Skipping ahead tends to produce confusion rather than clarity. The discipline of the sequence is itself part of the formation.</div>
-      </li>
-    </ul>
-  </section>
+      <div class="sdg">Soli Deo Gloria</div>
+    </section>
 
-  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+    <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
 
-  <!-- 4. WEEKLY SESSIONS -->
-  <section id="weekly-sessions" aria-labelledby="weekly-sessions-title">
-    <h2 id="weekly-sessions-title">Weekly Sessions</h2>
-    <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.94rem;">
-      Thirteen weeks. Each session addresses a distinct dimension of the Christian life as Nee presents it. Work through them in sequence. The earlier sessions lay the foundation that makes the later ones intelligible.
-    </p>
+    <!-- KEY TEXTS -->
+    <section id="key-texts" aria-labelledby="key-texts-title" class="key-texts">
+      <h2 id="key-texts-title">Key Texts in This Argument</h2>
 
-    <div class="chapter-cards" role="list">
+      <h3>Old Testament</h3>
+      <ul>
+        <li>Leviticus 16 — The Day of Atonement: the two goats, the blood on the mercy seat, the scapegoat sent to Azazel</li>
+        <li>Isaiah 53:6, 12 — The Suffering Servant bearing iniquity and making intercession</li>
+        <li>Psalm 103:12 — The spatial image of sin removed as far as east is from west</li>
+        <li>Habakkuk 1:13 — The holiness of God who cannot look on evil</li>
+      </ul>
 
-      <a href="chapters/chapter-1.html" class="chapter-card available" role="listitem" data-chapter="chapter-1" aria-label="Week 1: The Blood of Christ — Available">
-        <span class="card-week">Week 1</span>
-        <div class="card-title">The Blood of Christ</div>
-        <p class="card-desc">How can a sinful person stand accepted before a holy God? This session addresses the most foundational question and answers it with the blood of Christ. Everything else in this study rests on what is established here.</p>
-        <span class="card-badge badge-available">Available</span>
-        <span class="card-cta">Begin Week 1 &#8594;</span>
-      </a>
+      <h3>New Testament</h3>
+      <ul>
+        <li>Matthew 27:46 — The cry of dereliction: the theological event of the forsakenness</li>
+        <li>John 1:12 — Reception by faith as the mode of appropriating what Christ has done</li>
+        <li>Romans 3:25–26 — The <em>hilasterion</em>: propitiation demonstrating divine justice</li>
+        <li>Romans 6:4–6 — Co-crucifixion, burial, and resurrection: the death of the old man</li>
+        <li>Romans 8:1 — No condemnation: the forensic declaration that guilt has been answered</li>
+        <li>2 Corinthians 5:21 — Christ made sin: the active, willing bearing of what we were</li>
+        <li>Colossians 1:21–22 — From alienation to presentation: the reconciliation to presence</li>
+        <li>Hebrews 9:12–14 — Once for all entry; blood cleansing the conscience for priestly access</li>
+        <li>Hebrews 12:24 — The blood of Christ that speaks better things than Abel</li>
+        <li>Revelation 12:10–11 — The accuser overcome by the blood of the Lamb</li>
+      </ul>
 
-      <a href="chapters/chapter-2.html" class="chapter-card available" role="listitem" data-chapter="chapter-2" aria-label="Week 2: The Cross of Christ — Available">
-        <span class="card-week">Week 2</span>
-        <div class="card-title">The Cross of Christ</div>
-        <p class="card-desc">Forgiveness deals with the guilt of sins committed. But what about the power of sin itself? This session turns from the blood to the cross, beginning the second movement of the book.</p>
-        <span class="card-badge badge-available">Available</span>
-        <span class="card-cta">Begin Week 2 &#8594;</span>
-      </a>
+      <h3>Principal Works Engaged</h3>
+      <ul>
+        <li>Watchman Nee, <em>The Normal Christian Life</em> — especially chapter one on the blood of Christ and subsequent chapters on the cross and co-crucifixion</li>
+        <li>John Stott, <em>The Cross of Christ</em> — the treatment of propitiation and expiation as inseparable dimensions of the atonement</li>
+        <li>Martin Luther — the theology of substitution and Christ as the one who enters the exile belonging to the sinner</li>
+      </ul>
+    </section>
 
-      <a href="chapters/chapter-3.html" class="chapter-card available" role="listitem" data-chapter="chapter-3" aria-label="Week 3: The Path of Progress: Knowing — Available">
-        <span class="card-week">Week 3</span>
-        <div class="card-title">The Path of Progress: Knowing</div>
-        <p class="card-desc">Deliverance from sin's power begins not with effort but with knowledge. This session introduces the first practical step Nee draws from Romans 6: knowing what God has already done in Christ.</p>
-        <span class="card-badge badge-available">Available</span>
-        <span class="card-cta">Begin Week 3 &#8594;</span>
-      </a>
+  </div><!-- /.article-body -->
 
-      <a href="chapters/chapter-4.html" class="chapter-card available" role="listitem" data-chapter="chapter-4" aria-label="Week 4: The Path of Progress: Reckoning — Available">
-        <span class="card-week">Week 4</span>
-        <div class="card-title">The Path of Progress: Reckoning</div>
-        <p class="card-desc">Knowledge must become a reckoning — a deliberate act of faith that counts as true what God has already declared about the believer's union with Christ in His death and resurrection.</p>
-        <span class="card-badge badge-available">Available</span>
-        <span class="card-cta">Begin Week 4 &#8594;</span>
-      </a>
-
-      <div class="chapter-card coming-soon" role="listitem">
-        <span class="card-week">Week 5</span>
-        <div class="card-title">The Divide of the Cross</div>
-        <p class="card-desc">The cross creates a fundamental division in the believer's life. This session explores what it means to live on the resurrection side of Christ's death.</p>
-        <span class="card-badge badge-soon">Coming Soon</span>
-      </div>
-
-      <div class="chapter-card coming-soon" role="listitem">
-        <span class="card-week">Week 6</span>
-        <div class="card-title">The Path of Progress: Presenting Ourselves to God</div>
-        <p class="card-desc">The third step in Nee's progression: presenting ourselves to God as those who are alive from the dead. This session concludes the second movement of the book.</p>
-        <span class="card-badge badge-soon">Coming Soon</span>
-      </div>
-
-      <div class="chapter-card coming-soon" role="listitem">
-        <span class="card-week">Week 7</span>
-        <div class="card-title">The Eternal Purpose</div>
-        <p class="card-desc">Before addressing life in the Spirit, Nee steps back to consider God's eternal purpose — the why behind everything He is doing in and through the believer.</p>
-        <span class="card-badge badge-soon">Coming Soon</span>
-      </div>
-
-      <div class="chapter-card coming-soon" role="listitem">
-        <span class="card-week">Week 8</span>
-        <div class="card-title">The Holy Spirit</div>
-        <p class="card-desc">The Spirit applies what the cross accomplished. This session explores what it means to walk in the Spirit as the ongoing reality of the Christian life.</p>
-        <span class="card-badge badge-soon">Coming Soon</span>
-      </div>
-
-      <div class="chapter-card coming-soon" role="listitem">
-        <span class="card-week">Week 9</span>
-        <div class="card-title">The Meaning and Value of Romans Seven</div>
-        <p class="card-desc">Romans 7 describes the believer trying to overcome sin by self-effort. This session explains what that struggle reveals, and why the way through is not trying harder.</p>
-        <span class="card-badge badge-soon">Coming Soon</span>
-      </div>
-
-      <div class="chapter-card coming-soon" role="listitem">
-        <span class="card-week">Week 10</span>
-        <div class="card-title">The Path of Progress: Walking in the Spirit</div>
-        <p class="card-desc">Walking in the Spirit is not a crisis experience but a continuous way of life. This session addresses the practical meaning of Romans 8 for daily living.</p>
-        <span class="card-badge badge-soon">Coming Soon</span>
-      </div>
-
-      <div class="chapter-card coming-soon" role="listitem">
-        <span class="card-week">Week 11</span>
-        <div class="card-title">One Body in Christ</div>
-        <p class="card-desc">The Christian life is not lived in isolation. This session addresses the corporate dimension of life in Christ and what it means to function as a member of His body.</p>
-        <span class="card-badge badge-soon">Coming Soon</span>
-      </div>
-
-      <div class="chapter-card coming-soon" role="listitem">
-        <span class="card-week">Week 12</span>
-        <div class="card-title">The Cross and the Soul Life</div>
-        <p class="card-desc">The cross must deal not only with the old nature but also with the soul life — the natural energies of personality that can substitute for genuine spiritual life.</p>
-        <span class="card-badge badge-soon">Coming Soon</span>
-      </div>
-
-      <div class="chapter-card coming-soon" role="listitem">
-        <span class="card-week">Week 13</span>
-        <div class="card-title">The Path of Progress: Bearing the Cross</div>
-        <p class="card-desc">The final session addresses the ongoing nature of the Christian life as a continuous bearing of the cross — not a crisis, but a direction and a daily fellowship.</p>
-        <span class="card-badge badge-soon">Coming Soon</span>
-      </div>
-
-    </div>
-  </section>
-
-  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
-
-  <!-- 5. STUDY STRUCTURE -->
-  <section id="framework" aria-labelledby="framework-title">
-    <h2 id="framework-title">The Structure of This Study</h2>
-    <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.94rem;">
-      The Normal Christian Life is not a collection of independent topics. It unfolds in three deliberate movements. Understanding the sequence prevents a great deal of confusion. Many believers struggle unnecessarily because they try to enter a later movement without having settled the foundation of an earlier one.
-    </p>
-
-    <div class="table-scroll">
-      <table class="framework-table" aria-label="The three movements of the study">
-        <thead>
-          <tr>
-            <th>Movement</th>
-            <th>Focus</th>
-            <th>What It Addresses</th>
-            <th>Sessions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="theme-label">The Blood</td>
-            <td>Forgiveness of sins</td>
-            <td>The guilt of specific wrongs committed before a holy God. Deals with our record.</td>
-            <td style="color: var(--text-muted); font-family: var(--font-sans); font-size: 0.85rem; white-space: nowrap;">Week 1</td>
-          </tr>
-          <tr>
-            <td class="theme-label">The Cross</td>
-            <td>Deliverance from sin</td>
-            <td>The power of indwelling sin and the old nature. Deals with our condition through union with Christ in His death and resurrection.</td>
-            <td style="color: var(--text-muted); font-family: var(--font-sans); font-size: 0.85rem; white-space: nowrap;">Weeks 2&ndash;6</td>
-          </tr>
-          <tr>
-            <td class="theme-label">The Spirit and the Body</td>
-            <td>Living the Christian life</td>
-            <td>Walking in the Spirit, overcoming inward conflict, corporate life in Christ, the soul life, and ongoing surrender.</td>
-            <td style="color: var(--text-muted); font-family: var(--font-sans); font-size: 0.85rem; white-space: nowrap;">Weeks 7&ndash;13</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="callout" style="margin-top: 1.5rem;">
-      <strong>Why the Order Matters</strong>
-      <p>The blood must be understood before the cross can be received. The cross must do its work before the Spirit can flow freely. And the life of the Spirit must be established before the corporate and deeper dimensions of the final sessions make sense. Following the sequence is not a formality. It is part of how the truth lands.</p>
-    </div>
-  </section>
-
-  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
-
-  <!-- BEYOND THE WEEKLY STUDY -->
-  <section id="reflections-preview" aria-labelledby="reflections-title">
-    <h2 id="reflections-title">Beyond the Weekly Study</h2>
-    <p style="color: var(--text-muted); font-size: 0.94rem; margin-bottom: 1.5rem;">These papers explore themes that arise from <em>The Normal Christian Life</em> in greater depth and from additional theological perspectives. They complement the weekly study without replacing it.</p>
-
-    <div style="border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--border); display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px;">
-      <a href="reflections/two-goats-one-atonement.html" style="background: var(--bg-surface); padding: 1.75rem; display: flex; flex-direction: column; gap: 0.65rem; text-decoration: none; color: inherit; transition: background 0.2s;" onmouseover="this.style.background='var(--bg-raised)'" onmouseout="this.style.background='var(--bg-surface)'">
-        <span style="font-family: var(--font-sans); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-subtle);">Featured Paper &nbsp;&bull;&nbsp; April 2026</span>
-        <div style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 300; color: var(--text); line-height: 1.2; text-transform: lowercase;">Two Goats, One Atonement</div>
-        <p style="font-size: 0.87rem; color: var(--text-muted); line-height: 1.65; flex: 1; margin: 0;">A theological exploration of Leviticus 16, the two goats, propitiation, expiation, and the cry of dereliction — tracing how the Day of Atonement prefigures three distinct dimensions of Christ's saving work.</p>
-        <span style="font-family: var(--font-sans); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.25rem;">Read Paper &#8594;</span>
-      </a>
-      <a href="reflections/index.html" style="background: var(--bg-raised); padding: 1.75rem; display: flex; flex-direction: column; gap: 0.65rem; text-decoration: none; color: inherit; transition: background 0.2s;" onmouseover="this.style.background='var(--bg-highlight)'" onmouseout="this.style.background='var(--bg-raised)'">
-        <span style="font-family: var(--font-sans); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-subtle);">All Papers</span>
-        <div style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 300; color: var(--text); line-height: 1.2; text-transform: lowercase;">Reflection Papers</div>
-        <p style="font-size: 0.87rem; color: var(--text-muted); line-height: 1.65; flex: 1; margin: 0;">Theological explorations, essays, and extended reflections inspired by themes arising from <em>The Normal Christian Life</em> and the study of Scripture.</p>
-        <span style="font-family: var(--font-sans); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.25rem;">Browse All &#8594;</span>
-      </a>
-    </div>
-  </section>
+  <!-- NAVIGATION -->
+  <nav class="chapter-nav" style="margin-top: 3rem;" aria-label="Page navigation">
+    <a href="index.html" class="nav-prev">&#8592; Reflection Papers</a>
+    <span style="font-family: var(--font-sans); font-size: 10px; color: var(--text-subtle); letter-spacing: 0.1em; text-transform: uppercase;">April 2026</span>
+    <a href="theological-dialogue-leviticus16.html" class="nav-next">Research Dialogue &#8594;</a>
+  </nav>
 
 </main>
 
@@ -433,53 +557,44 @@
       <div class="footer-sub">&copy; 2026 &nbsp;&bull;&nbsp; A discipleship resource &nbsp;&bull;&nbsp; All rights reserved</div>
     </div>
     <nav class="footer-nav" aria-label="Footer navigation">
-      <a href="index.html">Home</a>
-      <a href="chapters/chapter-1.html">Week 1: The Blood of Christ</a>
-      <a href="chapters/chapter-2.html">Week 2: The Cross of Christ</a>
-      <a href="chapters/chapter-3.html">Week 3: The Path of Progress: Knowing</a>
-      <a href="chapters/chapter-4.html">Week 4: The Path of Progress: Reckoning</a>
-      <a href="reflections/index.html">Reflection Papers</a>
-      <a href="https://ccel.org/ccel/n/nee/normal/cache/normal.pdf" target="_blank" rel="noopener">Download PDF</a>
-      <a href="https://youtu.be/gYZ_K0UV5kY?si=6sM2rODmu8EcXmik" target="_blank" rel="noopener">Listen on YouTube</a>
+      <a href="../index.html">&#8592; Back to Home</a>
+      <a href="index.html">Reflection Papers</a>
+      <a href="theological-dialogue-leviticus16.html">Theological Dialogue</a>
     </nav>
   </div>
 </footer>
 
-<script src="script.js"></script>
+<button id="back-top" aria-label="Back to top" title="Back to top">&#8593;</button>
+<script src="../script.js"></script>
 <script>
-  // Section navigator — highlight active section on scroll
-  (function() {
-    var btns = document.querySelectorAll('.section-nav-btn');
-    var sections = Array.from(btns).map(function(b) {
-      return document.getElementById(b.dataset.target);
-    }).filter(Boolean);
+(function() {
+  var OFFSET = 60 + 38 + 20;
+  var btns = document.querySelectorAll('.sec-btn');
+  var sectionIds = Array.from(btns).map(function(b) { return b.dataset.target; });
 
-    btns.forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        var target = document.getElementById(btn.dataset.target);
-        if (!target) return;
-        var navHeight = 60 + 42; // header + section-nav
-        var top = target.getBoundingClientRect().top + window.scrollY - navHeight - 24;
-        window.scrollTo({ top: top, behavior: 'smooth' });
-      });
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var target = document.getElementById(btn.dataset.target);
+      if (!target) return;
+      var top = target.getBoundingClientRect().top + window.scrollY - OFFSET;
+      window.scrollTo({ top: top, behavior: 'smooth' });
     });
+  });
 
-    function updateActive() {
-      var navHeight = 60 + 42 + 32;
-      var activeIndex = 0;
-      sections.forEach(function(sec, i) {
-        if (sec && sec.getBoundingClientRect().top < navHeight) {
-          activeIndex = i;
-        }
-      });
-      btns.forEach(function(b, i) {
-        b.classList.toggle('active', i === activeIndex);
-      });
-    }
+  function updateActive() {
+    var activeId = sectionIds[0];
+    sectionIds.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top < OFFSET + 20) activeId = id;
+    });
+    btns.forEach(function(b) {
+      b.classList.toggle('active', b.dataset.target === activeId);
+    });
+  }
 
-    window.addEventListener('scroll', updateActive, { passive: true });
-    updateActive();
-  }());
+  window.addEventListener('scroll', updateActive, { passive: true });
+  updateActive();
+}());
 </script>
 </body>
 </html>

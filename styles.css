@@ -1,1248 +1,488 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap');
-
-/* ============================================================
-   THE NORMAL CHRISTIAN LIFE — Guided Study Microsite
-   styles.css — Styled after anchortacoma.org
-   ============================================================
-
-   DESIGN LANGUAGE (extracted from anchortacoma.org)
-   ─────────────────────────────────────────────────
-   Background:    Deep charcoal / near-black  (#111110)
-   Surface:       Slightly lighter card bg    (#1c1c1a)
-   Text primary:  Off-white / warm cream      (#f0ede6)
-   Text muted:    Medium warm grey            (#9a9590)
-   Text subtle:   Dark warm grey              (#5a5750)
-   Accent:        Warm white                  (#ffffff)
-   Border:        Very dark warm grey         (#2e2d2a)
-   Hero display:  Very large, lowercase, thin-weight serif
-   Body sans:     Clean geometric grotesque, light tracking
-   Headings:      Lowercase style, generous line-height
-   Spacing:       Very generous — editorial breathing room
-   Radius:        Minimal — 4px or 0 on most elements
-   ============================================================ */
-
-:root {
-  /* Colour palette — Anchor Church dark theme */
-  --bg:            #111110;
-  --bg-surface:    #1c1c1a;
-  --bg-raised:     #242422;
-  --bg-highlight:  #2a2a28;
-  --text:          #f0ede6;
-  --text-muted:    #9a9590;
-  --text-subtle:   #5a5750;
-  --text-inverse:  #111110;
-  --accent:        #ffffff;
-  --border:        #2e2d2a;
-  --border-mid:    #3e3d3a;
-  --border-light:  #484643;
-
-  /* Retained for semantic table colouring */
-  --crimson:       #c0453a;
-  --crimson-light: rgba(192, 69, 58, 0.15);
-  --teal:          #3a8fa3;
-  --teal-light:    rgba(58, 143, 163, 0.15);
-
-  /* Typography
-     Anchor uses Canela (display) + Graphik/Untitled Sans.
-     Google Fonts equivalents that match the same register:
-     - Cormorant Garamond: refined, low-contrast editorial serif
-     - DM Sans: clean geometric grotesque                        */
-  --font-display: 'Cormorant Garamond', 'Didot', 'Bodoni MT', Georgia, serif;
-  --font-body:    'DM Sans', 'Helvetica Neue', Arial, sans-serif;
-  --font-sans:    'DM Sans', 'Helvetica Neue', Arial, sans-serif;
-
-  /* Layout */
-  --radius:        4px;
-  --radius-lg:     8px;
-  --content-width: 720px;
-  --site-width:    1100px;
-}
-
-/* ─── RESET ───────────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-body);
-  font-size: 18px;
-  line-height: 1.75;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-img { max-width: 100%; display: block; }
-a   { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
-a:hover { color: var(--accent); }
-
-/* ─── SITE HEADER ─────────────────────────────────────────── */
-
-.site-header {
-  background: var(--bg);
-  border-bottom: 1px solid var(--border);
-  padding: 0 2.5rem;
-  position: sticky;
-  top: 0;
-  z-index: 200;
-  /* Seal against content scrolling beneath */
-  box-shadow: 0 1px 0 0 var(--border);
-}
-
-.site-header-inner {
-  max-width: var(--site-width);
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 60px;
-  gap: 1rem;
-}
-
-.site-logo {
-  font-family: var(--font-display);
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 400;
-  color: var(--text);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  flex-shrink: 0;
-  text-decoration: none;
-}
-
-.site-logo:hover { color: var(--accent); text-decoration: none; }
-
-.site-nav {
-  display: flex;
-  align-items: center;
-  gap: 0;
-}
-
-.site-nav a {
-  font-family: var(--font-sans);
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  padding: 0.45rem 0.9rem;
-  border-radius: var(--radius);
-  transition: color 0.15s;
-  text-decoration: none;
-}
-
-.site-nav a:hover  { color: var(--text); }
-.site-nav a.active { color: var(--text); }
-
-.nav-toggle {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0.4rem;
-  color: var(--text-muted);
-  font-size: 1.2rem;
-  line-height: 1;
-}
-
-/* ─── BREADCRUMBS ─────────────────────────────────────────── */
-
-.breadcrumbs {
-  max-width: var(--site-width);
-  margin: 0 auto;
-  padding: 0.85rem 2.5rem;
-  font-family: var(--font-sans);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-subtle);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  border-bottom: 1px solid var(--border);
-}
-
-.breadcrumbs a { color: var(--text-muted); text-decoration: none; }
-.breadcrumbs a:hover { color: var(--text); }
-.breadcrumbs .sep { color: var(--border-light); }
-.breadcrumbs .current { color: var(--text-muted); }
-
-/* ─── PROGRESS BAR ────────────────────────────────────────── */
-
-#progress-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 2px;
-  background: var(--text-muted);
-  width: 0%;
-  z-index: 1000;
-  transition: width 0.1s;
-  pointer-events: none;
-}
-
-/* ─── SITE FOOTER ─────────────────────────────────────────── */
-
-.site-footer {
-  background: var(--bg-surface);
-  border-top: 1px solid var(--border);
-  padding: 3.5rem 2.5rem;
-  margin-top: 6rem;
-}
-
-.site-footer-inner {
-  max-width: var(--site-width);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 2rem;
-  align-items: start;
-}
-
-.footer-brand {
-  font-family: var(--font-display);
-  font-style: normal;
-  font-weight: 400;
-  font-size: 0.95rem;
-  color: var(--text);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  margin-bottom: 0.35rem;
-}
-
-.footer-sub {
-  font-family: var(--font-sans);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-subtle);
-  margin-top: 1rem;
-}
-
-.footer-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  text-align: right;
-}
-
-.footer-nav a {
-  font-family: var(--font-sans);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-subtle);
-  text-decoration: none;
-  transition: color 0.15s;
-}
-
-.footer-nav a:hover { color: var(--text); }
-
-/* ─── LAYOUT UTILITIES ────────────────────────────────────── */
-
-.page-content {
-  max-width: var(--content-width);
-  margin: 0 auto;
-  padding: 0 2rem 5rem;
-}
-
-.wide-content {
-  max-width: var(--site-width);
-  margin: 0 auto;
-  padding: 0 2.5rem 5rem;
-}
-
-/* ─── TYPOGRAPHY ──────────────────────────────────────────── */
-
-h1 {
-  font-family: var(--font-display);
-  font-size: clamp(3rem, 7vw, 5.5rem);
-  font-weight: 400;
-  line-height: 1.05;
-  letter-spacing: 0.04em;
-  color: var(--text);
-  text-transform: uppercase;
-}
-
-h2 {
-  font-family: var(--font-display);
-  font-size: clamp(1.4rem, 3vw, 2rem);
-  font-weight: 400;
-  color: var(--text);
-  margin-bottom: 1.25rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--border);
-  letter-spacing: 0.06em;
-  line-height: 1.2;
-  text-transform: uppercase;
-}
-
-h3 {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--text-muted);
-  margin-bottom: 0.6rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-p { margin-bottom: 1rem; }
-p:last-child { margin-bottom: 0; }
-
-em { font-style: italic; }
-strong { font-weight: 500; color: var(--text); }
-
-/* ─── SECTION SPACING ─────────────────────────────────────── */
-
-section {
-  margin-bottom: 4rem;
-  scroll-margin-top: 80px;
-}
-
-.ornament-divider {
-  text-align: center;
-  color: var(--border-light);
-  font-size: 0.7rem;
-  letter-spacing: 0.6em;
-  margin: 3rem 0;
-  user-select: none;
-}
-
-/* ─── HERO — HOMEPAGE ─────────────────────────────────────── */
-
-.home-hero {
-  background: var(--bg);
-  color: var(--text);
-  padding: 7rem 0 6rem;
-  border-bottom: 1px solid var(--border);
-}
-
-.home-hero-inner {
-  max-width: var(--site-width);
-  margin: 0 auto;
-  padding: 0 2.5rem;
-}
-
-.home-hero h1 {
-  max-width: 800px;
-  margin-bottom: 2rem;
-}
-
-.home-hero .hero-eyebrow {
-  font-family: var(--font-sans);
-  font-size: 10px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--text-subtle);
-  margin-bottom: 2rem;
-  display: block;
-}
-
-.home-hero .hero-subtitle {
-  font-family: var(--font-sans);
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--text-subtle);
-  margin-top: 2rem;
-  display: block;
-}
-
-.home-hero .hero-body {
-  max-width: 520px;
-  margin-top: 2rem;
-  font-size: 0.94rem;
-  color: var(--text-muted);
-  line-height: 1.8;
-}
-
-.home-hero .hero-anchor {
-  max-width: 600px;
-  margin-top: 3rem;
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 300;
-  font-size: clamp(1.3rem, 2.5vw, 1.75rem);
-  color: var(--text);
-  line-height: 1.45;
-  padding-top: 2.5rem;
-  border-top: 1px solid var(--border);
-}
-
-/* ─── HERO — CHAPTER PAGES ────────────────────────────────── */
-
-.chapter-hero {
-  background: var(--bg);
-  border-bottom: 1px solid var(--border);
-  padding: 5rem 0 4.5rem;
-}
-
-.chapter-hero-inner {
-  max-width: var(--content-width);
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-.chapter-hero .series-label {
-  font-family: var(--font-sans);
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--text-subtle);
-  margin-bottom: 0.4rem;
-  display: block;
-}
-
-.chapter-hero .chapter-num {
-  font-family: var(--font-sans);
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--text-subtle);
-  margin-bottom: 2rem;
-  display: block;
-}
-
-.chapter-hero h1 {
-  margin-bottom: 2rem;
-}
-
-.chapter-hero .hero-ornament {
-  color: var(--border-light);
-  font-size: 1rem;
-  margin: 0 0 2rem;
-  display: block;
-}
-
-.chapter-hero .hero-intro {
-  font-size: 0.94rem;
-  color: var(--text-muted);
-  line-height: 1.8;
-  max-width: 600px;
-}
-
-/* ─── KEY TRUTH BANNER ────────────────────────────────────── */
-
-.key-truth {
-  border: 1px solid var(--border-mid);
-  background: var(--bg-surface);
-  padding: 1.5rem 2rem;
-  border-radius: var(--radius);
-  margin: 2.5rem 0;
-}
-
-.key-truth .kt-label {
-  font-family: var(--font-sans);
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--text-subtle);
-  margin-bottom: 0.75rem;
-  display: block;
-}
-
-.key-truth p {
-  font-family: var(--font-display);
-  font-size: clamp(1.1rem, 2vw, 1.4rem);
-  font-style: italic;
-  font-weight: 300;
-  line-height: 1.45;
-  margin: 0;
-  color: var(--text);
-}
-
-.chapter-hero .key-truth {
-  margin-top: 2.5rem;
-  max-width: 600px;
-  background: transparent;
-  border-color: var(--border);
-}
-
-/* ─── CALLOUT BOXES ───────────────────────────────────────── */
-
-.callout {
-  border-left: 2px solid var(--border-light);
-  background: var(--bg-surface);
-  padding: 1.25rem 1.5rem;
-  border-radius: 0 var(--radius) var(--radius) 0;
-  margin: 2rem 0;
-}
-
-.callout-crimson {
-  border-left-color: var(--crimson);
-  background: var(--crimson-light);
-}
-
-.callout p {
-  margin: 0;
-  font-size: 0.91rem;
-  line-height: 1.7;
-  color: var(--text-muted);
-}
-
-.callout strong {
-  display: block;
-  font-family: var(--font-sans);
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--text-subtle);
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-}
-
-/* ─── SCRIPTURE BADGE ─────────────────────────────────────── */
-
-.scripture {
-  display: inline-block;
-  background: var(--bg-raised);
-  border: 1px solid var(--border-mid);
-  border-radius: 2px;
-  font-family: var(--font-sans);
-  font-size: 11px;
-  padding: 1px 7px;
-  color: var(--text-muted);
-  margin: 0 2px;
-  cursor: default;
-  transition: border-color 0.15s, color 0.15s;
-  white-space: nowrap;
-}
-
-.scripture:hover { border-color: var(--border-light); color: var(--text); }
-
-/* ─── TABLES — COMPARISON ─────────────────────────────────── */
-
-.table-scroll { overflow-x: auto; }
-
-.compare-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1.5rem 0;
-  font-size: 0.9rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-}
-
-.compare-table thead tr { background: var(--bg-raised); border-bottom: 1px solid var(--border-mid); }
-
-.compare-table th {
-  padding: 0.85rem 1.25rem;
-  font-family: var(--font-sans);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  font-weight: 500;
-  text-align: left;
-  color: var(--text-muted);
-}
-
-.compare-table td {
-  padding: 0.85rem 1.25rem;
-  border-bottom: 1px solid var(--border);
-  vertical-align: top;
-  line-height: 1.6;
-  color: var(--text-muted);
-}
-
-.compare-table tbody tr:last-child td { border-bottom: none; }
-.compare-table tbody tr:nth-child(even) td { background: var(--bg-surface); }
-.compare-table .col-problem { color: #d97070; }
-.compare-table .col-answer  { color: #70b8cc; }
-
-/* ─── TABLES — DISTINCTION ────────────────────────────────── */
-
-.distinction-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  margin: 1.5rem 0;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-}
-
-.distinction-table .col-header {
-  background: var(--bg-raised);
-  color: var(--text-muted);
-  padding: 0.85rem 1.25rem;
-  font-family: var(--font-sans);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-align: center;
-  font-weight: 500;
-  text-transform: uppercase;
-  border-bottom: 1px solid var(--border-mid);
-}
-
-.distinction-table .col-header.left { border-right: 1px solid var(--border); }
-
-.distinction-table td {
-  padding: 0.9rem 1.25rem;
-  border-bottom: 1px solid var(--border);
-  font-size: 0.9rem;
-  line-height: 1.65;
-  vertical-align: top;
-  color: var(--text-muted);
-}
-
-.distinction-table tr:last-child td { border-bottom: none; }
-.distinction-table .left-col  td { background: var(--crimson-light); border-right: 1px solid var(--border); }
-.distinction-table .right-col td { background: var(--teal-light); }
-
-/* ─── TABLES — FEELINGS ───────────────────────────────────── */
-
-.feelings-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1.5rem 0;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-}
-
-.feelings-table th {
-  padding: 0.85rem 1.25rem;
-  font-family: var(--font-sans);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  font-weight: 500;
-  text-align: left;
-  background: var(--bg-raised);
-  color: var(--text-muted);
-  border-bottom: 1px solid var(--border-mid);
-}
-
-.feelings-table th.col-self { border-right: 1px solid var(--border); }
-
-.feelings-table td {
-  padding: 0.85rem 1.25rem;
-  border-bottom: 1px solid var(--border);
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: var(--text-muted);
-}
-
-.feelings-table tbody tr:last-child td { border-bottom: none; }
-.feelings-table .col-self-data   { background: var(--bg-surface); border-right: 1px solid var(--border); }
-.feelings-table .col-christ-data { background: var(--teal-light); }
-
-/* ─── CARD GRID ───────────────────────────────────────────── */
-
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 1px;
-  margin: 1.5rem 0;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  background: var(--border);
-}
-
-.card {
-  background: var(--bg-surface);
-  padding: 1.5rem;
-}
-
-.card h3 {
-  font-family: var(--font-sans);
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  font-weight: 500;
-  color: var(--text-muted);
-  margin-bottom: 0.6rem;
-}
-
-.card p {
-  font-size: 0.88rem;
-  line-height: 1.65;
-  color: var(--text-muted);
-  margin: 0;
-}
-
-.card .verse-ref {
-  display: inline-block;
-  font-family: var(--font-sans);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-subtle);
-  margin-top: 0.75rem;
-}
-
-/* ─── CHAPTER CARDS — Homepage ────────────────────────────── */
-
-.chapter-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1px;
-  margin: 2.5rem 0;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  background: var(--border);
-}
-
-.chapter-card {
-  background: var(--bg-surface);
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  transition: background 0.2s;
-  text-decoration: none;
-  color: inherit;
-}
-
-.chapter-card.available { cursor: pointer; }
-.chapter-card.available:hover { background: var(--bg-raised); text-decoration: none; }
-.chapter-card.coming-soon { opacity: 0.45; cursor: default; }
-
-.chapter-card .card-week {
-  font-family: var(--font-sans);
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--text-subtle);
-}
-
-.chapter-card .card-title {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 300;
-  font-size: 1.5rem;
-  color: var(--text);
-  line-height: 1.2;
-  text-transform: lowercase;
-}
-
-.chapter-card .card-desc {
-  font-size: 0.87rem;
-  color: var(--text-muted);
-  line-height: 1.65;
-  flex: 1;
-}
-
-.chapter-card .card-badge {
-  display: inline-block;
-  font-family: var(--font-sans);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  padding: 3px 10px;
-  border: 1px solid var(--border-mid);
-  border-radius: 2px;
-  align-self: flex-start;
-  color: var(--text-subtle);
-}
-
-.badge-complete { color: var(--text-muted); border-color: var(--border-light); }
-
-.chapter-card .card-cta {
-  font-family: var(--font-sans);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-top: 0.5rem;
-}
-
-/* ─── FRAMEWORK TABLE ─────────────────────────────────────── */
-
-.framework-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1.5rem 0;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-}
-
-.framework-table th {
-  background: var(--bg-raised);
-  color: var(--text-muted);
-  padding: 0.85rem 1.25rem;
-  font-family: var(--font-sans);
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  font-weight: 500;
-  text-align: left;
-  border-bottom: 1px solid var(--border-mid);
-}
-
-.framework-table td {
-  padding: 0.9rem 1.25rem;
-  border-bottom: 1px solid var(--border);
-  font-size: 0.91rem;
-  vertical-align: middle;
-  color: var(--text-muted);
-}
-
-.framework-table tbody tr:last-child td { border-bottom: none; }
-.framework-table tbody tr:nth-child(even) td { background: var(--bg-surface); }
-
-.framework-table .theme-label {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 300;
-  font-size: 1.05rem;
-  color: var(--text);
-}
-
-/* ─── HOW TO USE — steps ──────────────────────────────────── */
-
-.steps-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  margin: 1.5rem 0;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-}
-
-.step-item {
-  display: flex;
-  gap: 1.5rem;
-  align-items: flex-start;
-  padding: 1.25rem 1.5rem;
-  border-bottom: 1px solid var(--border);
-  background: var(--bg-surface);
-}
-
-.step-item:last-child { border-bottom: none; }
-.step-item:nth-child(even) { background: var(--bg-raised); }
-
-.step-num {
-  font-family: var(--font-display);
-  font-size: 1.6rem;
-  font-style: italic;
-  font-weight: 300;
-  color: var(--text-subtle);
-  line-height: 1;
-  flex-shrink: 0;
-  width: 2rem;
-  padding-top: 0.15rem;
-  text-align: right;
-}
-
-.step-text { font-size: 0.91rem; line-height: 1.7; color: var(--text-muted); }
-.step-text strong { color: var(--text); font-weight: 500; }
-
-/* ─── COLLAPSIBLE SECTIONS ────────────────────────────────── */
-
-.collapsible-btn {
-  width: 100%;
-  text-align: left;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-family: var(--font-display);
-  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
-  font-weight: 300;
-  color: var(--text);
-  padding: 0.6rem 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  border-bottom: 1px solid var(--border);
-  letter-spacing: -0.01em;
-  line-height: 1.2;
-  text-transform: lowercase;
-  transition: color 0.15s;
-}
-
-.collapsible-btn:hover { color: var(--accent); }
-
-.collapsible-btn .toggle-icon {
-  font-family: var(--font-sans);
-  font-size: 1rem;
-  font-weight: 300;
-  color: var(--text-subtle);
-  flex-shrink: 0;
-  transition: transform 0.25s;
-  text-transform: none;
-}
-
-.collapsible-btn.open .toggle-icon { transform: rotate(45deg); }
-
-.collapsible-body {
-  overflow: hidden;
-  max-height: 0;
-  transition: max-height 0.35s ease, padding-top 0.2s;
-}
-
-.collapsible-body.open { max-height: 4000px; padding-top: 1.5rem; }
-
-/* ─── REFLECTION CARDS ────────────────────────────────────── */
-
-.reflection-card {
-  background: var(--bg-surface);
-  border: 1px solid var(--border);
-  border-bottom: none;
-  padding: 1.5rem;
-}
-
-.reflection-card:first-of-type { border-radius: var(--radius) var(--radius) 0 0; }
-.reflection-card:last-of-type  { border-bottom: 1px solid var(--border); border-radius: 0 0 var(--radius) var(--radius); }
-
-.reflection-card .q-num {
-  font-family: var(--font-sans);
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--text-subtle);
-  margin-bottom: 0.5rem;
-  display: block;
-}
-
-.reflection-card p.question {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 300;
-  font-size: 1.1rem;
-  color: var(--text);
-  margin-bottom: 1rem;
-  line-height: 1.5;
-}
-
-.reflection-card textarea {
-  width: 100%;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 0.75rem 1rem;
-  font-family: var(--font-body);
-  font-size: 0.9rem;
-  color: var(--text);
-  background: var(--bg-raised);
-  resize: vertical;
-  min-height: 80px;
-  line-height: 1.65;
-  transition: border-color 0.2s;
-}
-
-.reflection-card textarea:focus {
-  outline: none;
-  border-color: var(--border-light);
-  background: var(--bg-highlight);
-}
-
-.reflection-card textarea::placeholder { color: var(--text-subtle); font-style: italic; }
-
-/* ─── PRAYER SECTION ──────────────────────────────────────── */
-
-.prayer-section {
-  background: var(--bg-surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 3rem 2.5rem;
-}
-
-.prayer-section h2 { border-bottom-color: var(--border); }
-
-.prayer-section .prayer-text {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 300;
-  font-size: 1.05rem;
-  line-height: 1.9;
-  max-width: 560px;
-  color: var(--text-muted);
-}
-
-.prayer-section .prayer-text p { color: var(--text-muted); }
-
-/* ─── SUMMARY ITEMS ───────────────────────────────────────── */
-
-.summary-item {
-  display: flex;
-  gap: 1.25rem;
-  align-items: flex-start;
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.summary-item:last-child { border-bottom: none; }
-
-.summary-num {
-  font-family: var(--font-display);
-  font-size: 1.6rem;
-  font-style: italic;
-  font-weight: 300;
-  color: var(--text-subtle);
-  line-height: 1;
-  flex-shrink: 0;
-  width: 2rem;
-  padding-top: 0.15rem;
-}
-
-.summary-text { font-size: 0.91rem; line-height: 1.7; color: var(--text-muted); }
-.summary-text strong { color: var(--text); font-weight: 500; }
-
-/* ─── MEMORY AID ──────────────────────────────────────────── */
-
-.memory-aid {
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 2.5rem 2rem;
-  text-align: center;
-  margin-top: 4rem;
-  background: var(--bg-surface);
-}
-
-.memory-aid .ma-label {
-  font-family: var(--font-sans);
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--text-subtle);
-  display: block;
-  margin-bottom: 1.5rem;
-}
-
-.memory-line {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  margin: 0.75rem 0;
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-}
-
-.memory-label {
-  font-family: var(--font-sans);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-subtle);
-  min-width: 90px;
-  text-align: right;
-}
-
-.memory-colon { color: var(--border-light); }
-
-.memory-truth {
-  font-style: italic;
-  font-weight: 300;
-  color: var(--text);
-  text-align: left;
-  flex: 1;
-  max-width: 280px;
-  text-transform: none;
-}
-
-/* ─── LOOKING AHEAD ───────────────────────────────────────── */
-
-.ahead-card {
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.75rem;
-  display: flex;
-  gap: 1.25rem;
-  align-items: flex-start;
-  background: var(--bg-surface);
-}
-
-.ahead-arrow {
-  font-size: 1.1rem;
-  color: var(--text-subtle);
-  flex-shrink: 0;
-  line-height: 1.7;
-}
-
-.ahead-card p { color: var(--text-muted); font-size: 0.91rem; }
-
-/* ─── CHAPTER NAVIGATION ──────────────────────────────────── */
-
-.chapter-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  padding: 1.5rem 0;
-  border-top: 1px solid var(--border);
-  margin-top: 1rem;
-}
-
-.chapter-nav a,
-.chapter-nav span {
-  font-family: var(--font-sans);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  text-decoration: none;
-}
-
-.chapter-nav .nav-prev  { color: var(--text-muted); }
-.chapter-nav .nav-next  { color: var(--text-muted); }
-.chapter-nav .nav-disabled { color: var(--text-subtle); cursor: default; }
-
-/* ─── FLOATING TOC ────────────────────────────────────────── */
-
-#toc-float {
-  position: fixed;
-  right: 1.5rem;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 100;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-
-.toc-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--border-light);
-  cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
-  position: relative;
-}
-
-.toc-dot:hover,
-.toc-dot.active {
-  background: var(--text-muted);
-  transform: scale(1.5);
-}
-
-.toc-dot::before {
-  content: attr(data-label);
-  position: absolute;
-  right: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: var(--bg-raised);
-  border: 1px solid var(--border-mid);
-  color: var(--text-muted);
-  font-family: var(--font-sans);
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  padding: 3px 8px;
-  border-radius: 2px;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s;
-}
-
-.toc-dot:hover::before { opacity: 1; }
-
-/* ─── BACK TO TOP ─────────────────────────────────────────── */
-
-#back-top {
-  position: fixed;
-  bottom: 2rem;
-  right: 1.5rem;
-  background: var(--bg-raised);
-  border: 1px solid var(--border-mid);
-  color: var(--text-muted);
-  border-radius: 50%;
-  width: 38px;
-  height: 38px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s, background 0.2s;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#back-top.visible { opacity: 1; pointer-events: all; }
-#back-top:hover { background: var(--bg-highlight); color: var(--text); }
-
-/* ─── MARK AS COMPLETE ────────────────────────────────────── */
-
-#mark-complete {
-  font-family: var(--font-sans);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  background: none;
-  border: 1px solid var(--border-mid);
-  color: var(--text-muted);
-  padding: 0.6rem 1.75rem;
-  border-radius: 2px;
-  cursor: pointer;
-  transition: border-color 0.2s, color 0.2s, background 0.2s;
-}
-
-#mark-complete:hover { border-color: var(--border-light); color: var(--text); }
-#mark-complete.complete { border-color: var(--border-light); color: var(--text); background: var(--bg-raised); }
-
-/* ─── MOBILE RESPONSIVE ───────────────────────────────────── */
-
-@media (max-width: 700px) {
-  #toc-float     { display: none; }
-  .card-grid     { grid-template-columns: 1fr; }
-  .chapter-cards { grid-template-columns: 1fr; }
-
-  .site-header { padding: 0 1.25rem; }
-  .site-header-inner { height: 52px; }
-
-  .site-nav {
-    display: none;
-    position: absolute;
-    top: 52px;
-    left: 0;
-    right: 0;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Normal Christian Life — A Guided Weekly Study</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  body { font-size: 18px; }
+  .home-hero .hero-anchor { font-style: normal; }
+
+  /* ── RESOURCE CARDS ── */
+  .resource-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--border);
+    margin: 1.5rem 0;
+  }
+  .resource-card {
     background: var(--bg-surface);
+    padding: 1.5rem;
+    display: flex;
     flex-direction: column;
-    padding: 0.5rem 0;
-    gap: 0;
+    gap: 0.6rem;
+  }
+  .resource-type {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+  }
+  .resource-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--text);
+  }
+  .resource-desc {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    flex: 1;
+  }
+  .resource-link {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border: 1px solid var(--border-mid);
+    padding: 5px 14px;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: color 0.15s, border-color 0.15s;
+    margin-top: 0.25rem;
+    align-self: flex-start;
+  }
+  .resource-link:hover { color: var(--text); border-color: var(--border-light); text-decoration: none; }
+
+  /* ── SECTION NAVIGATOR ── */
+  .section-nav {
+    position: sticky;
+    top: 60px;
+    z-index: 150;
+    background: var(--bg-surface);
     border-bottom: 1px solid var(--border);
+    padding: 0;
+    box-shadow: 0 -4px 0 4px var(--bg-surface);
   }
-
-  .site-nav.open { display: flex; }
-  .site-nav a { padding: 0.7rem 1.5rem; border-radius: 0; }
-  .nav-toggle { display: block; }
-
-  .home-hero    { padding: 4rem 0 3.5rem; }
-  .home-hero-inner { padding: 0 1.25rem; }
-  .chapter-hero { padding: 3rem 0 3rem; }
-  .chapter-hero-inner { padding: 0 1.25rem; }
-
-  .page-content,
-  .wide-content { padding-left: 1.25rem; padding-right: 1.25rem; }
-
-  .site-footer-inner { grid-template-columns: 1fr; }
-  .footer-nav { text-align: left; }
-
-  .breadcrumbs { padding: 0.7rem 1.25rem; }
-  .prayer-section { padding: 2rem 1.5rem; }
-}
-
-/* ─── PRINT ───────────────────────────────────────────────── */
-
-@media print {
-  #progress-bar, #toc-float, #back-top, .site-header,
-  .site-footer, .chapter-nav, .nav-toggle, #mark-complete { display: none !important; }
-
-  :root {
-    --bg: #fff; --bg-surface: #f8f8f8; --bg-raised: #f0f0f0;
-    --text: #111; --text-muted: #444; --text-subtle: #777;
-    --border: #ccc; --border-mid: #bbb; --border-light: #aaa;
+  .section-nav-inner {
+    max-width: var(--site-width);
+    margin: 0 auto;
+    padding: 0 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
+  .section-nav-inner::-webkit-scrollbar { display: none; }
+  .section-nav-btn {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 0.9rem 1rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+    flex-shrink: 0;
+  }
+  .section-nav-btn:hover { color: var(--text-muted); }
+  .section-nav-btn.active { color: var(--text); border-bottom-color: var(--text); }
 
-  body { font-size: 11pt; }
-  h1, h2 { page-break-after: avoid; }
-  section { page-break-inside: avoid; }
-  textarea { min-height: 2.5rem; }
-  .breadcrumbs, .ornament-divider { display: none; }
-}
+  /* ── H2 SIZE — matches Week 1 section headings ── */
+  h2 {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-style: normal;
+    font-size: clamp(1rem, 2.2vw, 1.4rem);
+    font-family: var(--font-sans);
+    font-weight: 500;
+  }
+  /* Top margin so first section breathes below the sticky nav */
+  .wide-content > section:first-child { padding-top: 2.5rem; }
+
+  @media (max-width: 700px) {
+    .section-nav-inner { padding: 0 1.25rem; }
+    .section-nav-btn { padding: 0.8rem 0.75rem; font-size: 9px; }
+  }
+</style>
+<script>
+  (function(){var s=localStorage.getItem('ncl-font-size');if(s&&s!=='standard')document.documentElement.setAttribute('data-font',s);})();
+</script>
+</head>
+<body>
+
+<!-- SITE HEADER -->
+<header class="site-header" role="banner">
+  <div class="site-header-inner">
+    <a href="index.html" class="site-logo" aria-label="Home">The Normal Christian Life</a>
+    <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+      <a href="index.html" class="active">Home</a>
+      <a href="chapters/chapter-1.html">Week 1</a>
+      <a href="chapters/chapter-2.html">Week 2</a>
+      <a href="chapters/chapter-3.html">Week 3</a>
+      <a href="chapters/chapter-4.html">Week 4</a>
+      <a href="reflections/index.html">Reflections</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Toggle navigation">&#9776;</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="home-hero" aria-labelledby="hero-title">
+  <div class="home-hero-inner">
+    <span class="hero-eyebrow">A Guided Weekly Study</span>
+    <h1 id="hero-title">The Normal<br>Christian Life</h1>
+    <span class="hero-subtitle">Watchman Nee</span>
+    <p class="hero-body">
+      Thirteen weeks through one of the most important works of twentieth-century Christian literature. Each week engages a single chapter through reading, reflection, and prayer. The progression is deliberate: each week builds on the last, and the order matters.
+    </p>
+    <div class="hero-anchor" role="note">
+      The Christian life begins with what God has done in Christ, not with what we do for God.
+    </div>
+  </div>
+</section>
+
+<!-- STICKY SECTION NAVIGATOR -->
+<nav class="section-nav" aria-label="Page sections">
+  <div class="section-nav-inner">
+    <button class="section-nav-btn active" data-target="about">About the Book</button>
+    <button class="section-nav-btn" data-target="resources">Get the Book</button>
+    <button class="section-nav-btn" data-target="how-to-use">How to Use</button>
+    <button class="section-nav-btn" data-target="weekly-sessions">Weekly Sessions</button>
+    <button class="section-nav-btn" data-target="framework">Study Structure</button>
+  </div>
+</nav>
+
+<main class="wide-content" role="main">
+
+  <!-- 1. ABOUT THE BOOK -->
+  <section id="about" aria-labelledby="about-title">
+    <h2 id="about-title">About the Book</h2>
+    <p style="font-size: 0.94rem; color: var(--text-muted);">
+      The Normal Christian Life by Watchman Nee was originally delivered as a series of addresses in Europe in the 1930s. It presents the Christian life not as an achievement of spiritual maturity, but as the natural outworking of understanding what God has already accomplished in Christ.
+    </p>
+    <p style="font-size: 0.94rem; color: var(--text-muted);">
+      Nee writes with pastoral clarity and theological precision. His central argument is that the Christian life, in its normal form, is characterised by rest rather than effort, by faith rather than feeling, and by what God has done rather than what the believer must do. The book has remained in continuous publication for nearly a century because its diagnosis of the Christian's struggle is accurate, and its answer is grounded in Scripture.
+    </p>
+    <p style="font-size: 0.94rem; color: var(--text-muted);">
+      This study is designed to help readers encounter Nee's argument slowly and carefully, in the sequence he intended. Each weekly session corresponds to one chapter of the book and includes teaching notes, Scripture references, illustrations, and guided reflection questions.
+    </p>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- 2. REFERENCE MATERIAL -->
+  <section id="resources" aria-labelledby="resources-title">
+    <h2 id="resources-title">Get the Book</h2>
+    <p style="color: var(--text-muted); margin-bottom: 0.5rem; font-size: 0.94rem;">
+      Reading each chapter of the book directly before engaging with the corresponding weekly session is strongly encouraged. The sessions are companions to Nee's text, not substitutes for it. Three formats are available below.
+    </p>
+    <div class="resource-card-grid">
+      <div class="resource-card">
+        <span class="resource-type">Print Edition</span>
+        <div class="resource-title">The Normal Christian Life</div>
+        <p class="resource-desc">The complete text by Watchman Nee. Available through Amazon Canada for purchase and delivery.</p>
+        <a href="https://www.amazon.ca/Normal-Christian-Life-Watchman-Nee/dp/1640322205/" class="resource-link" target="_blank" rel="noopener">Purchase on Amazon Canada &#8594;</a>
+      </div>
+      <div class="resource-card">
+        <span class="resource-type">Free Digital Edition</span>
+        <div class="resource-title">Full Text &mdash; Christian Classics Ethereal Library</div>
+        <p class="resource-desc">A complete digital edition is available at no cost through the Christian Classics Ethereal Library (CCEL), a long-standing repository of public-domain Christian literature.</p>
+        <a href="https://ccel.org/ccel/n/nee/normal/cache/normal.pdf" class="resource-link" target="_blank" rel="noopener">Download PDF &#8594;</a>
+      </div>
+      <div class="resource-card">
+        <span class="resource-type">Audio Edition</span>
+        <div class="resource-title">Full Audiobook &mdash; YouTube</div>
+        <p class="resource-desc">A complete audio recording of the book is available on YouTube. Listening to each chapter before engaging with the weekly session is an equally valid way to prepare.</p>
+        <a href="https://youtu.be/gYZ_K0UV5kY?si=6sM2rODmu8EcXmik" class="resource-link" target="_blank" rel="noopener">Listen on YouTube &#8594;</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- 3. HOW TO USE THIS STUDY -->
+  <section id="how-to-use" aria-labelledby="how-title">
+    <h2 id="how-title">How to Use This Study</h2>
+    <p style="color: var(--text-muted); margin-bottom: 1rem; font-size: 0.94rem;">
+      This study is designed for personal use, though it works well in small groups. Each of the thirteen weeks follows the same pattern. Move at a pace that allows the material to be absorbed, not merely read.
+    </p>
+    <ul class="steps-list">
+      <li class="step-item">
+        <span class="step-num">1</span>
+        <div class="step-text"><strong>Read the chapter first.</strong> Before opening the weekly session, read the corresponding chapter of the book. The sessions are companions to Nee's text, not replacements for it. What Nee says directly carries a weight that no summary can replicate.</div>
+      </li>
+      <li class="step-item">
+        <span class="step-num">2</span>
+        <div class="step-text"><strong>Work through the weekly session.</strong> Each session includes teaching notes, illustrations, Scripture references, and reflection questions. Use the section navigator at the top of each session to move between parts without losing your place.</div>
+      </li>
+      <li class="step-item">
+        <span class="step-num">3</span>
+        <div class="step-text"><strong>Engage the reflection questions in a journal.</strong> The questions are designed to be sat with, not answered quickly. Writing out responses — even briefly — moves the material from the mind into the life. There is no place to submit answers on the site; they are for you alone.</div>
+      </li>
+      <li class="step-item">
+        <span class="step-num">4</span>
+        <div class="step-text"><strong>Use the closing prayer.</strong> Each session ends with a written prayer that draws together the week's central truth. Use it as a starting point for honest conversation with God, not as a script to complete.</div>
+      </li>
+      <li class="step-item">
+        <span class="step-num">5</span>
+        <div class="step-text"><strong>Follow the sequence.</strong> Each week's chapter depends on the one before it. Nee's argument builds deliberately. Skipping ahead tends to produce confusion rather than clarity. The discipline of the sequence is itself part of the formation.</div>
+      </li>
+    </ul>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- 4. WEEKLY SESSIONS -->
+  <section id="weekly-sessions" aria-labelledby="weekly-sessions-title">
+    <h2 id="weekly-sessions-title">Weekly Sessions</h2>
+    <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.94rem;">
+      Thirteen weeks. Each session addresses a distinct dimension of the Christian life as Nee presents it. Work through them in sequence. The earlier sessions lay the foundation that makes the later ones intelligible.
+    </p>
+
+    <div class="chapter-cards" role="list">
+
+      <a href="chapters/chapter-1.html" class="chapter-card available" role="listitem" data-chapter="chapter-1" aria-label="Week 1: The Blood of Christ — Available">
+        <span class="card-week">Week 1</span>
+        <div class="card-title">The Blood of Christ</div>
+        <p class="card-desc">How can a sinful person stand accepted before a holy God? This session addresses the most foundational question and answers it with the blood of Christ. Everything else in this study rests on what is established here.</p>
+        <span class="card-badge badge-available">Available</span>
+        <span class="card-cta">Begin Week 1 &#8594;</span>
+      </a>
+
+      <a href="chapters/chapter-2.html" class="chapter-card available" role="listitem" data-chapter="chapter-2" aria-label="Week 2: The Cross of Christ — Available">
+        <span class="card-week">Week 2</span>
+        <div class="card-title">The Cross of Christ</div>
+        <p class="card-desc">Forgiveness deals with the guilt of sins committed. But what about the power of sin itself? This session turns from the blood to the cross, beginning the second movement of the book.</p>
+        <span class="card-badge badge-available">Available</span>
+        <span class="card-cta">Begin Week 2 &#8594;</span>
+      </a>
+
+      <a href="chapters/chapter-3.html" class="chapter-card available" role="listitem" data-chapter="chapter-3" aria-label="Week 3: The Path of Progress: Knowing — Available">
+        <span class="card-week">Week 3</span>
+        <div class="card-title">The Path of Progress: Knowing</div>
+        <p class="card-desc">Deliverance from sin's power begins not with effort but with knowledge. This session introduces the first practical step Nee draws from Romans 6: knowing what God has already done in Christ.</p>
+        <span class="card-badge badge-available">Available</span>
+        <span class="card-cta">Begin Week 3 &#8594;</span>
+      </a>
+
+      <a href="chapters/chapter-4.html" class="chapter-card available" role="listitem" data-chapter="chapter-4" aria-label="Week 4: The Path of Progress: Reckoning — Available">
+        <span class="card-week">Week 4</span>
+        <div class="card-title">The Path of Progress: Reckoning</div>
+        <p class="card-desc">Knowledge must become a reckoning — a deliberate act of faith that counts as true what God has already declared about the believer's union with Christ in His death and resurrection.</p>
+        <span class="card-badge badge-available">Available</span>
+        <span class="card-cta">Begin Week 4 &#8594;</span>
+      </a>
+
+      <div class="chapter-card coming-soon" role="listitem">
+        <span class="card-week">Week 5</span>
+        <div class="card-title">The Divide of the Cross</div>
+        <p class="card-desc">The cross creates a fundamental division in the believer's life. This session explores what it means to live on the resurrection side of Christ's death.</p>
+        <span class="card-badge badge-soon">Coming Soon</span>
+      </div>
+
+      <div class="chapter-card coming-soon" role="listitem">
+        <span class="card-week">Week 6</span>
+        <div class="card-title">The Path of Progress: Presenting Ourselves to God</div>
+        <p class="card-desc">The third step in Nee's progression: presenting ourselves to God as those who are alive from the dead. This session concludes the second movement of the book.</p>
+        <span class="card-badge badge-soon">Coming Soon</span>
+      </div>
+
+      <div class="chapter-card coming-soon" role="listitem">
+        <span class="card-week">Week 7</span>
+        <div class="card-title">The Eternal Purpose</div>
+        <p class="card-desc">Before addressing life in the Spirit, Nee steps back to consider God's eternal purpose — the why behind everything He is doing in and through the believer.</p>
+        <span class="card-badge badge-soon">Coming Soon</span>
+      </div>
+
+      <div class="chapter-card coming-soon" role="listitem">
+        <span class="card-week">Week 8</span>
+        <div class="card-title">The Holy Spirit</div>
+        <p class="card-desc">The Spirit applies what the cross accomplished. This session explores what it means to walk in the Spirit as the ongoing reality of the Christian life.</p>
+        <span class="card-badge badge-soon">Coming Soon</span>
+      </div>
+
+      <div class="chapter-card coming-soon" role="listitem">
+        <span class="card-week">Week 9</span>
+        <div class="card-title">The Meaning and Value of Romans Seven</div>
+        <p class="card-desc">Romans 7 describes the believer trying to overcome sin by self-effort. This session explains what that struggle reveals, and why the way through is not trying harder.</p>
+        <span class="card-badge badge-soon">Coming Soon</span>
+      </div>
+
+      <div class="chapter-card coming-soon" role="listitem">
+        <span class="card-week">Week 10</span>
+        <div class="card-title">The Path of Progress: Walking in the Spirit</div>
+        <p class="card-desc">Walking in the Spirit is not a crisis experience but a continuous way of life. This session addresses the practical meaning of Romans 8 for daily living.</p>
+        <span class="card-badge badge-soon">Coming Soon</span>
+      </div>
+
+      <div class="chapter-card coming-soon" role="listitem">
+        <span class="card-week">Week 11</span>
+        <div class="card-title">One Body in Christ</div>
+        <p class="card-desc">The Christian life is not lived in isolation. This session addresses the corporate dimension of life in Christ and what it means to function as a member of His body.</p>
+        <span class="card-badge badge-soon">Coming Soon</span>
+      </div>
+
+      <div class="chapter-card coming-soon" role="listitem">
+        <span class="card-week">Week 12</span>
+        <div class="card-title">The Cross and the Soul Life</div>
+        <p class="card-desc">The cross must deal not only with the old nature but also with the soul life — the natural energies of personality that can substitute for genuine spiritual life.</p>
+        <span class="card-badge badge-soon">Coming Soon</span>
+      </div>
+
+      <div class="chapter-card coming-soon" role="listitem">
+        <span class="card-week">Week 13</span>
+        <div class="card-title">The Path of Progress: Bearing the Cross</div>
+        <p class="card-desc">The final session addresses the ongoing nature of the Christian life as a continuous bearing of the cross — not a crisis, but a direction and a daily fellowship.</p>
+        <span class="card-badge badge-soon">Coming Soon</span>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- 5. STUDY STRUCTURE -->
+  <section id="framework" aria-labelledby="framework-title">
+    <h2 id="framework-title">The Structure of This Study</h2>
+    <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.94rem;">
+      The Normal Christian Life is not a collection of independent topics. It unfolds in three deliberate movements. Understanding the sequence prevents a great deal of confusion. Many believers struggle unnecessarily because they try to enter a later movement without having settled the foundation of an earlier one.
+    </p>
+
+    <div class="table-scroll">
+      <table class="framework-table" aria-label="The three movements of the study">
+        <thead>
+          <tr>
+            <th>Movement</th>
+            <th>Focus</th>
+            <th>What It Addresses</th>
+            <th>Sessions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="theme-label">The Blood</td>
+            <td>Forgiveness of sins</td>
+            <td>The guilt of specific wrongs committed before a holy God. Deals with our record.</td>
+            <td style="color: var(--text-muted); font-family: var(--font-sans); font-size: 0.85rem; white-space: nowrap;">Week 1</td>
+          </tr>
+          <tr>
+            <td class="theme-label">The Cross</td>
+            <td>Deliverance from sin</td>
+            <td>The power of indwelling sin and the old nature. Deals with our condition through union with Christ in His death and resurrection.</td>
+            <td style="color: var(--text-muted); font-family: var(--font-sans); font-size: 0.85rem; white-space: nowrap;">Weeks 2&ndash;6</td>
+          </tr>
+          <tr>
+            <td class="theme-label">The Spirit and the Body</td>
+            <td>Living the Christian life</td>
+            <td>Walking in the Spirit, overcoming inward conflict, corporate life in Christ, the soul life, and ongoing surrender.</td>
+            <td style="color: var(--text-muted); font-family: var(--font-sans); font-size: 0.85rem; white-space: nowrap;">Weeks 7&ndash;13</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout" style="margin-top: 1.5rem;">
+      <strong>Why the Order Matters</strong>
+      <p>The blood must be understood before the cross can be received. The cross must do its work before the Spirit can flow freely. And the life of the Spirit must be established before the corporate and deeper dimensions of the final sessions make sense. Following the sequence is not a formality. It is part of how the truth lands.</p>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- BEYOND THE WEEKLY STUDY -->
+  <section id="reflections-preview" aria-labelledby="reflections-title">
+    <h2 id="reflections-title">Beyond the Weekly Study</h2>
+    <p style="color: var(--text-muted); font-size: 0.94rem; margin-bottom: 1.5rem;">These papers explore themes that arise from <em>The Normal Christian Life</em> in greater depth and from additional theological perspectives. They complement the weekly study without replacing it.</p>
+
+    <div style="border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--border); display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px;">
+      <a href="reflections/two-goats-one-atonement.html" style="background: var(--bg-surface); padding: 1.75rem; display: flex; flex-direction: column; gap: 0.65rem; text-decoration: none; color: inherit; transition: background 0.2s;" onmouseover="this.style.background='var(--bg-raised)'" onmouseout="this.style.background='var(--bg-surface)'">
+        <span style="font-family: var(--font-sans); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-subtle);">Featured Paper &nbsp;&bull;&nbsp; April 2026</span>
+        <div style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 300; color: var(--text); line-height: 1.2; text-transform: lowercase;">Two Goats, One Atonement</div>
+        <p style="font-size: 0.87rem; color: var(--text-muted); line-height: 1.65; flex: 1; margin: 0;">A theological exploration of Leviticus 16, the two goats, propitiation, expiation, and the cry of dereliction — tracing how the Day of Atonement prefigures three distinct dimensions of Christ's saving work.</p>
+        <span style="font-family: var(--font-sans); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.25rem;">Read Paper &#8594;</span>
+      </a>
+      <a href="reflections/index.html" style="background: var(--bg-raised); padding: 1.75rem; display: flex; flex-direction: column; gap: 0.65rem; text-decoration: none; color: inherit; transition: background 0.2s;" onmouseover="this.style.background='var(--bg-highlight)'" onmouseout="this.style.background='var(--bg-raised)'">
+        <span style="font-family: var(--font-sans); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-subtle);">All Papers</span>
+        <div style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 300; color: var(--text); line-height: 1.2; text-transform: lowercase;">Reflection Papers</div>
+        <p style="font-size: 0.87rem; color: var(--text-muted); line-height: 1.65; flex: 1; margin: 0;">Theological explorations, essays, and extended reflections inspired by themes arising from <em>The Normal Christian Life</em> and the study of Scripture.</p>
+        <span style="font-family: var(--font-sans); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.25rem;">Browse All &#8594;</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer-inner">
+    <div>
+      <div class="footer-brand">The Normal Christian Life</div>
+      <div style="font-family: var(--font-sans); font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 0.25rem; letter-spacing: 0.08em; text-transform: uppercase;">A Guided Weekly Study</div>
+      <div class="footer-sub">&copy; 2026 &nbsp;&bull;&nbsp; A discipleship resource &nbsp;&bull;&nbsp; All rights reserved</div>
+    </div>
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <a href="index.html">Home</a>
+      <a href="chapters/chapter-1.html">Week 1: The Blood of Christ</a>
+      <a href="chapters/chapter-2.html">Week 2: The Cross of Christ</a>
+      <a href="chapters/chapter-3.html">Week 3: The Path of Progress: Knowing</a>
+      <a href="chapters/chapter-4.html">Week 4: The Path of Progress: Reckoning</a>
+      <a href="reflections/index.html">Reflection Papers</a>
+      <a href="https://ccel.org/ccel/n/nee/normal/cache/normal.pdf" target="_blank" rel="noopener">Download PDF</a>
+      <a href="https://youtu.be/gYZ_K0UV5kY?si=6sM2rODmu8EcXmik" target="_blank" rel="noopener">Listen on YouTube</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+  // Section navigator — highlight active section on scroll
+  (function() {
+    var btns = document.querySelectorAll('.section-nav-btn');
+    var sections = Array.from(btns).map(function(b) {
+      return document.getElementById(b.dataset.target);
+    }).filter(Boolean);
+
+    btns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var target = document.getElementById(btn.dataset.target);
+        if (!target) return;
+        var navHeight = 60 + 42; // header + section-nav
+        var top = target.getBoundingClientRect().top + window.scrollY - navHeight - 24;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      });
+    });
+
+    function updateActive() {
+      var navHeight = 60 + 42 + 32;
+      var activeIndex = 0;
+      sections.forEach(function(sec, i) {
+        if (sec && sec.getBoundingClientRect().top < navHeight) {
+          activeIndex = i;
+        }
+      });
+      btns.forEach(function(b, i) {
+        b.classList.toggle('active', i === activeIndex);
+      });
+    }
+
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  }());
+</script>
+</body>
+</html>
