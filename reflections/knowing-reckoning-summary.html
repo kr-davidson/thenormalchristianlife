@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Knowing and Reckoning: A Simple Guide — Reflection Papers</title>
+<link rel="stylesheet" href="../styles.css">
+<script>
+  (function(){var s=localStorage.getItem('ncl-font-size');if(s&&s!=='standard')document.documentElement.setAttribute('data-font',s);})();
+</script>
+<style>
+  /* ── SUMMARY PAGE STYLES ── */
+  h2 {
+    font-family: var(--font-sans);
+    font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-style: normal;
+    color: var(--text);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .summary-body p {
+    font-size: 0.97rem;
+    line-height: 1.85;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+
+  /* Concept cards — Knowing vs Reckoning */
+  .concept-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--border);
+    margin: 1.5rem 0;
+  }
+
+  .concept-card {
+    background: var(--bg-surface);
+    padding: 1.5rem;
+  }
+
+  .concept-icon {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .concept-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    text-transform: lowercase;
+  }
+
+  .concept-body {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  /* Comparison table */
+  .summary-table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+
+  .summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .summary-table th {
+    background: var(--bg-raised);
+    color: var(--text-muted);
+    padding: 0.7rem 1rem;
+    font-family: var(--font-sans);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-align: left;
+    border-bottom: 1px solid var(--border-mid);
+  }
+
+  .summary-table td {
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.65;
+    color: var(--text-muted);
+  }
+
+  .summary-table tbody tr:last-child td { border-bottom: none; }
+  .summary-table tbody tr:nth-child(even) td { background: var(--bg-surface); }
+  .summary-table td strong { color: var(--text); font-weight: 500; }
+  .summary-table .wrong-col { color: #d97070; }
+  .summary-table .right-col { color: #70b8cc; }
+
+  /* Numbered steps */
+  .steps-numbered {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .step-numbered {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    padding: 1.1rem 1.4rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-surface);
+  }
+
+  .step-numbered:last-child { border-bottom: none; }
+  .step-numbered:nth-child(even) { background: var(--bg-raised); }
+
+  .step-n {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--text-subtle);
+    flex-shrink: 0;
+    width: 1.75rem;
+    line-height: 1.2;
+    padding-top: 0.1rem;
+  }
+
+  .step-content { font-size: 0.91rem; color: var(--text-muted); line-height: 1.7; }
+  .step-content strong { color: var(--text); font-weight: 500; }
+
+  /* Bible verses */
+  .verse-block {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin: 1.5rem 0;
+  }
+
+  .verse-item {
+    padding: 1rem 1.4rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-surface);
+  }
+
+  .verse-item:last-child { border-bottom: none; }
+  .verse-item:nth-child(even) { background: var(--bg-raised); }
+
+  .verse-ref-label {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  .verse-text {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 0.97rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  /* Cross-reference box */
+  .cross-ref {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-surface);
+    padding: 1.5rem;
+    margin: 2.5rem 0;
+  }
+
+  .cross-ref-label {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .cross-ref-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .cross-ref-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: inherit;
+    padding: 0.65rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-raised);
+    transition: background 0.2s;
+  }
+
+  .cross-ref-link:hover { background: var(--bg-highlight); text-decoration: none; }
+
+  .cross-ref-link-type {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+    flex-shrink: 0;
+    min-width: 120px;
+  }
+
+  .cross-ref-link-title {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    flex: 1;
+  }
+
+  .cross-ref-arrow { color: var(--text-subtle); font-size: 0.75rem; flex-shrink: 0; }
+
+  /* Remember this */
+  .remember-box {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    margin: 2rem 0;
+    text-align: center;
+  }
+
+  .remember-box .remember-label {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+    display: block;
+    margin-bottom: 1.25rem;
+  }
+
+  .remember-line {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 0.35rem;
+  }
+
+  /* Section nav */
+  .section-nav {
+    position: sticky;
+    top: 60px;
+    z-index: 150;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 -4px 0 4px var(--bg-surface);
+  }
+
+  .section-nav-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .section-nav-inner::-webkit-scrollbar { display: none; }
+
+  .sec-btn {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 0.8rem 0.85rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+    flex-shrink: 0;
+  }
+
+  .sec-btn:hover { color: var(--text-muted); }
+  .sec-btn.active { color: var(--text); border-bottom-color: var(--text); }
+
+  @media (max-width: 700px) {
+    .concept-pair { grid-template-columns: 1fr; }
+    .section-nav-inner { padding: 0 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<div id="progress-bar" role="progressbar" aria-label="Reading progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+<header class="site-header" role="banner">
+  <div class="site-header-inner">
+    <a href="../index.html" class="site-logo" aria-label="Home">The Normal Christian Life</a>
+    <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="../chapters/chapter-1.html">Study</a>
+      <a href="index.html" class="active">Reflections</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Toggle navigation">&#9776;</button>
+  </div>
+</header>
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <a href="../index.html">Home</a>
+  <span class="sep" aria-hidden="true">&#8250;</span>
+  <a href="index.html">Reflection Papers</a>
+  <span class="sep" aria-hidden="true">&#8250;</span>
+  <span class="current">Knowing &amp; Reckoning: Simple Guide</span>
+</nav>
+
+<!-- SECTION NAVIGATOR -->
+<nav class="section-nav" aria-label="Page sections">
+  <div class="section-nav-inner">
+    <button class="sec-btn active" data-target="big-idea">The Big Idea</button>
+    <button class="sec-btn" data-target="two-kinds">Two Kinds of Knowing</button>
+    <button class="sec-btn" data-target="common-mistake">Common Mistake</button>
+    <button class="sec-btn" data-target="heart-direction">Heart Direction</button>
+    <button class="sec-btn" data-target="obstacles">Obstacles</button>
+    <button class="sec-btn" data-target="practical-steps">Practical Steps</button>
+    <button class="sec-btn" data-target="key-verses">Key Verses</button>
+    <button class="sec-btn" data-target="remember">Remember This</button>
+  </div>
+</nav>
+
+<nav id="toc-float" aria-label="Page sections">
+  <div class="toc-dot" data-target="big-idea"        data-label="The Big Idea"></div>
+  <div class="toc-dot" data-target="two-kinds"       data-label="Two Kinds of Knowing"></div>
+  <div class="toc-dot" data-target="common-mistake"  data-label="Common Mistake"></div>
+  <div class="toc-dot" data-target="heart-direction" data-label="Heart Direction"></div>
+  <div class="toc-dot" data-target="obstacles"       data-label="Obstacles"></div>
+  <div class="toc-dot" data-target="practical-steps" data-label="Practical Steps"></div>
+  <div class="toc-dot" data-target="key-verses"      data-label="Key Verses"></div>
+  <div class="toc-dot" data-target="remember"        data-label="Remember This"></div>
+</nav>
+
+<!-- HERO -->
+<section class="chapter-hero" id="hero" aria-labelledby="guide-title">
+  <div class="chapter-hero-inner">
+    <span class="series-label">Reflection Paper &nbsp;&bull;&nbsp; Accessible Guide &nbsp;&bull;&nbsp; June 2026</span>
+    <h1 id="guide-title" style="text-transform: lowercase; font-weight: 300;">Knowing and<br>Reckoning</h1>
+    <span class="hero-ornament" aria-hidden="true">&#10022;</span>
+    <p class="hero-intro">A simple guide to one of the most important ideas in the Christian life: the difference between knowing a truth in your head and knowing it in your heart, and what to do when you cannot seem to cross from one to the other.</p>
+    <div class="key-truth" role="note">
+      <span class="kt-label">Romans 6:11</span>
+      <p>In the same way, count yourselves dead to sin but alive to God in Christ Jesus.</p>
+    </div>
+  </div>
+</section>
+
+<main class="page-content" role="main" style="padding-top: 2.5rem; max-width: 760px;">
+
+  <!-- CROSS-REFERENCE -->
+  <div class="cross-ref" aria-label="Related documents in this series">
+    <span class="cross-ref-label">This Paper in Context</span>
+    <div class="cross-ref-links">
+      <span style="font-family: var(--font-sans); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-subtle); padding: 0 0.1rem;">You are reading the accessible summary guide. See also:</span>
+      <a href="knowing-and-reckoning.html" class="cross-ref-link">
+        <span class="cross-ref-link-type">Full Reflection Paper</span>
+        <span class="cross-ref-link-title">Knowing and Reckoning: Heart Orientation, the Spirit's Revelation, and the Living Reality of Romans 6</span>
+        <span class="cross-ref-arrow">&#8594;</span>
+      </a>
+      <a href="theological-dialogue-knowing-reckoning.html" class="cross-ref-link">
+        <span class="cross-ref-link-type">Research Notes</span>
+        <span class="cross-ref-link-title">Theological Dialogue: Knowing, Reckoning, and the Heart's Orientation</span>
+        <span class="cross-ref-arrow">&#8594;</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="summary-body">
+
+    <!-- BIG IDEA -->
+    <section id="big-idea" aria-labelledby="big-idea-title">
+      <h2 id="big-idea-title">The Big Idea in Plain Language</h2>
+      <p>When Jesus died on the cross, something remarkable happened. Not only did He take the punishment for your sins, He also took you with Him into that death. And when He rose from the dead, you rose with Him into a new life. This is what Romans 6 is all about.</p>
+      <p>The practical question is: how does that truth go from being something I believe to something I actually live? Watchman Nee spent seven years trying to figure this out. His answer involves two steps: knowing and reckoning.</p>
+
+      <div class="concept-pair">
+        <div class="concept-card">
+          <span class="concept-icon">Step One</span>
+          <div class="concept-title">Knowing</div>
+          <p class="concept-body">More than reading the Bible verse. It is when the truth becomes real and vivid to you personally, like a light coming on inside. The Spirit opens the eyes of your heart to see what has always been true.</p>
+        </div>
+        <div class="concept-card">
+          <span class="concept-icon">Step Two</span>
+          <div class="concept-title">Reckoning</div>
+          <p class="concept-body">Choosing to count as true what God has declared. Not pretending. Not positive self-talk. Simply agreeing with what God says about you, even when your feelings have not yet caught up.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+    <!-- TWO KINDS OF KNOWING -->
+    <section id="two-kinds" aria-labelledby="two-kinds-title">
+      <h2 id="two-kinds-title">Two Kinds of Knowing</h2>
+      <p>There is a real difference between these two kinds of knowing. Both are genuine, but only one changes how you actually live.</p>
+
+      <div class="summary-table-wrap">
+        <table class="summary-table" aria-label="Head knowledge versus heart knowledge">
+          <thead>
+            <tr>
+              <th style="width: 15%;">Type</th>
+              <th style="width: 35%;">What it looks like</th>
+              <th>What it produces</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Head</strong></td>
+              <td>You can explain Romans 6 clearly. You know what co-crucifixion with Christ means. You understand the doctrine.</td>
+              <td>You know it, but it does not change how you respond when you are tempted or discouraged.</td>
+            </tr>
+            <tr>
+              <td><strong>Heart</strong></td>
+              <td>The truth has become vivid and real to you personally. You do not just believe it for everyone else. You see that it is true for you.</td>
+              <td>Reckoning becomes natural, almost effortless. You start to live from the truth rather than straining to maintain it.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <strong>Nee's Key Insight</strong>
+        <p>You cannot manufacture heart knowledge by trying harder. It comes when the Holy Spirit makes the truth personally real to you. But you can position yourself to receive it by keeping your heart genuinely turned toward God.</p>
+      </div>
+    </section>
+
+    <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+    <!-- COMMON MISTAKE -->
+    <section id="common-mistake" aria-labelledby="mistake-title">
+      <h2 id="mistake-title">Why Reckoning Often Does Not Work</h2>
+      <p>For seven years, Nee told himself "I am dead to sin" over and over. Nothing changed. He was reckoning without first truly knowing. Here is the difference between the two approaches.</p>
+
+      <div class="summary-table-wrap">
+        <table class="summary-table" aria-label="Wrong reckoning versus right reckoning">
+          <thead>
+            <tr>
+              <th>Wrong Reckoning</th>
+              <th>Right Reckoning</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="wrong-col">Repeating a truth hoping it will feel true</td>
+              <td class="right-col">Agreeing with what God has already declared</td>
+            </tr>
+            <tr>
+              <td class="wrong-col">Trying to convince yourself by willpower</td>
+              <td class="right-col">Trusting the Word, not your feelings</td>
+            </tr>
+            <tr>
+              <td class="wrong-col">Focused on your own interior state</td>
+              <td class="right-col">Focused on Christ, not yourself</td>
+            </tr>
+            <tr>
+              <td class="wrong-col">Treating reckoning as the engine</td>
+              <td class="right-col">Reckoning flows from seeing</td>
+            </tr>
+            <tr>
+              <td class="wrong-col">Monitoring how well it is working</td>
+              <td class="right-col">Looking to God, not inward</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+    <!-- HEART DIRECTION -->
+    <section id="heart-direction" aria-labelledby="heart-title">
+      <h2 id="heart-title">Where Is Your Heart Pointed?</h2>
+      <p>The biggest reason people get stuck between head knowledge and heart knowledge is not a lack of effort. It is the direction their heart is facing. A heart turned toward God is positioned to receive revelation. A heart focused on itself keeps the truth at arm's length.</p>
+
+      <div class="summary-table-wrap">
+        <table class="summary-table" aria-label="Heart pointed toward self versus God">
+          <thead>
+            <tr>
+              <th>Heart pointed toward</th>
+              <th>What this looks like</th>
+              <th>What tends to happen</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Self</strong></td>
+              <td>Measuring truth by how you feel. Trusting your own self-assessment more than God's Word.</td>
+              <td>Truth stays in the head. Reckoning feels empty. You feel like the exception the Bible did not mean.</td>
+            </tr>
+            <tr>
+              <td><strong>God</strong></td>
+              <td>Letting God's declaration outweigh your own experience. Willing to be wrong about yourself.</td>
+              <td>You become open to revelation. The Spirit has room to work. Truth starts to move from the head into the heart and life.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <strong>A Prayer to Try</strong>
+        <p>"Lord, I am willing to let what You say about me be more true than what I feel about myself. Show me what You see."</p>
+      </div>
+    </section>
+
+    <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+    <!-- OBSTACLES -->
+    <section id="obstacles" aria-labelledby="obstacles-title">
+      <h2 id="obstacles-title">What Might Be Getting in the Way</h2>
+      <p>If the truth of Romans 6 still feels distant, it often comes down to one or more of these honest conditions. Many of them can operate simultaneously.</p>
+
+      <div class="summary-table-wrap">
+        <table class="summary-table" aria-label="Common obstacles and a step forward">
+          <thead>
+            <tr>
+              <th>Condition</th>
+              <th>What it feels like</th>
+              <th>A step forward</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Still learning</strong></td>
+              <td>"I am not sure I fully understand what Romans 6 is even saying."</td>
+              <td>Keep reading and asking. Understanding comes first. That is completely normal.</td>
+            </tr>
+            <tr>
+              <td><strong>Contrary belief</strong></td>
+              <td>"I believe it for other people, but I cannot see how it applies to me specifically."</td>
+              <td>Name this honestly before God. Ask Him to show you why you feel like an exception.</td>
+            </tr>
+            <tr>
+              <td><strong>Known disobedience</strong></td>
+              <td>There is something in your life you know is wrong but are not ready to give up.</td>
+              <td>Bring it to God. You do not have to fix it alone first. Just name it.</td>
+            </tr>
+            <tr>
+              <td><strong>Too much inward looking</strong></td>
+              <td>"I am constantly checking whether the truth is working in me yet."</td>
+              <td>Turn your attention outward to God. The monitoring itself can become the obstacle.</td>
+            </tr>
+            <tr>
+              <td><strong>Waiting patiently</strong></td>
+              <td>"I understand it, I want it, I keep showing up, but it has not clicked yet."</td>
+              <td>Stay faithful. The Spirit works on His own schedule. Your seeking is not wasted.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+    <!-- PRACTICAL STEPS -->
+    <section id="practical-steps" aria-labelledby="steps-title">
+      <h2 id="steps-title">What You Can Actually Do</h2>
+      <p>You cannot force revelation, but you can stay positioned for it.</p>
+
+      <ul class="steps-numbered">
+        <li class="step-numbered">
+          <span class="step-n">1</span>
+          <div class="step-content"><strong>Read Romans 6 slowly and repeatedly.</strong> Not to memorise it for an exam. Read it asking God to make it real to you personally. Pray Ephesians 1:18 as you read: "Open the eyes of my heart."</div>
+        </li>
+        <li class="step-numbered">
+          <span class="step-n">2</span>
+          <div class="step-content"><strong>Turn your heart toward God before you reckon.</strong> A few moments of honest prayer before engaging with the truth: "I want Your word to be more real to me than my own feelings right now."</div>
+        </li>
+        <li class="step-numbered">
+          <span class="step-n">3</span>
+          <div class="step-content"><strong>Reckon anyway, even when it feels thin.</strong> Romans 6:11 is a command, not a reward for the spiritually advanced. You count what is already in the account. Act on it by faith, not by feeling.</div>
+        </li>
+        <li class="step-numbered">
+          <span class="step-n">4</span>
+          <div class="step-content"><strong>Be honest about what might be in the way.</strong> Is there a known area of disobedience? A part of your life you are holding back from God? Bring it into the open. You do not need to fix it first, just name it.</div>
+        </li>
+        <li class="step-numbered">
+          <span class="step-n">5</span>
+          <div class="step-content"><strong>Let others help you see yourself.</strong> Talk about this with someone in your church or small group. Other people can sometimes see what we cannot see in ourselves. You were not meant to do this alone.</div>
+        </li>
+        <li class="step-numbered">
+          <span class="step-n">6</span>
+          <div class="step-content"><strong>Trust that your longing is already grace.</strong> The fact that you want this to be real is itself a sign that God is at work. Augustine wrote: "Our heart is restless until it rests in You." That restlessness is not a problem. It is God calling you forward.</div>
+        </li>
+      </ul>
+    </section>
+
+    <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+    <!-- KEY VERSES -->
+    <section id="key-verses" aria-labelledby="verses-title">
+      <h2 id="verses-title">What the Bible Actually Says</h2>
+
+      <div class="verse-block">
+        <div class="verse-item">
+          <span class="verse-ref-label">Romans 6:6</span>
+          <div class="verse-text">"Our old self was crucified with Him so that the body ruled by sin might be done away with, that we should no longer be slaves to sin."</div>
+        </div>
+        <div class="verse-item">
+          <span class="verse-ref-label">Romans 6:11</span>
+          <div class="verse-text">"Count yourselves dead to sin but alive to God in Christ Jesus."</div>
+        </div>
+        <div class="verse-item">
+          <span class="verse-ref-label">Ephesians 1:17&ndash;18</span>
+          <div class="verse-text">"I keep asking that the God of our Lord Jesus Christ may give you the Spirit of wisdom and revelation, so that the eyes of your heart may be enlightened."</div>
+        </div>
+        <div class="verse-item">
+          <span class="verse-ref-label">Galatians 2:20</span>
+          <div class="verse-text">"I have been crucified with Christ and I no longer live, but Christ lives in me. The life I now live in the body, I live by faith in the Son of God."</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+    <!-- REMEMBER THIS -->
+    <section id="remember" aria-labelledby="remember-title">
+      <h2 id="remember-title">The Whole Thing in Three Sentences</h2>
+
+      <div class="remember-box">
+        <span class="remember-label">Remember This</span>
+        <div class="remember-line">Your death with Christ is a fact that does not depend on how you feel about it.</div>
+        <div class="remember-line">The Holy Spirit's job is to make that fact real and vivid to you personally.</div>
+        <div class="remember-line">Your job is to keep your heart turned toward God, stay engaged with His Word,<br>and count as true what He has already declared, trusting that the seeing will come.</div>
+      </div>
+
+      <div class="callout">
+        <strong>A Word of Encouragement</strong>
+        <p>If you are frustrated that this is not clicking yet, that frustration is a sign that you care. God is not frustrated with you. Keep showing up.</p>
+      </div>
+    </section>
+
+    <!-- CROSS-REFERENCE FOOTER -->
+    <div class="cross-ref" style="margin-top: 3rem;" aria-label="Related documents">
+      <span class="cross-ref-label">Go Deeper: Related Documents in This Series</span>
+      <div class="cross-ref-links">
+        <a href="knowing-and-reckoning.html" class="cross-ref-link">
+          <span class="cross-ref-link-type">Full Reflection Paper</span>
+          <span class="cross-ref-link-title">Knowing and Reckoning: Heart Orientation, the Spirit's Revelation, and the Living Reality of Romans 6 &mdash; A theologically rigorous ten-section paper engaging Owen, Edwards, Augustine, Lloyd-Jones, Bavinck, and others</span>
+          <span class="cross-ref-arrow">&#8594;</span>
+        </a>
+        <a href="theological-dialogue-knowing-reckoning.html" class="cross-ref-link">
+          <span class="cross-ref-link-type">Research Notes</span>
+          <span class="cross-ref-link-title">Theological Dialogue: Knowing, Reckoning, and the Heart's Orientation &mdash; The extended research dialogue that shaped this paper series</span>
+          <span class="cross-ref-arrow">&#8594;</span>
+        </a>
+        <a href="index.html" class="cross-ref-link">
+          <span class="cross-ref-link-type">All Papers</span>
+          <span class="cross-ref-link-title">Return to the Reflection Papers index</span>
+          <span class="cross-ref-arrow">&#8594;</span>
+        </a>
+      </div>
+    </div>
+
+  </div><!-- /.summary-body -->
+
+  <!-- CHAPTER NAVIGATION -->
+  <nav class="chapter-nav" aria-label="Page navigation">
+    <a href="index.html" class="nav-prev">&#8592; Reflection Papers</a>
+    <span style="font-family: var(--font-sans); font-size: 10px; color: var(--text-subtle); letter-spacing: 0.1em; text-transform: uppercase;">June 2026</span>
+    <a href="knowing-and-reckoning.html" class="nav-next">Full Paper &#8594;</a>
+  </nav>
+
+  <p style="font-family: var(--font-sans); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-subtle); text-align: center; margin-top: 1rem;">Based on Chapters 3 and 4 of Watchman Nee, <em style="font-style: italic; text-transform: none;">The Normal Christian Life</em></p>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer-inner">
+    <div>
+      <div class="footer-brand">The Normal Christian Life</div>
+      <div style="font-family: var(--font-sans); font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 0.25rem; letter-spacing: 0.08em; text-transform: uppercase;">A Guided Weekly Study</div>
+      <div class="footer-sub">&copy; 2026 &nbsp;&bull;&nbsp; A discipleship resource &nbsp;&bull;&nbsp; All rights reserved</div>
+    </div>
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <a href="../index.html">&#8592; Back to Home</a>
+      <a href="index.html">Reflection Papers</a>
+      <a href="knowing-reckoning-summary.html">Summary Guide</a>
+      <a href="knowing-and-reckoning.html">Full Paper</a>
+      <a href="theological-dialogue-knowing-reckoning.html">Research Notes</a>
+    </nav>
+  </div>
+</footer>
+
+<button id="back-top" aria-label="Back to top" title="Back to top">&#8593;</button>
+<script src="../script.js"></script>
+<script>
+(function() {
+  var OFFSET = 60 + 38 + 20;
+  var btns = document.querySelectorAll('.sec-btn');
+  var ids = Array.from(btns).map(function(b) { return b.dataset.target; });
+
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var target = document.getElementById(btn.dataset.target);
+      if (!target) return;
+      window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - OFFSET, behavior: 'smooth' });
+    });
+  });
+
+  function update() {
+    var activeId = ids[0];
+    ids.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top < OFFSET + 20) activeId = id;
+    });
+    btns.forEach(function(b) { b.classList.toggle('active', b.dataset.target === activeId); });
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+}());
+</script>
+</body>
+</html>

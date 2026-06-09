@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Theological Dialogue: Knowing, Reckoning, and the Heart's Orientation</title>
+<link rel="stylesheet" href="../styles.css">
+<script>
+  (function(){var s=localStorage.getItem('ncl-font-size');if(s&&s!=='standard')document.documentElement.setAttribute('data-font',s);})();
+</script>
+<style>
+  h2 {
+    font-family: var(--font-sans);
+    font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-style: normal;
+    color: var(--text);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  h3 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text);
+    margin-top: 1.5rem;
+    margin-bottom: 0.6rem;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  .speaker-label {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .speaker-label.kr { color: var(--text-muted); }
+
+  .turn-kr {
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--border-light);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .turn-ai {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--border);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .turn-kr p, .turn-ai p {
+    font-size: 0.94rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+    margin-bottom: 0.85rem;
+  }
+
+  .turn-kr p:last-child, .turn-ai p:last-child { margin-bottom: 0; }
+  .turn-kr strong, .turn-ai strong { color: var(--text); font-weight: 500; }
+  .turn-kr em, .turn-ai em { font-style: italic; }
+
+  /* Dialogue tables */
+  .dialogue-table-wrap { overflow-x: auto; margin: 1.25rem 0; }
+
+  .dialogue-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.86rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .dialogue-table th {
+    background: var(--bg-raised);
+    color: var(--text-muted);
+    padding: 0.65rem 0.9rem;
+    font-family: var(--font-sans);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-align: left;
+    border-bottom: 1px solid var(--border-mid);
+  }
+
+  .dialogue-table td {
+    padding: 0.65rem 0.9rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  .dialogue-table tbody tr:last-child td { border-bottom: none; }
+  .dialogue-table tbody tr:nth-child(even) td { background: var(--bg-surface); }
+  .dialogue-table td strong { color: var(--text); }
+
+  /* Cross-reference box */
+  .cross-ref {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-surface);
+    padding: 1.5rem;
+    margin: 2.5rem 0;
+  }
+
+  .cross-ref-label {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .cross-ref-links { display: flex; flex-direction: column; gap: 0.6rem; }
+
+  .cross-ref-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: inherit;
+    padding: 0.65rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-raised);
+    transition: background 0.2s;
+  }
+
+  .cross-ref-link:hover { background: var(--bg-highlight); text-decoration: none; }
+  .cross-ref-link-type {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+    flex-shrink: 0;
+    min-width: 120px;
+  }
+  .cross-ref-link-title { font-size: 0.88rem; color: var(--text-muted); flex: 1; }
+  .cross-ref-arrow { color: var(--text-subtle); font-size: 0.75rem; flex-shrink: 0; }
+
+  .end-marker {
+    text-align: center;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 0.94rem;
+    color: var(--text-subtle);
+    padding: 2rem 0 1rem;
+    border-top: 1px solid var(--border);
+    margin-top: 2.5rem;
+  }
+
+  .section-nav {
+    position: sticky;
+    top: 60px;
+    z-index: 150;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 -4px 0 4px var(--bg-surface);
+  }
+
+  .section-nav-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .section-nav-inner::-webkit-scrollbar { display: none; }
+
+  .sec-btn {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 0.8rem 0.85rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+    flex-shrink: 0;
+  }
+
+  .sec-btn:hover { color: var(--text-muted); }
+  .sec-btn.active { color: var(--text); border-bottom-color: var(--text); }
+
+  @media (max-width: 700px) {
+    .section-nav-inner { padding: 0 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<div id="progress-bar" role="progressbar" aria-label="Reading progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+<header class="site-header" role="banner">
+  <div class="site-header-inner">
+    <a href="../index.html" class="site-logo" aria-label="Home">The Normal Christian Life</a>
+    <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="../chapters/chapter-1.html">Study</a>
+      <a href="index.html" class="active">Reflections</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Toggle navigation">&#9776;</button>
+  </div>
+</header>
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <a href="../index.html">Home</a>
+  <span class="sep" aria-hidden="true">&#8250;</span>
+  <a href="index.html">Reflection Papers</a>
+  <span class="sep" aria-hidden="true">&#8250;</span>
+  <span class="current">Theological Dialogue: Knowing &amp; Reckoning</span>
+</nav>
+
+<nav class="section-nav" aria-label="Dialogue sections">
+  <div class="section-nav-inner">
+    <button class="sec-btn active" data-target="about-dialogue">About</button>
+    <button class="sec-btn" data-target="exchange-1">Opening Question</button>
+    <button class="sec-btn" data-target="exchange-2">Forms of Revelation</button>
+    <button class="sec-btn" data-target="exchange-3">Reformed Lean</button>
+    <button class="sec-btn" data-target="exchange-4">Counter-Position</button>
+    <button class="sec-btn" data-target="exchange-5">Multiple Strands</button>
+    <button class="sec-btn" data-target="exchange-6">Heart Orientation</button>
+    <button class="sec-btn" data-target="exchange-7">Editorial Standards</button>
+    <button class="sec-btn" data-target="synthesis">Synthesis</button>
+  </div>
+</nav>
+
+<nav id="toc-float" aria-label="Dialogue sections">
+  <div class="toc-dot" data-target="about-dialogue" data-label="About This Dialogue"></div>
+  <div class="toc-dot" data-target="exchange-1"     data-label="Opening Question"></div>
+  <div class="toc-dot" data-target="exchange-2"     data-label="Forms of Revelation"></div>
+  <div class="toc-dot" data-target="exchange-3"     data-label="Reformed Lean"></div>
+  <div class="toc-dot" data-target="exchange-4"     data-label="Counter-Position"></div>
+  <div class="toc-dot" data-target="exchange-5"     data-label="Multiple Strands"></div>
+  <div class="toc-dot" data-target="exchange-6"     data-label="Heart Orientation"></div>
+  <div class="toc-dot" data-target="exchange-7"     data-label="Editorial Standards"></div>
+  <div class="toc-dot" data-target="synthesis"      data-label="Synthesis"></div>
+</nav>
+
+<!-- HERO -->
+<section class="chapter-hero" id="hero" aria-labelledby="dialogue-title">
+  <div class="chapter-hero-inner">
+    <span class="series-label">Theological Dialogue &nbsp;&bull;&nbsp; Research Notes &nbsp;&bull;&nbsp; June 2026</span>
+    <h1 id="dialogue-title" style="text-transform: lowercase; font-weight: 300;">Theological<br>Dialogue</h1>
+    <span class="hero-ornament" aria-hidden="true">&#10022;</span>
+    <p class="hero-intro" style="font-style: italic;">Knowing, Reckoning, and the Heart's Orientation: Romans 6 and the Path from Doctrine to Living Truth</p>
+  </div>
+</section>
+
+<main class="page-content" role="main" style="padding-top: 2.5rem; max-width: 760px;">
+
+  <section id="about-dialogue">
+    <div class="callout" style="margin-bottom: 1.5rem;">
+      <strong>About This Document</strong>
+      <p>This document records the theological exploration and dialogue that contributed to the development of the reflection paper <a href="knowing-and-reckoning.html" style="color: var(--text-muted);">Knowing and Reckoning</a> and the accompanying <a href="knowing-reckoning-summary.html" style="color: var(--text-muted);">accessible summary guide</a>. It is presented for readers who wish to understand the development of the argument and the questions that shaped the final papers.</p>
+      <p style="margin-top: 0.75rem;">The dialogue is presented as it occurred, between the site author (K.R.) and an AI research and dialogue partner. The questions, challenges, theological instincts, and editorial direction originated with K.R.</p>
+    </div>
+
+    <!-- CROSS-REFERENCE -->
+    <div class="cross-ref" aria-label="Related documents">
+      <span class="cross-ref-label">This Document in Context</span>
+      <div class="cross-ref-links">
+        <a href="knowing-reckoning-summary.html" class="cross-ref-link">
+          <span class="cross-ref-link-type">Accessible Summary</span>
+          <span class="cross-ref-link-title">Knowing and Reckoning: A Simple Guide</span>
+          <span class="cross-ref-arrow">&#8594;</span>
+        </a>
+        <a href="knowing-and-reckoning.html" class="cross-ref-link">
+          <span class="cross-ref-link-type">Full Reflection Paper</span>
+          <span class="cross-ref-link-title">Knowing and Reckoning: Heart Orientation, the Spirit's Revelation, and the Living Reality of Romans 6</span>
+          <span class="cross-ref-arrow">&#8594;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- EXCHANGE 1 -->
+  <section id="exchange-1" aria-labelledby="ex1-title">
+    <h2 id="ex1-title">Exchange One: The Opening Question</h2>
+
+    <div class="turn-kr">
+      <span class="speaker-label kr">K.R.</span>
+      <p>I am leading a small-group study through <em>The Normal Christian Life</em> by Watchman Nee. In Chapters 3 and 4 Nee argues that our co-crucifixion with Christ is an accomplished historical fact, and that Christian victory begins not with effort but with knowing what God has already done. This knowing is not intellectual comprehension but spiritual seeing. Reckoning then follows naturally from knowing, and reckoning without knowing becomes fruitless self-effort.</p>
+      <p>The sequence appears to be: Fact, then Revelation, then Reckoning. But this raises a logical and pastoral question. If genuine knowing comes through divine revelation, what is the believer supposed to do while waiting for it? Does Nee unintentionally create a gap between reading Scripture and reckoning its truth? I am also wondering how John Stott would frame this differently, and how other major evangelical interpreters compare with Nee on this issue.</p>
+    </div>
+
+    <div class="turn-ai">
+      <span class="speaker-label">Research Response</span>
+      <h3>Nee's Framework: Fact, Revelation, Reckoning</h3>
+      <p>The summary of Nee is largely accurate, though one refinement is worth noting. Nee does not quite teach that revelation is a precondition that must be chronologically satisfied before reckoning becomes permissible. His concern is more diagnostic than prescriptive: he is explaining why so many Christians found reckoning fruitless, and his answer is that they were attempting to produce by mental effort what can only be received by spiritual sight. The sequence describes the structure of genuine experience rather than a procedure to be followed. Nevertheless the pastoral gap is real.</p>
+
+      <h3>Does Romans 6 Itself Require Revelation Before Reckoning?</h3>
+      <p>Reading Romans 6:1&ndash;14 carefully, the command of verse 11 is addressed to the Roman Christians as a whole, without any qualifier suggesting that only those who have had a sufficient illuminative experience are eligible to obey it. Paul does not say: once the Spirit has brought you revelation, reckon. He says: reckon. This suggests that Romans 6 is calling for faith in the scriptural testimony rather than for the prior occurrence of a phenomenological breakthrough. The reckoning is itself an act of faith.</p>
+
+      <h3>How the Major Interpreters Compare</h3>
+      <p>John Murray treats <em>logizomai</em> as an ongoing act of faith, not a response to prior mystical revelation. Martyn Lloyd-Jones is closer to Nee in insisting that the truth must grip the whole person, but locates the Spirit's work within ordinary means rather than suggesting a discrete crisis. John Stott places greater emphasis on accepting God's testimony in Scripture, arguing that the believer may reckon on the basis of Scripture even before a profound experiential appreciation of the truth. J.I. Packer would synthesize these by affirming that revelation is the Spirit's work that does not always come as a dateable crisis, while resisting any suggestion that the believer must await an extraordinary experience before the command of Romans 6:11 applies.</p>
+
+      <h3>A Proposed Synthesis</h3>
+      <p>The act of reckoning, genuinely exercised, is not a technique but a theological act. The Spirit's revelation is essential to its being genuine rather than mechanical, but that revelation typically comes through and with the exercise of faith rather than as a prior condition of it. Faithful reckoning is one of the ordinary means through which the Spirit brings the truth from intellectual comprehension into living conviction.</p>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- EXCHANGE 2 -->
+  <section id="exchange-2" aria-labelledby="ex2-title">
+    <h2 id="ex2-title">Exchange Two: Dramatic and Gradual Revelation</h2>
+
+    <div class="turn-kr">
+      <span class="speaker-label kr">K.R.</span>
+      <p>I think the debate is not whether knowing comes via revelation but rather that revelation works in various forms. In some ways it is more apparent or a distinct identifiable instance, whereas other times it is a less apparent, almost subconscious shifting of perspective through the revealed character of the Father through Jesus Christ. Neither are better than the other. They are just different means to arrive at the same place. Does any of the above authors speak to these different forms of revelation?</p>
+    </div>
+
+    <div class="turn-ai">
+      <span class="speaker-label">Research Response</span>
+      <h3>Lloyd-Jones on Direct and Indirect Operations</h3>
+      <p>Lloyd-Jones in <em>Joy Unspeakable</em> and <em>Spiritual Depression</em> distinguishes between the direct and indirect operations of the Spirit. In the direct operation, the Spirit acts immediately upon the consciousness, producing a vivid and sometimes overwhelming sense of divine reality. In the indirect operation, the Spirit works through the ordinary means of grace so that the believer is transformed without necessarily being aware of a discrete transformative event. Lloyd-Jones is insistent that both are genuine and that neither should be treated as the norm by which the other is judged deficient.</p>
+
+      <h3>Owen's Richer Taxonomy</h3>
+      <p>Owen in <em>Pneumatologia</em> distinguishes saving revelation (accompanying regeneration), operative revelation (making particular truths vivid at specific moments, which can occur suddenly or gradually), and habitual transformation (the Spirit's longer-term reshaping of the mind and affections). Owen also notes that the Spirit's work on the affections frequently precedes its becoming apparent to the understanding: the believer may find themselves loving what they formerly were indifferent to before they can articulate why.</p>
+
+      <h3>Bavinck on the Diversity of the Spirit's Work</h3>
+      <p>Bavinck in <em>Reformed Dogmatics</em> argues that revelation takes as many forms as there are individual believers, because the Spirit works through the particular history, psychology, and circumstances of each person. He cites the diversity of conversion experiences in the New Testament as evidence that the Spirit works with sovereign freedom across a wide range of phenomenological forms.</p>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- EXCHANGE 3 -->
+  <section id="exchange-3" aria-labelledby="ex3-title">
+    <h2 id="ex3-title">Exchange Three: The Reformed Lean and Its Limits</h2>
+
+    <div class="turn-kr">
+      <span class="speaker-label kr">K.R.</span>
+      <p>I note that you had leanings towards a Reformed perspective. Is this because of the listed authors in the original prompt? Would there be a more expanded view of this from non-Reformed based evangelical thinkers? Last, I would like to hear what Augustine thought on these points.</p>
+    </div>
+
+    <div class="turn-ai">
+      <span class="speaker-label">Research Response</span>
+      <h3>The Wesleyan-Arminian Tradition</h3>
+      <p>John Wesley provides a structural alternative. Where the Reformed tradition tends to treat sanctification as gradual and progressive through ordinary means, Wesley maintains the possibility of entire sanctification as a definable work of grace that goes beyond justification. Phoebe Palmer's altar theology effectively argues that the act of faith is itself the occasion of the work: the believer does not wait for revelation and then reckon; they reckon in faith and the work occurs through that act. John Fletcher developed the believer's responsibility to actively expect and seek deeper grace through faith and prayer, arguing that passive waiting is itself a form of unbelief.</p>
+
+      <h3>The Keswick Tradition: Murray and Meyer</h3>
+      <p>Andrew Murray argues that the central problem in the Christian life is not primarily cognitive or behavioral but volitional in the deepest sense: the will has not been fully surrendered to Christ, and this unsurrendered will generates all the downstream difficulties including the inability to receive spiritual revelation. F.B. Meyer develops the practical implication: identify the deepest point of resistance and address that rather than trying to work through surface manifestations.</p>
+
+      <h3>Augustine on the Will, Revelation, and Restlessness</h3>
+      <p>Augustine's analysis in the <em>Confessions</em> Book VIII of the divided will is the most penetrating account in the entire theological tradition of the compound condition: the person who knows the truth, desires it, and yet finds themselves unable to act in accordance with it. His diagnosis is that the will is bound by its own disordered loves, and no amount of correct understanding can break this bondage from within.</p>
+      <p>The famous opening of the <em>Confessions</em> presents restlessness not as the problem to be solved before the journey begins but as the evidence that the journey has already begun. The grace that reorients the heart has already made its move, and the heart's dissatisfaction with its current condition is the Spirit's refusal to let it settle for less than its proper end.</p>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- EXCHANGE 4 -->
+  <section id="exchange-4" aria-labelledby="ex4-title">
+    <h2 id="ex4-title">Exchange Four: The Counter-Position</h2>
+
+    <div class="turn-kr">
+      <span class="speaker-label kr">K.R.</span>
+      <p>I think the only part missing as part of this analysis is the appreciation that some are not aware of the truth doctrinally, or actually accord with a belief that is contrary. For example, the person in Watchman Nee's book who believes the truth cannot be true for them. Of course, disobedience can also bring similar results. Who speaks to the counter-position from the theologians mentioned or within this sphere of influence?</p>
+    </div>
+
+    <div class="turn-ai">
+      <span class="speaker-label">Research Response</span>
+      <h3>Nee's Own Diagnosis of the Counter-Position</h3>
+      <p>Nee identifies a condition of contrary belief operating beneath the surface: the functional conviction that the truth cannot really apply to one's own case. The person assents to the doctrine in general while holding, at a more operative level, that their particular situation is an exception. The remedy Nee proposes is still revelation, but the revelation needed is not simply of the fact of co-crucifixion but of the character of the God who accomplished it.</p>
+
+      <h3>Owen on the Deceitfulness of Sin</h3>
+      <p>Owen in <em>The Nature, Power, Deceit and Prevalency of Indwelling Sin</em> argues that sin characteristically presents its resistance not as rebellion but as theological scruple or personal humility. The apparent humility of saying the truth cannot be true for me is actually a subtle form of unbelief that refuses the sufficiency of Christ by insisting on the priority of one's own experience over God's declaration.</p>
+
+      <h3>Lloyd-Jones on Unbelief as the Deeper Problem</h3>
+      <p>In <em>Spiritual Depression</em> Lloyd-Jones identifies several specific forms of contrary belief. Some believers have a vivid and accurate knowledge of their own sinfulness that functions as a counter-argument to the gospel: they know themselves too well, in a particular sense, to believe the declaration applies to them. His counsel in these cases is not to seek a deeper experience but to deliberately turn attention away from the self and toward the object of faith.</p>
+
+      <div class="dialogue-table-wrap">
+        <table class="dialogue-table" aria-label="Conditions preventing the knowing">
+          <thead>
+            <tr>
+              <th>Condition</th>
+              <th>Description</th>
+              <th>Primary Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Contrary belief</strong></td>
+              <td>The functional conviction that the truth cannot apply to one's own case, dressed in the language of humility or theological realism</td>
+              <td>Nee, Owen, Edwards</td>
+            </tr>
+            <tr>
+              <td><strong>Disobedience</strong></td>
+              <td>Habitual disobedience creates a spiritual dullness that closes the heart to further revelation</td>
+              <td>Owen, Murray</td>
+            </tr>
+            <tr>
+              <td><strong>Paralysis of analysis</strong></td>
+              <td>Intense inward focus on one's spiritual state displaces genuine outward-directed faith</td>
+              <td>Lloyd-Jones</td>
+            </tr>
+            <tr>
+              <td><strong>Self-assessment as primary arbiter</strong></td>
+              <td>Treating one's own experiential self-knowledge as more authoritative than God's declaration</td>
+              <td>Lloyd-Jones, Edwards</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- EXCHANGE 5 -->
+  <section id="exchange-5" aria-labelledby="ex5-title">
+    <h2 id="ex5-title">Exchange Five: Multiple Strands Occurring Simultaneously</h2>
+
+    <div class="turn-kr">
+      <span class="speaker-label kr">K.R.</span>
+      <p>I suspect the greater challenge is that multiple strands can be occurring either simultaneously or adjacent to each other.</p>
+    </div>
+
+    <div class="turn-ai">
+      <span class="speaker-label">Research Response</span>
+      <h3>Owen on the Compound Character of Spiritual Difficulty</h3>
+      <p>Owen in <em>Mortification of Sin</em> and the later sections of <em>Pneumatologia</em> describes a systemic condition rather than a discrete problem. When a believer is struggling with the inertness of Romans 6, Owen would typically expect to find several things operating together: the deceitfulness of sin operating through the understanding, disordered affection orienting the person toward their own self-knowledge, a habitual pattern creating spiritual dullness, and the enemy's work exploiting all of the above. His practical counsel in compound cases is not to identify the primary strand and address it first but to engage broadly, addressing the whole person simultaneously.</p>
+
+      <h3>Bavinck's Organic Model</h3>
+      <p>Bavinck in <em>Reformed Dogmatics</em> insists on the organic character of the spiritual life and argues against any account of sanctification that treats it as a series of discrete transactions. The believer is a living person in whom spiritual, psychological, moral, and circumstantial factors are organically interconnected, and the Spirit's work addresses the whole organism rather than its components in sequence.</p>
+
+      <div class="dialogue-table-wrap">
+        <table class="dialogue-table" aria-label="A practical typology of conditions">
+          <thead>
+            <tr>
+              <th>Condition</th>
+              <th>What it feels like</th>
+              <th>A pastoral response</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Genuine not-yet-revelation</strong></td>
+              <td>Receptive, seeking, faithful, but the Spirit has not yet brought the truth to living conviction</td>
+              <td>Patience, continued faithfulness, expectation that the Spirit will complete the work</td>
+            </tr>
+            <tr>
+              <td><strong>Gradual revelation not yet recognized</strong></td>
+              <td>Actually being transformed but expected a crisis form and does not recognize the quieter work</td>
+              <td>Attend to affective and moral changes actually happening rather than measuring only against dramatic templates</td>
+            </tr>
+            <tr>
+              <td><strong>Unconscious contrary belief</strong></td>
+              <td>Functional view of God or self that contradicts the gospel prevents positive truth taking root</td>
+              <td>The Spirit's convicting work to make the contrary belief visible, followed by repentance</td>
+            </tr>
+            <tr>
+              <td><strong>Disobedience creating dullness</strong></td>
+              <td>Known or unknown sin has produced the hardening effect Owen describes</td>
+              <td>Repentance and return to basic conditions of life oriented toward God</td>
+            </tr>
+            <tr>
+              <td><strong>Paralysis through introspection</strong></td>
+              <td>So focused on interior condition that genuine outward-directed faith is almost impossible</td>
+              <td>Deliberate, disciplined redirection of attention toward God's declaration</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- EXCHANGE 6 -->
+  <section id="exchange-6" aria-labelledby="ex6-title">
+    <h2 id="ex6-title">Exchange Six: Heart Orientation as the Central Theme</h2>
+
+    <div class="turn-kr">
+      <span class="speaker-label kr">K.R.</span>
+      <p>I like the reflection but I find that it is a little light on the last part of our previous discussion and it would be nice to highlight the understanding of a proper heart orientation in this process. The article refers to it in the opening but I think it is worthy of multiple touchpoints.</p>
+    </div>
+
+    <div class="turn-ai">
+      <span class="speaker-label">Research Response</span>
+      <h3>The Heart Orientation Theme</h3>
+      <p>The editorial instinct here is correct. The existing draft refers to heart orientation in the opening, but the theme needs to function as a throughline rather than an introduction. The revision integrated heart orientation as the thread that holds the entire argument together, giving it multiple explicit touchpoints across each major section.</p>
+      <p>The key structural insight driving the revision was this: heart orientation is not a separate strand alongside knowing and reckoning. It is the condition that makes genuine knowing possible and genuine reckoning natural. A heart turned toward God is positioned to receive revelation; a heart turned toward the self keeps the truth at doctrinal distance regardless of how carefully the mind engages with it.</p>
+
+      <h3>Three Pull Quotes Added to the Revised Draft</h3>
+      <div class="callout">
+        <strong>Pull Quote 1 (Section III)</strong>
+        <p>"The heart must be turned before the truth can be seen. The turning is itself grace, and no account of knowing and reckoning is adequate that does not place this prior reorientation at its centre."</p>
+      </div>
+      <div class="callout">
+        <strong>Pull Quote 2 (Section V)</strong>
+        <p>"Reckoning is not the engine of the process. It is the natural motion of a heart that has been turned toward God and a mind that has therefore seen something real."</p>
+      </div>
+      <div class="callout">
+        <strong>Pull Quote 3 (Section VIII)</strong>
+        <p>"The strands are entangled not because several independent things are happening at once, but because they are all expressions of a single deeper condition: the heart that has not yet been fully turned toward God."</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- EXCHANGE 7 -->
+  <section id="exchange-7" aria-labelledby="ex7-title">
+    <h2 id="ex7-title">Exchange Seven: Editorial Standards Applied</h2>
+
+    <div class="turn-kr">
+      <span class="speaker-label kr">K.R.</span>
+      <p>For both this HTML and the HTML before, can you change the word illumination to revelation. As well, can you remove the emojis from the summary HTML.</p>
+    </div>
+
+    <div class="turn-ai">
+      <span class="speaker-label">Research Response</span>
+      <p>Both editorial changes were applied systematically across both documents. In the reflection paper, every instance of illumination, illuminate, illumining, illumined, and illuminative was replaced with the appropriate form of revelation or reveal. The replacements covered the subtitle, about box, preface, and all ten sections including the references, totalling 22 replacements across the file.</p>
+      <p>In the summary guide, the three instances of illumination were replaced with revelation. All emoji characters were replaced with clean typographic symbols that render consistently across all browsers.</p>
+      <p>The choice of revelation over illumination reflects a consistent editorial preference across this study's materials, aligning the accessible summary with the theological register of the fuller reflection paper.</p>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SYNTHESIS -->
+  <section id="synthesis" aria-labelledby="synthesis-title">
+    <h2 id="synthesis-title">Synthesis: The Theological Structure That Emerged</h2>
+
+    <div class="turn-ai">
+      <span class="speaker-label">Summary of the Argument</span>
+
+      <h3>The Structure in Brief</h3>
+      <p><strong>The fact precedes the knowing.</strong> Our death with Christ is an objective, accomplished reality grounded in the historical event of the crucifixion. Reckoning acknowledges what is already true; it does not produce it.</p>
+      <p><strong>The heart's orientation determines the capacity for genuine knowing.</strong> A heart turned toward God is positioned to receive revelation in a way that a heart turned toward its own experience and self-knowledge is not. This is the dimension Nee's framework does not fully surface, and it is where Augustine, Murray, and Meyer make their most significant contributions.</p>
+      <p><strong>Revelation takes multiple forms.</strong> The Spirit distributes revelation with sovereign freedom: crisis and gradual, direct and indirect, dramatic and subconscious. Neither form is superior. Both move the heart in the same direction: toward God, away from self as primary reference point.</p>
+      <p><strong>The counter-position must be named honestly.</strong> What prevents the journey from doctrinal location to operative knowing is not only the absence of revelation. It is frequently an active condition of the heart: contrary belief, disobedience, paralysis through self-analysis, or the self's substitution for God as the primary measure of what is real.</p>
+      <p><strong>The strands are entangled.</strong> Multiple simultaneous conditions typically operate at once, reinforcing one another. The pastoral response must engage the whole person organically, attending to the underlying orientation of the heart rather than only the surface manifestations.</p>
+      <p><strong>The restlessness is already grace.</strong> The dissatisfaction with doctrinal location, the longing for the knowing Nee describes, is not a sign of spiritual deficiency. It is evidence that the grace that reorients the heart has already made its move, and the partial turning is the ground on which the fuller turning will occur.</p>
+    </div>
+
+    <div class="callout" style="margin-top: 1.5rem;">
+      <strong>Documents Produced from This Dialogue</strong>
+      <p>Three documents were produced through this dialogue and the iterative editorial process that followed it: the accessible summary guide, the full ten-section reflection paper, and this dialogue document.</p>
+    </div>
+  </section>
+
+  <div class="end-marker">— End of Dialogue —</div>
+
+  <!-- CROSS-REFERENCE FOOTER -->
+  <div class="cross-ref" style="margin-top: 2rem;" aria-label="Related documents">
+    <span class="cross-ref-label">Related Documents in This Series</span>
+    <div class="cross-ref-links">
+      <a href="knowing-reckoning-summary.html" class="cross-ref-link">
+        <span class="cross-ref-link-type">Accessible Summary</span>
+        <span class="cross-ref-link-title">Knowing and Reckoning: A Simple Guide</span>
+        <span class="cross-ref-arrow">&#8594;</span>
+      </a>
+      <a href="knowing-and-reckoning.html" class="cross-ref-link">
+        <span class="cross-ref-link-type">Full Reflection Paper</span>
+        <span class="cross-ref-link-title">Knowing and Reckoning: Heart Orientation, the Spirit's Revelation, and the Living Reality of Romans 6</span>
+        <span class="cross-ref-arrow">&#8594;</span>
+      </a>
+      <a href="index.html" class="cross-ref-link">
+        <span class="cross-ref-link-type">All Papers</span>
+        <span class="cross-ref-link-title">Return to the Reflection Papers index</span>
+        <span class="cross-ref-arrow">&#8594;</span>
+      </a>
+    </div>
+  </div>
+
+  <nav class="chapter-nav" aria-label="Page navigation">
+    <a href="knowing-and-reckoning.html" class="nav-prev">&#8592; Full Paper</a>
+    <span style="font-family: var(--font-sans); font-size: 10px; color: var(--text-subtle); letter-spacing: 0.1em; text-transform: uppercase;">Research Notes</span>
+    <a href="index.html" class="nav-next">All Papers &#8594;</a>
+  </nav>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer-inner">
+    <div>
+      <div class="footer-brand">The Normal Christian Life</div>
+      <div style="font-family: var(--font-sans); font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 0.25rem; letter-spacing: 0.08em; text-transform: uppercase;">A Guided Weekly Study</div>
+      <div class="footer-sub">&copy; 2026 &nbsp;&bull;&nbsp; A discipleship resource &nbsp;&bull;&nbsp; All rights reserved</div>
+    </div>
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <a href="../index.html">&#8592; Back to Home</a>
+      <a href="index.html">Reflection Papers</a>
+      <a href="knowing-reckoning-summary.html">Summary Guide</a>
+      <a href="knowing-and-reckoning.html">Full Paper</a>
+      <a href="theological-dialogue-knowing-reckoning.html">Research Notes</a>
+    </nav>
+  </div>
+</footer>
+
+<button id="back-top" aria-label="Back to top" title="Back to top">&#8593;</button>
+<script src="../script.js"></script>
+<script>
+(function() {
+  var OFFSET = 60 + 38 + 20;
+  var btns = document.querySelectorAll('.sec-btn');
+  var ids = Array.from(btns).map(function(b) { return b.dataset.target; });
+
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var target = document.getElementById(btn.dataset.target);
+      if (!target) return;
+      window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - OFFSET, behavior: 'smooth' });
+    });
+  });
+
+  function update() {
+    var activeId = ids[0];
+    ids.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top < OFFSET + 20) activeId = id;
+    });
+    btns.forEach(function(b) { b.classList.toggle('active', b.dataset.target === activeId); });
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+}());
+</script>
+</body>
+</html>
