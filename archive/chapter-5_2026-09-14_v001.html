@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 5: The Divide of the Cross — The Normal Christian Life</title>
+<link rel="stylesheet" href="../styles.css">
+<style>
+  .collapsible-btn {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-style: normal;
+    font-size: clamp(1rem, 2.2vw, 1.4rem) !important;
+    font-family: var(--font-sans) !important;
+    font-weight: 500 !important;
+  }
+  h2 {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-style: normal;
+    font-size: clamp(1rem, 2.2vw, 1.4rem);
+    font-family: var(--font-sans);
+    font-weight: 500;
+  }
+  .card h3 { font-size: 11px; font-weight: 700; color: var(--text); letter-spacing: 0.18em; }
+  .reflection-card p.question { font-style: normal; }
+  .prayer-section .prayer-text { font-style: normal; }
+  .memory-truth { font-style: normal; }
+  .key-truth p { font-style: normal; }
+
+  /* ── TWO-ROW COLLAPSIBLE SECTION NAVIGATOR ── */
+  .section-nav {
+    position: sticky;
+    top: 60px;
+    z-index: 150;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border);
+    /* Prevent content from bleeding above on mobile */
+    box-shadow: 0 -4px 0 4px var(--bg-surface);
+  }
+  .section-nav-primary {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .section-nav-primary::-webkit-scrollbar { display: none; }
+  .phase-btn {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 0.85rem 1rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .phase-btn:hover { color: var(--text-muted); }
+  .phase-btn.active { color: var(--text); border-bottom-color: var(--text); }
+  .phase-btn.open { color: var(--text); }
+  .phase-chevron {
+    font-size: 8px;
+    transition: transform 0.2s;
+    opacity: 0.5;
+  }
+  .phase-btn.open .phase-chevron { transform: rotate(180deg); opacity: 1; }
+  .section-nav-secondary {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: none;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    background: var(--bg-raised);
+    border-top: 1px solid var(--border);
+  }
+  .section-nav-secondary::-webkit-scrollbar { display: none; }
+  .section-nav-secondary.visible { display: flex; }
+  .sub-btn {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+    background: none;
+    border: none;
+    border-bottom: 1px solid transparent;
+    padding: 0.65rem 0.9rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s;
+    flex-shrink: 0;
+  }
+  .sub-btn:hover { color: var(--text-muted); }
+  .sub-btn.active { color: var(--text); border-bottom-color: var(--text-subtle); }
+
+  @media (max-width: 700px) {
+    .section-nav-primary,
+    .section-nav-secondary { padding: 0 1.25rem; }
+    .phase-btn { padding: 0.8rem 0.75rem; font-size: 9px; }
+  }
+</style>
+<script>
+  (function(){var s=localStorage.getItem('ncl-font-size');if(s&&s!=='standard')document.documentElement.setAttribute('data-font',s);})();
+</script>
+</head>
+<body>
+
+<div id="progress-bar" role="progressbar" aria-label="Reading progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+<header class="site-header" role="banner">
+  <div class="site-header-inner">
+    <a href="../index.html" class="site-logo" aria-label="Home">The Normal Christian Life</a>
+    <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="chapter-1.html">Week 1</a>
+      <a href="chapter-2.html">Week 2</a>
+      <a href="chapter-3.html">Week 3</a>
+      <a href="chapter-4.html">Week 4</a>
+      <a href="chapter-5.html" class="active" aria-current="page">Week 5</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Toggle navigation">&#9776;</button>
+  </div>
+</header>
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <a href="../index.html">Home</a>
+  <span class="sep" aria-hidden="true">&#8250;</span>
+  <span class="current">Week 5: The Divide of the Cross</span>
+</nav>
+
+<!-- TWO-ROW SECTION NAVIGATOR -->
+<nav class="section-nav" aria-label="Chapter sections" id="chapter-nav">
+
+  <div class="section-nav-primary">
+    <button class="phase-btn active" data-phase="creations" aria-expanded="false">
+      Two Creations <span class="phase-chevron">&#9660;</span>
+    </button>
+    <button class="phase-btn" data-phase="burial" aria-expanded="false">
+      Burial <span class="phase-chevron">&#9660;</span>
+    </button>
+    <button class="phase-btn" data-phase="resurrection" aria-expanded="false">
+      Resurrection <span class="phase-chevron">&#9660;</span>
+    </button>
+    <button class="phase-btn" data-phase="daily-life" aria-expanded="false">
+      Daily Life <span class="phase-chevron">&#9660;</span>
+    </button>
+    <button class="phase-btn" data-phase="close" aria-expanded="false">
+      Reflect &amp; Close <span class="phase-chevron">&#9660;</span>
+    </button>
+  </div>
+
+  <div class="section-nav-secondary" id="sub-creations">
+    <button class="sub-btn" data-target="two-creations">Two Creations</button>
+    <button class="sub-btn" data-target="great-divide">The Cross: God's Great Divide</button>
+  </div>
+
+  <div class="section-nav-secondary" id="sub-burial">
+    <button class="sub-btn" data-target="burial-end">Burial Means an End</button>
+    <button class="sub-btn" data-target="baptism-burial">Baptism and Burial</button>
+  </div>
+
+  <div class="section-nav-secondary" id="sub-resurrection">
+    <button class="sub-btn" data-target="new-starting-point">Resurrection's New Starting Point</button>
+    <button class="sub-btn" data-target="newness-of-life">Walking in Newness of Life</button>
+  </div>
+
+  <div class="section-nav-secondary" id="sub-daily-life">
+    <button class="sub-btn" data-target="old-vs-new">Old Improvement vs New Creation</button>
+    <button class="sub-btn" data-target="path-so-far">The Path So Far</button>
+  </div>
+
+  <div class="section-nav-secondary" id="sub-close">
+    <button class="sub-btn" data-target="reflection">Guided Reflection</button>
+    <button class="sub-btn" data-target="prayer">Pause and Pray</button>
+    <button class="sub-btn" data-target="summary">Chapter Summary</button>
+    <button class="sub-btn" data-target="looking-ahead">Looking Ahead</button>
+  </div>
+
+</nav>
+
+<nav id="toc-float" aria-label="Page sections">
+  <div class="toc-dot" data-target="two-creations"      data-label="Two Creations"></div>
+  <div class="toc-dot" data-target="great-divide"        data-label="God's Great Divide"></div>
+  <div class="toc-dot" data-target="burial-end"          data-label="Burial Means an End"></div>
+  <div class="toc-dot" data-target="baptism-burial"      data-label="Baptism and Burial"></div>
+  <div class="toc-dot" data-target="new-starting-point"  data-label="Resurrection's New Start"></div>
+  <div class="toc-dot" data-target="newness-of-life"     data-label="Newness of Life"></div>
+  <div class="toc-dot" data-target="old-vs-new"          data-label="Old Improvement vs New"></div>
+  <div class="toc-dot" data-target="path-so-far"         data-label="The Path So Far"></div>
+  <div class="toc-dot" data-target="reflection"          data-label="Reflection"></div>
+  <div class="toc-dot" data-target="prayer"              data-label="Prayer"></div>
+  <div class="toc-dot" data-target="summary"             data-label="Summary"></div>
+  <div class="toc-dot" data-target="looking-ahead"       data-label="Looking Ahead"></div>
+</nav>
+
+<section class="chapter-hero" id="hero" aria-labelledby="chapter-title">
+  <div class="chapter-hero-inner">
+    <span class="series-label">The Normal Christian Life &nbsp;&bull;&nbsp; Watchman Nee</span>
+    <span class="chapter-num">Chapter Five &nbsp;&bull;&nbsp; Week 5 of 13</span>
+    <h1 id="chapter-title">The Divide<br>of the Cross</h1>
+    <span class="hero-ornament" aria-hidden="true">&#10022;</span>
+    <p class="hero-intro">
+      Weeks 3 and 4 established a single fact and a single response: the believer has died with Christ, and the appropriate answer to that fact is to reckon it true. Week 5 widens the frame. The cross is not merely God's remedy for an individual's sins or even for the old self considered in isolation. It is God's great dividing line between two entire orders of existence: the creation that stands in Adam, and the creation that stands in the risen Christ. Nee calls this the divide of the cross, and understanding it changes how the whole Christian life is approached.
+    </p>
+    <div class="key-truth" role="note">
+      <span class="kt-label">The Central Truth of This Chapter</span>
+      <p>God is not improving the old creation. Through the cross He brings it to an end, and through resurrection He introduces what is altogether new.</p>
+    </div>
+  </div>
+</section>
+
+<main class="page-content" role="main" style="padding-top: 2.5rem;">
+
+  <!-- SECTION 1 -->
+  <section id="two-creations" aria-labelledby="two-creations-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="two-creations-body" id="two-creations-title">
+      Two Creations
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="two-creations-body">
+      <p>Most people, including many sincere believers, instinctively frame the spiritual life around a single question: am I good or bad? Nee presses underneath that question to a more fundamental one. The issue God addresses at the cross is not primarily a believer's moral performance. It is a matter of origin. The real question is not whether a life is good or bad, but to which creation that life belongs.</p>
+      <p>Jesus drew this distinction plainly when He said that what is born of the flesh is flesh, and what is born of the Spirit is spirit. A person can be moral, educated, disciplined, religious, naturally gifted, and entirely respectable, and still belong wholly to the old creation. None of those qualities changes what a life was born from. Refinement of the old does not transfer a person into the new. Only a new birth does that.</p>
+      <p>This is why God's solution was never renovation. The old creation cannot be gradually improved until it qualifies for standing in the new. Instead, the cross brings the old creation to its end, and resurrection introduces the new creation as an entirely fresh starting point. Paul states the result plainly: if anyone is in Christ, there is a new creation, the old things have passed away, the new has come. And having been buried with Christ through baptism into death, believers are raised to walk in newness of life.</p>
+      <div class="callout">
+        <strong>The Real Question</strong>
+        <p>Not: is this a good life or a bad one? But: which creation does this life belong to? Everything born only of the flesh, however admirable, remains flesh. Only what has come through death into resurrection belongs to the new.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 2 -->
+  <section id="great-divide" aria-labelledby="great-divide-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="great-divide-body" id="great-divide-title">
+      The Cross: God's Great Divide
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="great-divide-body">
+      <p>Once the question shifts from behaviour to origin, the cross itself comes into sharper focus. The cross is not simply a transaction that cancels guilt, though it certainly does that. It is God's great boundary line, separating everything that belongs to the old order from everything that belongs to the new. On one side stands the old creation, everything that traces its origin to Adam. On the other side stands the new creation, everything that has its origin in the risen Christ.</p>
+
+      <div class="table-scroll">
+        <table class="compare-table" aria-label="The two sides of God's divide">
+          <thead>
+            <tr>
+              <th>Old Creation</th>
+              <th>New Creation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="color: var(--text);">Adam</td>
+              <td style="color: var(--text-muted);">Christ</td>
+            </tr>
+            <tr>
+              <td style="color: var(--text);">Flesh</td>
+              <td style="color: var(--text-muted);">Spirit</td>
+            </tr>
+            <tr>
+              <td style="color: var(--text);">Self-derived life</td>
+              <td style="color: var(--text-muted);">Resurrection life</td>
+            </tr>
+            <tr>
+              <td style="color: var(--text);">Under judgment</td>
+              <td style="color: var(--text-muted);">Raised in newness</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>It is important to be precise here. This is not a claim that created humanity is intrinsically evil, or that ordinary human life is worthless. Nee's point concerns the fallen Adamic order specifically: everything that originates from the flesh rather than from God. The cross does not judge people for being human. It judges the entire arrangement of life lived apart from God, at its root, and closes it off from any possibility of being carried into the new creation by improvement.</p>
+
+      <div class="callout callout-crimson">
+        <strong>God's Boundary, Not God's Repair Shop</strong>
+        <p>The cross is not God's repair shop for Adam. It is God's boundary between what belongs to Adam and what belongs to Christ. Nothing from the old side crosses over by being polished. Everything on the new side is there because it has passed through death into resurrection.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 3 -->
+  <section id="burial-end" aria-labelledby="burial-end-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="burial-end-body" id="burial-end-title">
+      Burial Means an End
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="burial-end-body">
+      <p>It is tempting to move quickly from the fact of the cross to the joy of the resurrection, skipping over what stands between them. Nee does not allow this shortcut. Between death and resurrection lies burial, and burial carries its own theological weight. People do not bury what is merely wounded or struggling. They bury what has ended. Burial is the visible declaration that something has reached its conclusion and will not be revived in its former state.</p>
+      <p>This is precisely the meaning burial carries in the believer's identification with Christ. It is not enough to say that the old life has been dealt with in some abstract sense. Burial insists that the old order is finished, not merely reduced or restrained. The sequence matters: death, then burial, then resurrection. Each step has its own significance, and burial's significance is finality. Nothing is carried out of the grave except by resurrection, and resurrection introduces something new rather than reviving what was buried.</p>
+      <div class="callout">
+        <strong>A Question Worth Sitting With</strong>
+        <p>What are we still trying to improve, defend, or rehabilitate that God has already assigned to the cross? Burial does not ask us to manage the old order more carefully. It asks us to let it stay where God has put it.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 4 -->
+  <section id="baptism-burial" aria-labelledby="baptism-burial-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="baptism-burial-body" id="baptism-burial-title">
+      Baptism and Burial
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="baptism-burial-body">
+      <p>Romans 6 ties this picture of burial directly to baptism. Nee reads baptism as a picture with a specific theological meaning rather than as a topic to be settled by denominational debate. Baptism identifies the believer with Christ's death, enacts the burial of what has died, and testifies publicly that the old order has been judged and left behind. It is not the burial itself that saves; it is a picture of a burial that has already taken place in fact, through the believer's union with Christ.</p>
+      <p>Understood this way, baptism is not primarily about the mechanics of how or when water is applied. It is a visible declaration of an invisible reality: something has ended, and something new has begun. The believer emerges from the picture of burial to walk, as Paul says, in newness of life. Whatever the practical questions that surround the ordinance in different traditions, the theological substance Nee is drawing out remains the same: burial testifies to an ending, and rising from it testifies to a beginning.</p>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 5 -->
+  <section id="new-starting-point" aria-labelledby="new-starting-point-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="new-starting-point-body" id="new-starting-point-title">
+      Resurrection: God's New Starting Point
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="new-starting-point-body">
+      <p>If the chapter stopped at burial, it would leave believers with nothing but an ending, and an ending alone is not good news. Nee is careful not to let the divide of the cross become merely negative. The cross is God's great negative: it terminates what belongs to the old creation, once and finally. But resurrection is God's great positive: it introduces everything that belongs to the new creation. Both movements are necessary, and neither can be understood rightly without the other.</p>
+      <p>Romans 6:4 places the accent exactly where Nee wants it. Believers were buried with Christ so that, just as Christ was raised from the dead through the glory of the Father, they too might walk in newness of life. Resurrection is not simply the reversal of death. It is the beginning of a life with a wholly new source, a new starting point that owes nothing to the old order that was left behind at the cross.</p>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 6 -->
+  <section id="newness-of-life" aria-labelledby="newness-of-life-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="newness-of-life-body" id="newness-of-life-title">
+      Walking in Newness of Life
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="newness-of-life-body">
+      <p>Because resurrection introduces a genuinely new source of life, walking in newness of life is not the same project as trying harder to manage the old one. It is not suppression of bad impulses, self-denial for its own sake, cautious avoidance of sin, or an Adam who has simply become more disciplined and better behaved. All of those remain within the old creation, however improved they may appear. Newness of life is a different order of existence altogether, drawing on a different source.</p>
+      <p>Christianity, understood this way, is not Adam behaving more like Christ. It is the life of Christ becoming operative in those who have been brought through death into resurrection. This is a considerable relief for anyone who has grown weary of trying to reform the old self by sheer determination. The call is not to perform better as the old creation. It is to live increasingly from the new.</p>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 7 -->
+  <section id="old-vs-new" aria-labelledby="old-vs-new-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="old-vs-new-body" id="old-vs-new-title">
+      Old Improvement vs New Creation
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="old-vs-new-body">
+      <p>It helps to lay the two approaches side by side, because they are easy to confuse in daily experience. One approach begins with human resources and asks how a person can become better. The other begins with resurrection and asks what already belongs to the new creation. Discipline, effort, skill, and natural ability are not the problem in themselves; none of these is inherently sinful. The issue Nee raises is one of source, dependence, and origin, not of talent or effort as such.</p>
+
+      <div class="table-scroll">
+        <table class="compare-table" aria-label="Improvement of the old compared to the new creation">
+          <thead>
+            <tr>
+              <th>Improvement of the Old</th>
+              <th>New Creation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-problem">Begins with human resources</td>
+              <td class="col-answer">Begins with resurrection</td>
+            </tr>
+            <tr>
+              <td class="col-problem">Tries to improve Adam</td>
+              <td class="col-answer">Begins in Christ</td>
+            </tr>
+            <tr>
+              <td class="col-problem">Depends upon natural strength</td>
+              <td class="col-answer">Depends upon divine life</td>
+            </tr>
+            <tr>
+              <td class="col-problem">Focuses primarily on behaviour</td>
+              <td class="col-answer">Begins with origin</td>
+            </tr>
+            <tr>
+              <td class="col-problem">Asks, "How can I become better?"</td>
+              <td class="col-answer">Asks, "What belongs to the new creation?"</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>These questions have Monday-to-Saturday weight. Where am I still trying to improve myself rather than live from Christ? Do I evaluate my spiritual life mainly by whether something looks good or bad on the surface, without asking where it originates? Something can be impressive, disciplined, religious, and outwardly successful and still be a project of the old creation rather than an expression of resurrection life. Learning to notice the difference is the practical heart of this chapter.</p>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 8 -->
+  <section id="path-so-far" aria-labelledby="path-so-far-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="path-so-far-body" id="path-so-far-title">
+      The Path So Far
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="path-so-far-body">
+      <p>It is worth pausing to see how far this study has come, because each week builds directly on the one before it.</p>
+      <div class="callout">
+        <strong>The Path So Far</strong>
+        <p><strong>Know</strong> &mdash; God has included me in Christ's death and resurrection.</p>
+        <p style="margin-top: 0.5rem;">&#8595;</p>
+        <p><strong>Reckon</strong> &mdash; I count God's accomplished fact as true, regardless of feeling.</p>
+        <p style="margin-top: 0.5rem;">&#8595;</p>
+        <p><strong>The Divide of the Cross</strong> &mdash; I recognize that the cross has separated the old creation from the new, and that resurrection is God's new starting point.</p>
+        <p style="margin-top: 0.5rem;">&#8595;</p>
+        <p><strong>Next: Present</strong> &mdash; Because I am alive from the dead, I can now present myself to God.</p>
+      </div>
+      <p>Each step depends on the one before it. Knowing without reckoning stays theoretical. Reckoning without seeing the divide of the cross can feel like a private technique rather than a share in something vast that God has done to the whole old order. And, as Week 6 will show, presenting ourselves to God only makes sense once we know we are presenting a life raised from the dead, not a life still waiting to be improved.</p>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 9: GUIDED REFLECTION -->
+  <section id="reflection" aria-labelledby="reflection-title">
+    <h2 id="reflection-title">Guided Reflection</h2>
+    <p style="color: var(--text-muted); margin-bottom: 1.75rem; font-size: 0.94rem;">Take time with each question. These are not meant to be answered quickly. Consider working through them in a journal or in a quiet conversation with God.</p>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 1</span>
+      <p class="question">Do I tend to evaluate my spiritual life by asking "am I good or bad" rather than "which creation am I living from"? What would change if I asked the second question more often?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 2</span>
+      <p class="question">Where have I assumed that enough discipline, education, or moral effort could qualify the old self for the new creation? How does this chapter challenge that assumption?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 3</span>
+      <p class="question">What are I still trying to improve, defend, or rehabilitate that God has already assigned to the cross?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 4</span>
+      <p class="question">Have I skipped from the idea of death with Christ straight to resurrection, without letting burial's meaning of "this has truly ended" sink in?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 5</span>
+      <p class="question">Where in my life have I confused suppression or self-denial with genuine newness of life? What is the practical difference between the two?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 6</span>
+      <p class="question">Can I think of something that looks impressive, religious, or successful in my life that may still be a product of the old creation rather than an expression of resurrection life?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 7</span>
+      <p class="question">What would it mean this week to ask "what belongs to the new creation" instead of "how can I become better"?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 8</span>
+      <p class="question">How does seeing the cross as God's great divide, rather than merely His remedy for my sins, change the way I think about my whole life, not just my failures?</p>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 10: PAUSE AND PRAY -->
+  <section id="prayer" aria-labelledby="prayer-title">
+    <div class="prayer-section">
+      <h2 id="prayer-title">Pause and Pray</h2>
+      <div class="prayer-text">
+        <p>Heavenly Father,</p>
+        <br>
+        <p>Thank You that the cross was never merely Your answer to my individual sins. Thank You that it is Your great divide, ending an entire order of existence and opening the way into another. Thank You that resurrection is not a reward I must earn but the new starting point You have already provided in Christ.</p>
+        <br>
+        <p>I confess that I have often tried to improve what You have already assigned to the cross. I have polished what You asked me to bury, and I have measured my life by whether it looks good rather than by where it truly originates. Forgive me for treating the old creation as a project worth saving rather than a matter already settled at the cross.</p>
+        <br>
+        <p>Teach me to let burial mean what it says: an ending, not a temporary setback. And teach me to walk in the newness that only resurrection can give, not as an improved version of my old self, but as one who is genuinely alive from the dead in Christ.</p>
+        <br>
+        <p>Where I am still striving to rehabilitate what You have already ended, give me the grace to let it go and to live instead from what You have already begun.</p>
+        <br>
+        <p>Amen.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 11: CHAPTER SUMMARY -->
+  <section id="summary" aria-labelledby="summary-title">
+    <h2 id="summary-title">Chapter Summary</h2>
+    <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.94rem;">The following points gather together the major threads of this chapter.</p>
+
+    <div class="summary-item">
+      <div class="summary-num" aria-hidden="true">1</div>
+      <div class="summary-text"><strong>The Real Question Is One of Origin.</strong> The Christian life is not first a question of whether a life is good or bad. It is a question of which creation that life belongs to: the old creation in Adam, or the new creation in Christ.</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-num" aria-hidden="true">2</div>
+      <div class="summary-text"><strong>The Cross Is God's Great Divide.</strong> The cross is not merely a remedy for individual sins. It is God's boundary between the old order and the new, judging everything that originates from the flesh rather than from God.</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-num" aria-hidden="true">3</div>
+      <div class="summary-text"><strong>Burial Declares an End, Not a Pause.</strong> Burial testifies that the old order has truly concluded. Nothing is carried forward from the grave except by resurrection, which introduces something new rather than reviving what was buried.</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-num" aria-hidden="true">4</div>
+      <div class="summary-text"><strong>Resurrection Is God's Great Positive.</strong> The cross ends what belongs to the old creation. Resurrection introduces what belongs to the new. Both are necessary, and neither should be understood apart from the other.</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-num" aria-hidden="true">5</div>
+      <div class="summary-text"><strong>Newness of Life Is Not a Better Adam.</strong> Walking in newness of life is not suppression, self-denial, or a more disciplined version of the old self. It is the life of Christ becoming operative in one who has passed through death into resurrection.</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-num" aria-hidden="true">6</div>
+      <div class="summary-text"><strong>The Issue Is Source, Not Talent.</strong> Discipline, ability, and effort are not the problem. The question this chapter presses is where a life originates and what it depends upon, not how impressive it appears.</div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 12: LOOKING AHEAD -->
+  <section id="looking-ahead" aria-labelledby="ahead-title">
+    <h2 id="ahead-title">Looking Ahead</h2>
+    <div class="ahead-card">
+      <div class="ahead-arrow" aria-hidden="true">&#8594;</div>
+      <div>
+        <p>Week 5 has established the divide the cross creates between the old creation and the new, and the new starting point resurrection provides. This is not merely a doctrine to file away. It reframes the whole Christian life around origin rather than performance.</p>
+        <p>Week 6 asks what follows naturally once this divide is understood. If I am alive from the dead, raised on the resurrection side of the cross, what should I now do with this life? Nee's answer is the third step in his sequence from Romans 6: presenting ourselves to God, not as those offering an unimproved old self, but as those who are, in Paul's words, alive from the dead.</p>
+        <p>The believer who has grasped the divide of the cross is ready to ask a very different question than before: not "what can I give God from my old resources," but "to whom does this new life already belong?"</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMORY AID -->
+  <div class="memory-aid" role="note" aria-label="A simple way to remember this chapter">
+    <span class="ma-label">A Simple Way to Remember This Chapter</span>
+    <div class="memory-line">
+      <span class="memory-label">Old creation</span>
+      <span class="memory-colon" aria-hidden="true">&#9135;</span>
+      <span class="memory-truth">Everything in Adam, brought to an end</span>
+    </div>
+    <div class="memory-line">
+      <span class="memory-label">The Cross</span>
+      <span class="memory-colon" aria-hidden="true">&#9135;</span>
+      <span class="memory-truth">God's judgment on the old, once for all</span>
+    </div>
+    <div class="memory-line">
+      <span class="memory-label">Resurrection</span>
+      <span class="memory-colon" aria-hidden="true">&#9135;</span>
+      <span class="memory-truth">God's new starting point</span>
+    </div>
+    <div class="memory-line">
+      <span class="memory-label">My call</span>
+      <span class="memory-colon" aria-hidden="true">&#9135;</span>
+      <span class="memory-truth">Live from the new creation, not repair the old</span>
+    </div>
+  </div>
+
+  <!-- CHAPTER NAVIGATION -->
+  <nav class="chapter-nav" aria-label="Chapter navigation">
+    <a href="chapter-4.html" class="nav-prev">&#8592; Week 4: The Path of Progress: Reckoning</a>
+    <span style="font-family: var(--font-sans); font-size: 10px; color: var(--text-subtle); letter-spacing: 0.1em; text-transform: uppercase;">Week 5 of 13</span>
+    <a href="chapter-6.html" class="nav-next">Week 6: Presenting Ourselves to God &#8594;</a>
+  </nav>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer-inner">
+    <div>
+      <div class="footer-brand">The Normal Christian Life</div>
+      <div style="font-family: var(--font-sans); font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 0.25rem; letter-spacing: 0.08em; text-transform: uppercase;">A Guided Weekly Study</div>
+      <div class="footer-sub">&copy; 2026 &nbsp;&bull;&nbsp; A discipleship resource &nbsp;&bull;&nbsp; All rights reserved</div>
+    </div>
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <a href="../index.html">&#8592; Back to Home</a>
+      <a href="chapter-1.html">Week 1: The Blood of Christ</a>
+      <a href="chapter-2.html">Week 2: The Cross of Christ</a>
+      <a href="chapter-3.html">Week 3: The Path of Progress: Knowing</a>
+      <a href="chapter-4.html">Week 4: The Path of Progress: Reckoning</a>
+      <a href="chapter-5.html">Week 5: The Divide of the Cross</a>
+    </nav>
+  </div>
+</footer>
+
+<button id="back-top" aria-label="Back to top" title="Back to top">&#8593;</button>
+<script src="../script.js"></script>
+<script>
+(function() {
+  var HEADER_H    = 60;
+  var PRIMARY_H   = 42;
+  var SECONDARY_H = 34;
+  var SCROLL_OFFSET = HEADER_H + PRIMARY_H + 20;
+
+  var phaseMap = {
+    'creations':    { subId: 'sub-creations',    sections: ['two-creations','great-divide'] },
+    'burial':       { subId: 'sub-burial',       sections: ['burial-end','baptism-burial'] },
+    'resurrection': { subId: 'sub-resurrection', sections: ['new-starting-point','newness-of-life'] },
+    'daily-life':   { subId: 'sub-daily-life',   sections: ['old-vs-new','path-so-far'] },
+    'close':        { subId: 'sub-close',        sections: ['reflection','prayer','summary','looking-ahead'] }
+  };
+
+  var phaseBtns = document.querySelectorAll('.phase-btn');
+  var subBtns   = document.querySelectorAll('.sub-btn');
+  var openPhase = null;
+
+  function closeAll() {
+    document.querySelectorAll('.section-nav-secondary').forEach(function(el) {
+      el.classList.remove('visible');
+    });
+    phaseBtns.forEach(function(b) {
+      b.classList.remove('open');
+      b.setAttribute('aria-expanded', 'false');
+    });
+    openPhase = null;
+  }
+
+  phaseBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var phase = btn.dataset.phase;
+      if (openPhase === phase) { closeAll(); return; }
+      closeAll();
+      var info = phaseMap[phase];
+      if (!info) return;
+      var subRow = document.getElementById(info.subId);
+      if (!subRow) return;
+      subRow.classList.add('visible');
+      btn.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+      openPhase = phase;
+    });
+  });
+
+  subBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var target = document.getElementById(btn.dataset.target);
+      if (!target) return;
+      var extraOffset = openPhase ? SECONDARY_H : 0;
+      var top = target.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET - extraOffset;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+      closeAll();
+    });
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.section-nav')) closeAll();
+  });
+
+  var allSectionIds = Object.values(phaseMap).reduce(function(acc, info) {
+    return acc.concat(info.sections);
+  }, []);
+
+  function getPhaseForSection(id) {
+    for (var phase in phaseMap) {
+      if (phaseMap[phase].sections.indexOf(id) !== -1) return phase;
+    }
+    return null;
+  }
+
+  function updateActivePhase() {
+    var threshold = SCROLL_OFFSET + 20;
+    var activeId  = allSectionIds[0];
+    allSectionIds.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top < threshold) activeId = id;
+    });
+    var activePhase = getPhaseForSection(activeId);
+    phaseBtns.forEach(function(b) {
+      b.classList.toggle('active', b.dataset.phase === activePhase);
+    });
+    subBtns.forEach(function(b) {
+      b.classList.toggle('active', b.dataset.target === activeId);
+    });
+  }
+
+  window.addEventListener('scroll', updateActivePhase, { passive: true });
+  updateActivePhase();
+}());
+</script>
+</body>
+</html>

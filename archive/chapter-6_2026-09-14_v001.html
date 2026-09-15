@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 6: Presenting Ourselves to God — The Normal Christian Life</title>
+<link rel="stylesheet" href="../styles.css">
+<style>
+  .collapsible-btn {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-style: normal;
+    font-size: clamp(1rem, 2.2vw, 1.4rem) !important;
+    font-family: var(--font-sans) !important;
+    font-weight: 500 !important;
+  }
+  h2 {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-style: normal;
+    font-size: clamp(1rem, 2.2vw, 1.4rem);
+    font-family: var(--font-sans);
+    font-weight: 500;
+  }
+  .card h3 { font-size: 11px; font-weight: 700; color: var(--text); letter-spacing: 0.18em; }
+  .reflection-card p.question { font-style: normal; }
+  .prayer-section .prayer-text { font-style: normal; }
+  .memory-truth { font-style: normal; }
+  .key-truth p { font-style: normal; }
+
+  /* ── TWO-ROW COLLAPSIBLE SECTION NAVIGATOR ── */
+  .section-nav {
+    position: sticky;
+    top: 60px;
+    z-index: 150;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border);
+    /* Prevent content from bleeding above on mobile */
+    box-shadow: 0 -4px 0 4px var(--bg-surface);
+  }
+  .section-nav-primary {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .section-nav-primary::-webkit-scrollbar { display: none; }
+  .phase-btn {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 0.85rem 1rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .phase-btn:hover { color: var(--text-muted); }
+  .phase-btn.active { color: var(--text); border-bottom-color: var(--text); }
+  .phase-btn.open { color: var(--text); }
+  .phase-chevron {
+    font-size: 8px;
+    transition: transform 0.2s;
+    opacity: 0.5;
+  }
+  .phase-btn.open .phase-chevron { transform: rotate(180deg); opacity: 1; }
+  .section-nav-secondary {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: none;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    background: var(--bg-raised);
+    border-top: 1px solid var(--border);
+  }
+  .section-nav-secondary::-webkit-scrollbar { display: none; }
+  .section-nav-secondary.visible { display: flex; }
+  .sub-btn {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+    background: none;
+    border: none;
+    border-bottom: 1px solid transparent;
+    padding: 0.65rem 0.9rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s;
+    flex-shrink: 0;
+  }
+  .sub-btn:hover { color: var(--text-muted); }
+  .sub-btn.active { color: var(--text); border-bottom-color: var(--text-subtle); }
+
+  @media (max-width: 700px) {
+    .section-nav-primary,
+    .section-nav-secondary { padding: 0 1.25rem; }
+    .phase-btn { padding: 0.8rem 0.75rem; font-size: 9px; }
+  }
+</style>
+<script>
+  (function(){var s=localStorage.getItem('ncl-font-size');if(s&&s!=='standard')document.documentElement.setAttribute('data-font',s);})();
+</script>
+</head>
+<body>
+
+<div id="progress-bar" role="progressbar" aria-label="Reading progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+<header class="site-header" role="banner">
+  <div class="site-header-inner">
+    <a href="../index.html" class="site-logo" aria-label="Home">The Normal Christian Life</a>
+    <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="chapter-1.html">Week 1</a>
+      <a href="chapter-2.html">Week 2</a>
+      <a href="chapter-3.html">Week 3</a>
+      <a href="chapter-4.html">Week 4</a>
+      <a href="chapter-5.html">Week 5</a>
+      <a href="chapter-6.html" class="active" aria-current="page">Week 6</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Toggle navigation">&#9776;</button>
+  </div>
+</header>
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <a href="../index.html">Home</a>
+  <span class="sep" aria-hidden="true">&#8250;</span>
+  <span class="current">Week 6: Presenting Ourselves to God</span>
+</nav>
+
+<!-- TWO-ROW SECTION NAVIGATOR -->
+<nav class="section-nav" aria-label="Chapter sections" id="chapter-nav">
+
+  <div class="section-nav-primary">
+    <button class="phase-btn active" data-phase="presenting" aria-expanded="false">
+      Presenting <span class="phase-chevron">&#9660;</span>
+    </button>
+    <button class="phase-btn" data-phase="ownership" aria-expanded="false">
+      Ownership <span class="phase-chevron">&#9660;</span>
+    </button>
+    <button class="phase-btn" data-phase="separation" aria-expanded="false">
+      Separation <span class="phase-chevron">&#9660;</span>
+    </button>
+    <button class="phase-btn" data-phase="daily-life" aria-expanded="false">
+      Daily Life <span class="phase-chevron">&#9660;</span>
+    </button>
+    <button class="phase-btn" data-phase="close" aria-expanded="false">
+      Reflect &amp; Close <span class="phase-chevron">&#9660;</span>
+    </button>
+  </div>
+
+  <div class="section-nav-secondary" id="sub-presenting">
+    <button class="sub-btn" data-target="third-step">The Third Step: Present Yourselves</button>
+    <button class="sub-btn" data-target="alive-from-dead">Alive From the Dead</button>
+  </div>
+
+  <div class="section-nav-secondary" id="sub-ownership">
+    <button class="sub-btn" data-target="who-owns">Who Owns This Life?</button>
+    <button class="sub-btn" data-target="hands-illustration">"I Did Not Bring My Hands"</button>
+  </div>
+
+  <div class="section-nav-secondary" id="sub-separation">
+    <button class="sub-btn" data-target="separated-unto">Separated Unto the Lord</button>
+    <button class="sub-btn" data-target="present-not-yield">Present, Not Merely Yield</button>
+  </div>
+
+  <div class="section-nav-secondary" id="sub-daily-life">
+    <button class="sub-btn" data-target="servant-or-slave">Servant or Slave?</button>
+    <button class="sub-btn" data-target="ownership-daily-life">Ownership in Daily Life</button>
+  </div>
+
+  <div class="section-nav-secondary" id="sub-close">
+    <button class="sub-btn" data-target="reflection">Guided Reflection</button>
+    <button class="sub-btn" data-target="prayer">Pause and Pray</button>
+    <button class="sub-btn" data-target="summary">Chapter Summary</button>
+    <button class="sub-btn" data-target="looking-ahead">Looking Ahead</button>
+  </div>
+
+</nav>
+
+<nav id="toc-float" aria-label="Page sections">
+  <div class="toc-dot" data-target="third-step"           data-label="Present Yourselves"></div>
+  <div class="toc-dot" data-target="alive-from-dead"      data-label="Alive From the Dead"></div>
+  <div class="toc-dot" data-target="who-owns"             data-label="Who Owns This Life?"></div>
+  <div class="toc-dot" data-target="hands-illustration"   data-label="I Did Not Bring My Hands"></div>
+  <div class="toc-dot" data-target="separated-unto"       data-label="Separated Unto the Lord"></div>
+  <div class="toc-dot" data-target="present-not-yield"    data-label="Present, Not Merely Yield"></div>
+  <div class="toc-dot" data-target="servant-or-slave"     data-label="Servant or Slave?"></div>
+  <div class="toc-dot" data-target="ownership-daily-life" data-label="Ownership in Daily Life"></div>
+  <div class="toc-dot" data-target="reflection"           data-label="Reflection"></div>
+  <div class="toc-dot" data-target="prayer"               data-label="Prayer"></div>
+  <div class="toc-dot" data-target="summary"              data-label="Summary"></div>
+  <div class="toc-dot" data-target="looking-ahead"        data-label="Looking Ahead"></div>
+</nav>
+
+<section class="chapter-hero" id="hero" aria-labelledby="chapter-title">
+  <div class="chapter-hero-inner">
+    <span class="series-label">The Normal Christian Life &nbsp;&bull;&nbsp; Watchman Nee</span>
+    <span class="chapter-num">Chapter Six &nbsp;&bull;&nbsp; Week 6 of 13</span>
+    <h1 id="chapter-title">Presenting Ourselves<br>to God</h1>
+    <span class="hero-ornament" aria-hidden="true">&#10022;</span>
+    <p class="hero-intro">
+      Week 5 established the divide the cross creates between the old creation and the new, and the fresh starting point resurrection provides. Week 6 asks what naturally follows. Nee finds the answer in the third step of Romans 6: presenting ourselves to God. This is not an offer of an old, unimproved life. It is the deliberate response of someone who is, in Paul's words, alive from the dead.
+    </p>
+    <div class="key-truth" role="note">
+      <span class="kt-label">The Central Truth of This Chapter</span>
+      <p>Presenting ourselves to God does not produce death and resurrection. It follows them. God acts, I know, I reckon, and only then do I present myself as one already alive from the dead.</p>
+    </div>
+  </div>
+</section>
+
+<main class="page-content" role="main" style="padding-top: 2.5rem;">
+
+  <!-- SECTION 1 -->
+  <section id="third-step" aria-labelledby="third-step-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="third-step-body" id="third-step-title">
+      The Third Step: Present Yourselves
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="third-step-body">
+      <p>Nee's idea of consecration is easily misread. It is tempting to picture it this way: I possess a set of natural talents, ambitions, strengths, and resources, and I now offer this old life to God so that He can improve it and put it to use. That picture sounds humble, but it quietly ignores everything Week 5 has already established. The old creation has gone to the cross. Romans 6 does not ask believers to present themselves as though they had never died with Christ.</p>
+      <p>Instead, Paul is precise about what is being presented: "present yourselves unto God, as those that are alive from the dead" (Romans 6:13). The life being offered is resurrection life, not the old, unimproved self. This changes the whole order of events. The sequence is not "I surrender sufficiently, and God finally acts." It is "God has already acted; I know it; I reckon it true; and now I present myself" as one who already stands on the resurrection side of the cross.</p>
+      <div class="callout">
+        <strong>The Progression</strong>
+        <p><strong>Know</strong> &mdash; what God has done. <strong>Reckon</strong> &mdash; God's fact as true. <strong>Present</strong> &mdash; myself to God as one alive from the dead.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 2 -->
+  <section id="alive-from-dead" aria-labelledby="alive-from-dead-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="alive-from-dead-body" id="alive-from-dead-title">
+      Alive From the Dead
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="alive-from-dead-body">
+      <p>The phrase "as alive from the dead" is easy to read past, but it carries the weight of everything the study has covered so far. It means the believer is not negotiating with God from a position of unresolved guilt or unfinished business, hoping that a sincere enough offering of the old self will be accepted. The offering has already been settled. What is presented is a life that has already passed through death and stands now in resurrection.</p>
+      <p>This is why presenting cannot be the first move in the Christian life. It has to come after knowing and reckoning, because presenting an old, undealt-with self to God would simply be another attempt to improve Adam by consecrating him. Presenting a life that is genuinely alive from the dead is a different act altogether. It is the grateful, deliberate response of someone who has already received everything necessary to make the offering meaningful.</p>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 3 -->
+  <section id="who-owns" aria-labelledby="who-owns-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="who-owns-body" id="who-owns-title">
+      Who Owns This Life?
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="who-owns-body">
+      <p>Nee moves the question of consecration beyond "what am I willing to give God" toward a more searching question: "to whom do I belong?" This is not a matter of occasional generosity toward God from resources that are fundamentally mine. It is a matter of ownership. My body belongs to God. My hands belong to God. My mind, my abilities, my time, my possessions, and my future all belong to Him. The issue is not what I am prepared to donate. It is whose I already am.</p>
+
+      <div class="table-scroll">
+        <table class="compare-table" aria-label="Giving something to God compared to presenting myself to God">
+          <thead>
+            <tr>
+              <th>Giving Something to God</th>
+              <th>Presenting Myself to God</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-problem">Assumes it fundamentally belongs to me</td>
+              <td class="col-answer">Recognizes that I belong to Another</td>
+            </tr>
+            <tr>
+              <td class="col-problem">Often concerns individual decisions</td>
+              <td class="col-answer">Concerns the whole person</td>
+            </tr>
+            <tr>
+              <td class="col-problem">Can be occasional</td>
+              <td class="col-answer">Establishes a continuing posture</td>
+            </tr>
+            <tr>
+              <td class="col-problem">"What will I give?"</td>
+              <td class="col-answer">"What does the Owner desire?"</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout-crimson">
+        <strong>Whose Money Is It?</strong>
+        <p>Nee illustrates this with a simple picture of money. Money that belongs to me may be spent according to my own wishes. Money entrusted to me by someone else must be handled according to that person's wishes, not mine. Consecration changes the governing question from "what do I want to do with my life?" to "what does God desire to do with what already belongs to Him?"</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 4 -->
+  <section id="hands-illustration" aria-labelledby="hands-illustration-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="hands-illustration-body" id="hands-illustration-title">
+      "I Did Not Bring My Hands"
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="hands-illustration-body">
+      <p>One of Nee's most memorable pictures involves a Chinese Christian travelling by train who was invited to join a card game. He declined, explaining, in effect, that he had not brought his hands with him. His hands were, of course, physically present and perfectly capable of holding cards. His point was that they no longer belonged to him to use as he pleased. They belonged to the Lord.</p>
+      <p><strong>What Nee is showing us:</strong> Paul's language in Romans 6 is not abstract. It concerns the actual members of the body: hands, eyes, mind, time, and capacities, presented to God rather than reserved for the believer's own disposal. The practical question this raises is direct. If my hands, my eyes, my mind, my body, my time, and my capacities belong to the Lord, how does His ownership shape what I do with them, day by day, in ordinary decisions that have nothing to do with dramatic moments of crisis?</p>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 5 -->
+  <section id="separated-unto" aria-labelledby="separated-unto-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="separated-unto-body" id="separated-unto-title">
+      Separated Unto the Lord
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="separated-unto-body">
+      <p>Nee's picture of holiness is deliberately positive. Holiness is not chiefly separation from sin, though it includes that. It is separation unto God. This echoes the Old Testament pattern in which an object becomes holy because it has been designated exclusively for God's use, not because it has undergone some private moral transformation of its own.</p>
+      <p>A life presented to God moves from separation from the old order toward separation unto the Lord. This applies across the whole of ordinary life: work, relationships, time, finances, abilities, the physical body, ambitions, and future plans. None of this is meant to curdle into legalism, a list of restrictions to be policed. The emphasis is belonging. A thing's holiness is bound up with whom it has been set apart for, and a life set apart for God is, by definition, a holy life, whatever shape its daily activities happen to take.</p>
+      <div class="callout">
+        <strong>From Separation, Unto Separation</strong>
+        <p>Separated from the old order that the cross has already ended. Separated unto the Lord to whom this new life belongs. The movement is not merely away from something. It is toward Someone.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 6 -->
+  <section id="present-not-yield" aria-labelledby="present-not-yield-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="present-not-yield-body" id="present-not-yield-title">
+      Present, Not Merely Yield
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="present-not-yield-body">
+      <p>The choice of language matters. "Yield" can sound passive, as though God wrestles with a reluctant believer until resistance finally gives out. "Present" is deliberate and active. It describes someone who consciously places themselves at God's disposal, not because they have been worn down, but because they already recognize whose they are.</p>
+      <p>Presenting, understood this way, is not reluctant surrender after defeat. It is the settled response of someone who knows that resurrection life belongs to God and chooses, with full awareness, to place it in His hands. This is a considerably more dignified picture than grudging compliance, and it matches the tone of everything Weeks 3 through 5 have already established about knowing and reckoning God's accomplished fact.</p>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 7 -->
+  <section id="servant-or-slave" aria-labelledby="servant-or-slave-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="servant-or-slave-body" id="servant-or-slave-title">
+      Servant or Slave?
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="servant-or-slave-body">
+      <p>Romans 6:16 to 23 uses intentionally strong language. The Christian has undergone a change of masters, not a change of hobbies. Before, the believer served sin, and the wages of that service were death. Now, the believer serves God, and the outcome is sanctification and life. This is not a volunteer arrangement in which God occasionally receives whatever spare time a busy life happens to leave over. It is a change of ownership as total as the one it replaces.</p>
+
+      <div class="table-scroll">
+        <table class="compare-table" aria-label="Old mastery compared to new mastery">
+          <thead>
+            <tr>
+              <th>Old Mastery</th>
+              <th>New Mastery</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="color: var(--text);">Sin &#8594; obedience &#8594; death</td>
+              <td style="color: var(--text-muted);">God &#8594; obedience &#8594; sanctification &#8594; life</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>There is a real difference between coercive slavery to sin and joyful belonging to God, and Nee does not want that difference softened into indifference. The believer's new service is not fearful compliance under threat. It is glad obedience to a good Master. But Paul's ownership language is not weakened by that gladness. It remains true, in the fullest sense, that the believer belongs to God and no longer has the right of self-disposal that sin's slavery had already taken away.</p>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 8 -->
+  <section id="ownership-daily-life" aria-labelledby="ownership-daily-life-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="ownership-daily-life-body" id="ownership-daily-life-title">
+      Ownership in Daily Life
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="ownership-daily-life-body">
+      <p>None of this is meant to sound like "try harder for God." That would quietly undo everything Weeks 2 through 5 have built. The sequence remains grace, revelation, faith, and presentation, not effort, worthiness, and acceptance. Presenting ourselves is the response to what God has already accomplished, not a bid to earn His approval.</p>
+      <p>With that guardrail firmly in place, the practical questions are worth sitting with honestly. What do I still instinctively describe as "mine"? How would God's ownership change the way I think about my time, my career, my money, my abilities, my body, my relationships, and my plans? Is consecration something I revisit periodically as a decision, or a reality I am increasingly learning to live from? And what is the real difference between offering God my old natural strength and presenting myself, in Paul's phrase, as alive from the dead?</p>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 9: GUIDED REFLECTION -->
+  <section id="reflection" aria-labelledby="reflection-title">
+    <h2 id="reflection-title">Guided Reflection</h2>
+    <p style="color: var(--text-muted); margin-bottom: 1.75rem; font-size: 0.94rem;">Take time with each question. These are not meant to be answered quickly. Consider working through them in a journal or in a quiet conversation with God.</p>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 1</span>
+      <p class="question">Have I thought of consecration mainly as "what am I willing to give God" rather than "to whom do I already belong"? What difference does that shift make?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 2</span>
+      <p class="question">What do I still instinctively describe as "mine": my time, my money, my abilities, my body, my future? What would it mean to see these as already His?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 3</span>
+      <p class="question">The man on the train said he had not brought his hands. What would it look like, this week, to treat some ordinary capacity of mine the same way?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 4</span>
+      <p class="question">Do I think of holiness mainly as separation from sin, or have I grasped Nee's more positive picture of separation unto the Lord?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 5</span>
+      <p class="question">Is my relationship with God more like reluctant yielding after resistance, or deliberate presenting from a settled recognition of whose I am?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 6</span>
+      <p class="question">Where might I be quietly treating my service to God as a volunteer arrangement rather than the total change of ownership Romans 6 describes?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 7</span>
+      <p class="question">What is the practical difference, in my own life, between offering God my old natural strength and presenting myself as one alive from the dead?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 8</span>
+      <p class="question">Is consecration, for me, a decision I revisit occasionally, or a reality I am learning to live from continually? What would help move it toward the latter?</p>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 10: PAUSE AND PRAY -->
+  <section id="prayer" aria-labelledby="prayer-title">
+    <div class="prayer-section">
+      <h2 id="prayer-title">Pause and Pray</h2>
+      <div class="prayer-text">
+        <p>Heavenly Father,</p>
+        <br>
+        <p>Thank You that I do not come to You offering an old, unimproved life, hoping that my sincerity might be enough. Thank You that, because of the cross and the resurrection, I can present myself to You as one already alive from the dead.</p>
+        <br>
+        <p>I confess that I have often treated my life as fundamentally mine, occasionally lending You a portion of it as though I were doing You a favour. Forgive me for the small, quiet ways I have withheld what already belongs to You: my time, my abilities, my plans, my body, my future.</p>
+        <br>
+        <p>Teach me to see holiness not merely as staying away from wrong but as belonging wholly to You. Teach me the difference between reluctant yielding and deliberate presenting, and give me the grace to offer myself to You not out of fear, but out of the settled knowledge of whose I already am.</p>
+        <br>
+        <p>Where I have called something mine that is truly Yours, help me release it gladly, trusting the good Master into whose hands I am placing it.</p>
+        <br>
+        <p>Amen.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 11: CHAPTER SUMMARY -->
+  <section id="summary" aria-labelledby="summary-title">
+    <h2 id="summary-title">Chapter Summary</h2>
+    <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.94rem;">The following points gather together the major threads of this chapter.</p>
+
+    <div class="summary-item">
+      <div class="summary-num" aria-hidden="true">1</div>
+      <div class="summary-text"><strong>Presenting Is the Third Step, Not the First.</strong> Romans 6 moves from knowing to reckoning to presenting. Presenting ourselves to God follows what He has already accomplished; it does not produce it.</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-num" aria-hidden="true">2</div>
+      <div class="summary-text"><strong>The Life Presented Is Resurrection Life.</strong> Paul's phrase "as alive from the dead" is essential. We are not offering an unimproved old self for God to fix. We are presenting a life that has already passed through death into resurrection.</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-num" aria-hidden="true">3</div>
+      <div class="summary-text"><strong>The Governing Question Is Ownership.</strong> Consecration moves from "what will I give God" to "to whom do I belong." My hands, mind, time, and possessions are not mine to lend occasionally; they are His.</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-num" aria-hidden="true">4</div>
+      <div class="summary-text"><strong>Holiness Is Separation Unto, Not Only From.</strong> Holiness is chiefly positive: a life set apart for God's use, not merely a life kept away from sin.</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-num" aria-hidden="true">5</div>
+      <div class="summary-text"><strong>"Present" Is Deliberate, Not Reluctant.</strong> Presenting ourselves is the active, settled response of someone who already knows whose they are, not grudging surrender after resistance has been worn down.</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-num" aria-hidden="true">6</div>
+      <div class="summary-text"><strong>A Change of Masters, Not a Change of Hobbies.</strong> Romans 6:16&ndash;23 describes total ownership passing from sin to God. This is not a volunteer relationship but a genuine change of belonging, met with grateful obedience rather than fear.</div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 12: LOOKING AHEAD -->
+  <section id="looking-ahead" aria-labelledby="ahead-title">
+    <h2 id="ahead-title">Looking Ahead</h2>
+    <div class="ahead-card">
+      <div class="ahead-arrow" aria-hidden="true">&#8594;</div>
+      <div>
+        <p>Week 6 has traced the third step in Nee's progression from Romans 6: presenting ourselves to God as those who are alive from the dead, in glad recognition that our whole life already belongs to Him.</p>
+        <p>Week 7 steps back to ask a larger question that this presenting assumes an answer to: why does God want us for Himself at all? Presenting ourselves to God makes fullest sense only once we understand the eternal purpose for which He has redeemed us, the great "why" behind everything traced so far in this study.</p>
+        <p>The believer who has grasped ownership and presentation is ready to ask not only "what does God want from my life" but "what has God always wanted, from before the foundation of the world, in bringing a people to Himself."</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMORY AID -->
+  <div class="memory-aid" role="note" aria-label="A simple way to remember this chapter">
+    <span class="ma-label">A Simple Way to Remember This Chapter</span>
+    <div class="memory-line">
+      <span class="memory-label">Know</span>
+      <span class="memory-colon" aria-hidden="true">&#9135;</span>
+      <span class="memory-truth">What God has done</span>
+    </div>
+    <div class="memory-line">
+      <span class="memory-label">Reckon</span>
+      <span class="memory-colon" aria-hidden="true">&#9135;</span>
+      <span class="memory-truth">Count it true</span>
+    </div>
+    <div class="memory-line">
+      <span class="memory-label">Present</span>
+      <span class="memory-colon" aria-hidden="true">&#9135;</span>
+      <span class="memory-truth">Myself to God, as alive from the dead</span>
+    </div>
+    <div class="memory-line">
+      <span class="memory-label">The reason</span>
+      <span class="memory-colon" aria-hidden="true">&#9135;</span>
+      <span class="memory-truth">I am not my own. I belong to God.</span>
+    </div>
+  </div>
+
+  <!-- CHAPTER NAVIGATION -->
+  <nav class="chapter-nav" aria-label="Chapter navigation">
+    <a href="chapter-5.html" class="nav-prev">&#8592; Week 5: The Divide of the Cross</a>
+    <span style="font-family: var(--font-sans); font-size: 10px; color: var(--text-subtle); letter-spacing: 0.1em; text-transform: uppercase;">Week 6 of 13</span>
+    <span class="nav-disabled" aria-disabled="true">Week 7: The Eternal Purpose &#8594;</span>
+  </nav>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer-inner">
+    <div>
+      <div class="footer-brand">The Normal Christian Life</div>
+      <div style="font-family: var(--font-sans); font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 0.25rem; letter-spacing: 0.08em; text-transform: uppercase;">A Guided Weekly Study</div>
+      <div class="footer-sub">&copy; 2026 &nbsp;&bull;&nbsp; A discipleship resource &nbsp;&bull;&nbsp; All rights reserved</div>
+    </div>
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <a href="../index.html">&#8592; Back to Home</a>
+      <a href="chapter-1.html">Week 1: The Blood of Christ</a>
+      <a href="chapter-2.html">Week 2: The Cross of Christ</a>
+      <a href="chapter-3.html">Week 3: The Path of Progress: Knowing</a>
+      <a href="chapter-4.html">Week 4: The Path of Progress: Reckoning</a>
+      <a href="chapter-5.html">Week 5: The Divide of the Cross</a>
+      <a href="chapter-6.html">Week 6: Presenting Ourselves to God</a>
+    </nav>
+  </div>
+</footer>
+
+<button id="back-top" aria-label="Back to top" title="Back to top">&#8593;</button>
+<script src="../script.js"></script>
+<script>
+(function() {
+  var HEADER_H    = 60;
+  var PRIMARY_H   = 42;
+  var SECONDARY_H = 34;
+  var SCROLL_OFFSET = HEADER_H + PRIMARY_H + 20;
+
+  var phaseMap = {
+    'presenting': { subId: 'sub-presenting', sections: ['third-step','alive-from-dead'] },
+    'ownership':  { subId: 'sub-ownership',  sections: ['who-owns','hands-illustration'] },
+    'separation': { subId: 'sub-separation', sections: ['separated-unto','present-not-yield'] },
+    'daily-life': { subId: 'sub-daily-life', sections: ['servant-or-slave','ownership-daily-life'] },
+    'close':      { subId: 'sub-close',      sections: ['reflection','prayer','summary','looking-ahead'] }
+  };
+
+  var phaseBtns = document.querySelectorAll('.phase-btn');
+  var subBtns   = document.querySelectorAll('.sub-btn');
+  var openPhase = null;
+
+  function closeAll() {
+    document.querySelectorAll('.section-nav-secondary').forEach(function(el) {
+      el.classList.remove('visible');
+    });
+    phaseBtns.forEach(function(b) {
+      b.classList.remove('open');
+      b.setAttribute('aria-expanded', 'false');
+    });
+    openPhase = null;
+  }
+
+  phaseBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var phase = btn.dataset.phase;
+      if (openPhase === phase) { closeAll(); return; }
+      closeAll();
+      var info = phaseMap[phase];
+      if (!info) return;
+      var subRow = document.getElementById(info.subId);
+      if (!subRow) return;
+      subRow.classList.add('visible');
+      btn.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+      openPhase = phase;
+    });
+  });
+
+  subBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var target = document.getElementById(btn.dataset.target);
+      if (!target) return;
+      var extraOffset = openPhase ? SECONDARY_H : 0;
+      var top = target.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET - extraOffset;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+      closeAll();
+    });
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.section-nav')) closeAll();
+  });
+
+  var allSectionIds = Object.values(phaseMap).reduce(function(acc, info) {
+    return acc.concat(info.sections);
+  }, []);
+
+  function getPhaseForSection(id) {
+    for (var phase in phaseMap) {
+      if (phaseMap[phase].sections.indexOf(id) !== -1) return phase;
+    }
+    return null;
+  }
+
+  function updateActivePhase() {
+    var threshold = SCROLL_OFFSET + 20;
+    var activeId  = allSectionIds[0];
+    allSectionIds.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top < threshold) activeId = id;
+    });
+    var activePhase = getPhaseForSection(activeId);
+    phaseBtns.forEach(function(b) {
+      b.classList.toggle('active', b.dataset.phase === activePhase);
+    });
+    subBtns.forEach(function(b) {
+      b.classList.toggle('active', b.dataset.target === activeId);
+    });
+  }
+
+  window.addEventListener('scroll', updateActivePhase, { passive: true });
+  updateActivePhase();
+}());
+</script>
+</body>
+</html>

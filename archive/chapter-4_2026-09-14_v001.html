@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 4: The Path of Progress: Reckoning — The Normal Christian Life</title>
+<link rel="stylesheet" href="../styles.css">
+<style>
+  .collapsible-btn {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-style: normal;
+    font-size: clamp(1rem, 2.2vw, 1.4rem) !important;
+    font-family: var(--font-sans) !important;
+    font-weight: 500 !important;
+  }
+  h2 {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-style: normal;
+    font-size: clamp(1rem, 2.2vw, 1.4rem);
+    font-family: var(--font-sans);
+    font-weight: 500;
+  }
+  .card h3 { font-size: 11px; font-weight: 700; color: var(--text); letter-spacing: 0.18em; }
+  .reflection-card p.question { font-style: normal; }
+  .prayer-section .prayer-text { font-style: normal; }
+  .memory-truth { font-style: normal; }
+  .key-truth p { font-style: normal; }
+
+  /* ── TWO-ROW COLLAPSIBLE SECTION NAVIGATOR ── */
+  .section-nav {
+    position: sticky;
+    top: 60px;
+    z-index: 150;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border);
+    /* Prevent content from bleeding above on mobile */
+    box-shadow: 0 -4px 0 4px var(--bg-surface);
+  }
+  .section-nav-primary {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .section-nav-primary::-webkit-scrollbar { display: none; }
+  .phase-btn {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 0.85rem 1rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .phase-btn:hover { color: var(--text-muted); }
+  .phase-btn.active { color: var(--text); border-bottom-color: var(--text); }
+  .phase-btn.open { color: var(--text); }
+  .phase-chevron {
+    font-size: 8px;
+    transition: transform 0.2s;
+    opacity: 0.5;
+  }
+  .phase-btn.open .phase-chevron { transform: rotate(180deg); opacity: 1; }
+  .section-nav-secondary {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: none;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    background: var(--bg-raised);
+    border-top: 1px solid var(--border);
+  }
+  .section-nav-secondary::-webkit-scrollbar { display: none; }
+  .section-nav-secondary.visible { display: flex; }
+  .sub-btn {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+    background: none;
+    border: none;
+    border-bottom: 1px solid transparent;
+    padding: 0.65rem 0.9rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s;
+    flex-shrink: 0;
+  }
+  .sub-btn:hover { color: var(--text-muted); }
+  .sub-btn.active { color: var(--text); border-bottom-color: var(--text-subtle); }
+
+  @media (max-width: 700px) {
+    .section-nav-primary,
+    .section-nav-secondary { padding: 0 1.25rem; }
+    .phase-btn { padding: 0.8rem 0.75rem; font-size: 9px; }
+  }
+</style>
+<script>
+  (function(){var s=localStorage.getItem('ncl-font-size');if(s&&s!=='standard')document.documentElement.setAttribute('data-font',s);})();
+</script>
+</head>
+<body>
+
+<div id="progress-bar" role="progressbar" aria-label="Reading progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+<header class="site-header" role="banner">
+  <div class="site-header-inner">
+    <a href="../index.html" class="site-logo" aria-label="Home">The Normal Christian Life</a>
+    <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="chapter-1.html">Week 1</a>
+      <a href="chapter-2.html">Week 2</a>
+      <a href="chapter-3.html">Week 3</a>
+      <a href="chapter-4.html" class="active" aria-current="page">Week 4</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Toggle navigation">&#9776;</button>
+  </div>
+</header>
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <a href="../index.html">Home</a>
+  <span class="sep" aria-hidden="true">&#8250;</span>
+  <span class="current">Week 4: The Path of Progress: Reckoning</span>
+</nav>
+
+<!-- TWO-ROW SECTION NAVIGATOR -->
+<nav class="section-nav" aria-label="Chapter sections" id="chapter-nav">
+
+  <div class="section-nav-primary">
+    <button class="phase-btn active" data-phase="foundation" aria-expanded="false">
+      Foundation <span class="phase-chevron">&#9660;</span>
+    </button>
+    <button class="phase-btn" data-phase="divine-fact" aria-expanded="false">
+      Divine Fact <span class="phase-chevron">&#9660;</span>
+    </button>
+    <button class="phase-btn" data-phase="faith" aria-expanded="false">
+      Faith <span class="phase-chevron">&#9660;</span>
+    </button>
+    <button class="phase-btn" data-phase="daily-life" aria-expanded="false">
+      Daily Life <span class="phase-chevron">&#9660;</span>
+    </button>
+    <button class="phase-btn" data-phase="close" aria-expanded="false">
+      Reflect &amp; Close <span class="phase-chevron">&#9660;</span>
+    </button>
+  </div>
+
+  <div class="section-nav-secondary" id="sub-foundation">
+    <button class="sub-btn" data-target="why-reckoning">Why Reckoning Matters</button>
+    <button class="sub-btn" data-target="reckoning-follows">Reckoning Follows Knowing</button>
+  </div>
+
+  <div class="section-nav-secondary" id="sub-divine-fact">
+    <button class="sub-btn" data-target="unchanging-fact">God's Fact Is Unchanging</button>
+    <button class="sub-btn" data-target="dead-indeed">Dead Indeed Unto Sin</button>
+  </div>
+
+  <div class="section-nav-secondary" id="sub-faith">
+    <button class="sub-btn" data-target="not-pretending">Reckoning Is Not Pretending</button>
+    <button class="sub-btn" data-target="faith-above-feeling">Faith Above Feeling</button>
+  </div>
+
+  <div class="section-nav-secondary" id="sub-daily-life">
+    <button class="sub-btn" data-target="living-from-fact">Living from God's Fact</button>
+    <button class="sub-btn" data-target="rest-not-striving">Rest Instead of Striving</button>
+  </div>
+
+  <div class="section-nav-secondary" id="sub-close">
+    <button class="sub-btn" data-target="reflection">Guided Reflection</button>
+    <button class="sub-btn" data-target="prayer">Pause and Pray</button>
+    <button class="sub-btn" data-target="summary">Chapter Summary</button>
+    <button class="sub-btn" data-target="looking-ahead">Looking Ahead</button>
+  </div>
+
+</nav>
+
+<nav id="toc-float" aria-label="Page sections">
+  <div class="toc-dot" data-target="why-reckoning"      data-label="Why Reckoning Matters"></div>
+  <div class="toc-dot" data-target="reckoning-follows"  data-label="Reckoning Follows Knowing"></div>
+  <div class="toc-dot" data-target="unchanging-fact"    data-label="God's Fact Is Unchanging"></div>
+  <div class="toc-dot" data-target="dead-indeed"        data-label="Dead Indeed Unto Sin"></div>
+  <div class="toc-dot" data-target="not-pretending"     data-label="Not Pretending"></div>
+  <div class="toc-dot" data-target="faith-above-feeling" data-label="Faith Above Feeling"></div>
+  <div class="toc-dot" data-target="living-from-fact"   data-label="Living from God's Fact"></div>
+  <div class="toc-dot" data-target="rest-not-striving"  data-label="Rest Instead of Striving"></div>
+  <div class="toc-dot" data-target="reflection"         data-label="Reflection"></div>
+  <div class="toc-dot" data-target="prayer"             data-label="Prayer"></div>
+  <div class="toc-dot" data-target="summary"            data-label="Summary"></div>
+  <div class="toc-dot" data-target="looking-ahead"      data-label="Looking Ahead"></div>
+</nav>
+
+<section class="chapter-hero" id="hero" aria-labelledby="chapter-title">
+  <div class="chapter-hero-inner">
+    <span class="series-label">The Normal Christian Life &nbsp;&bull;&nbsp; Watchman Nee</span>
+    <span class="chapter-num">Chapter Four &nbsp;&bull;&nbsp; Week 4 of 13</span>
+    <h1 id="chapter-title">The Path of<br>Progress: Reckoning</h1>
+    <span class="hero-ornament" aria-hidden="true">&#10022;</span>
+    <p class="hero-intro">
+      Week 3 established the foundational fact: the believer has died with Christ. This is not a future aspiration but a completed reality, grounded in the historic event of the cross. Week 4 now asks how the believer responds to that fact in the ordinary movement of daily life. Nee teaches that the next step in the path of progress is reckoning: not trying to make God's declaration come true, but counting as true what God has already declared.
+    </p>
+    <div class="key-truth" role="note">
+      <span class="kt-label">The Central Truth of This Chapter</span>
+      <p>Faith does not create the fact of my death with Christ. Faith rests on the fact God has already established.</p>
+    </div>
+  </div>
+</section>
+
+<main class="page-content" role="main" style="padding-top: 2.5rem;">
+
+  <!-- SECTION 1 -->
+  <section id="why-reckoning" aria-labelledby="why-reckoning-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="why-reckoning-body" id="why-reckoning-title">
+      Why Reckoning Matters
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="why-reckoning-body">
+      <p>There is a particular kind of theological paralysis that afflicts many sincere believers. They understand the doctrine. They can articulate the truth of Romans 6. They affirm that they have died with Christ and been raised with Him. And yet, in the ordinary moments of daily life, none of this seems to make any practical difference. The same temptations press. The same patterns recur. The knowledge remains suspended at a distance from experience, theoretical without being transforming.</p>
+      <p>The gap between knowing and living is not bridged by more knowledge. It is bridged by reckoning. Reckoning is the practical response of faith to what God has revealed. It is the deliberate act of treating God's declaration as operative truth in the present moment. Without reckoning, all the knowing of Week 3 remains conceptual. With it, divine fact begins to function in daily life.</p>
+      <p>Watchman Nee insists that this step cannot be bypassed. The believer who knows the fact and yet continues to live as though nothing has changed has not yet truly reckoned. And the one who attempts to reckon without having truly known is performing an exercise without a foundation. Reckoning is the living hinge between revelation and experience.</p>
+      <div class="callout">
+        <strong>The Practical Weight of This Step</strong>
+        <p>Reckoning is not a crisis experience reserved for a particular moment of spiritual breakthrough. It is a daily orientation of faith. It is the habit of returning to what God has said and treating it as true, regardless of what the inner life seems to be reporting in that moment. This is what it means to walk by faith and not by sight.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 2 -->
+  <section id="reckoning-follows" aria-labelledby="reckoning-follows-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="reckoning-follows-body" id="reckoning-follows-title">
+      Reckoning Follows Knowing
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="reckoning-follows-body">
+      <p>The order that Romans 6 establishes is not accidental. Knowing comes first. Reckoning follows. The sequence matters because reckoning depends entirely on the content of what is known. Faith does not create reality. Faith rests upon reality already established. God never asks the believer to count as true something He has not first declared to be true. Reckoning without knowing is not faith. It is presumption operating in a vacuum.</p>
+      <p>This is why any attempt to short-circuit Week 3 in order to get to Week 4 will produce a hollow exercise. The reckoning will have no weight because it has no substance beneath it. The believer who has not truly seen the fact of their death with Christ will find reckoning mechanical, like repeating a formula that never quite convinces. The one who has seen the fact will find reckoning the natural expression of what they have already received.</p>
+
+      <div class="table-scroll">
+        <table class="compare-table" aria-label="The path of progress">
+          <thead>
+            <tr>
+              <th>Step</th>
+              <th>Meaning</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="color: var(--text);">Knowing</td>
+              <td style="color: var(--text-muted);">Seeing what God has done as an inward revelation</td>
+            </tr>
+            <tr>
+              <td style="color: var(--text);">Reckoning</td>
+              <td style="color: var(--text-muted);">Counting God's declared fact as true in daily life</td>
+            </tr>
+            <tr>
+              <td style="color: var(--text);">Presenting</td>
+              <td style="color: var(--text-muted);">Yielding ourselves to God as alive from the dead</td>
+            </tr>
+            <tr>
+              <td style="color: var(--text);">Walking</td>
+              <td style="color: var(--text-muted);">Living continuously in step with the Spirit</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <strong>Faith Rests on Fact</strong>
+        <p>Reckoning is not a technique for generating spiritual experience. It is faith responding to divine accomplishment. The direction of reckoning is always from fact to faith, not from desire to fact. God has spoken. The believer receives what God has said. This is the whole movement.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 3 -->
+  <section id="unchanging-fact" aria-labelledby="unchanging-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="unchanging-body" id="unchanging-title">
+      God's Fact Is Unchanging
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="unchanging-body">
+      <p>The central verse for this chapter is Romans 6:11: "Likewise reckon ye also yourselves to be dead indeed unto sin, but alive unto God through Jesus Christ our Lord." The command to reckon is built upon a preceding reality. The believer is not commanded to make themselves dead to sin. They are commanded to count themselves as what God has already declared them to be in Christ.</p>
+      <p>The divine fact does not change with the believer's emotional state. It does not become more or less true depending on how the day has gone, how temptation has pressed, or how much inner calm the believer is presently experiencing. God's work in Christ was accomplished in history, and history does not alter itself to accommodate the fluctuations of human feeling.</p>
+      <p>Reckoning therefore means standing on God's side against appearances. It means choosing to treat what God has said as more reliable than what the inner life seems to be reporting. This is not a denial of experience. It is a refusal to give experience the final word when God has already spoken.</p>
+
+      <div class="callout callout-crimson">
+        <strong>Illustration: The Account and the Cheque</strong>
+        <p>When a person writes a cheque, they do so because the funds already exist in the account. The cheque does not create the money. It is simply an instrument that draws upon what is already there. No one says that writing the cheque is pretending the money exists. The money exists. The cheque acts upon that existing reality.</p>
+        <p style="margin-top: 0.75rem;">Reckoning works in exactly the same way. The believer does not reckon themselves dead to sin in order to make it become true. They reckon it because it is already true in Christ. Reckoning is the instrument that draws upon what God has already deposited. The reckoning has worth only because the underlying account has already been established by someone other than the believer.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 4 -->
+  <section id="dead-indeed" aria-labelledby="dead-indeed-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="dead-indeed-body" id="dead-indeed-title">
+      Dead Indeed Unto Sin
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="dead-indeed-body">
+      <p>It is important to be precise about what reckoning oneself dead to sin actually means. It does not mean that sin has ceased to exist in the world around the believer, or that temptation has disappeared, or that the pull of old habits has evaporated without trace. A person who has died to sin may still encounter sin's enticements. The question is not whether those enticements are present, but what authority they have over the one who is now in Christ.</p>
+      <p>To be dead indeed unto sin is to reckon that sin no longer has rightful mastery over the believer in Adam. The relationship between the believer and the old Adamic principle has fundamentally changed. Sin's claim on the life inherited in Adam has been severed by death. The believer's identity is no longer located in Adam but in Christ. Reckoning means accepting God's verdict on this changed relationship and refusing to live as though the old arrangement still holds.</p>
+
+      <div class="table-scroll">
+        <table class="compare-table" aria-label="Human reasoning compared to reckoning">
+          <thead>
+            <tr>
+              <th>Human Reasoning</th>
+              <th>Reckoning</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-problem">I do not feel free from sin</td>
+              <td class="col-answer">God declares I died with Christ</td>
+            </tr>
+            <tr>
+              <td class="col-problem">I still struggle with old patterns</td>
+              <td class="col-answer">God's fact about me in Christ remains true</td>
+            </tr>
+            <tr>
+              <td class="col-problem">My experience fluctuates from day to day</td>
+              <td class="col-answer">Christ's finished work does not fluctuate</td>
+            </tr>
+            <tr>
+              <td class="col-problem">Feelings determine whether it is true</td>
+              <td class="col-answer">God's Word determines what is true</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <strong>Accepting God's Verdict</strong>
+        <p>Reckoning is an act of allegiance to God's Word over personal experience. It does not require the suppression of honest feeling, but it does require the subordination of feeling to divine declaration. The believer says, in effect: "Whatever my experience is reporting right now, God has said this is true of me in Christ, and I receive it as such."</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 5 -->
+  <section id="not-pretending" aria-labelledby="not-pretending-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="not-pretending-body" id="not-pretending-title">
+      Reckoning Is Not Pretending
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="not-pretending-body">
+      <p>A significant misunderstanding must be cleared away before reckoning can be received as the genuine act of faith it is. Some believers, upon hearing that they are to reckon themselves dead to sin, conclude that this is a form of spiritual self-deception, an exercise in telling themselves something is true when their experience seems to say otherwise. They feel that such an act would be dishonest, a deliberate disregard of reality.</p>
+      <p>But this misunderstands what faith is. Faith is not imagination. Faith is not the effort of positive thinking applied to spiritual matters. Faith is not pretending. Faith rests on objective fact, specifically on what God has accomplished in Christ and declared to be true in His Word. God never asks the believer to pretend. He asks the believer to trust what He has said above what experience seems to indicate.</p>
+      <p>The distinction is crucial. Pretending involves asserting something as true when there is no basis for it. Reckoning involves asserting something as true because the most reliable witness in existence, God Himself, has declared it to be so. These are not the same thing. One is self-deception. The other is faith in the God who cannot lie.</p>
+
+      <div class="callout callout-crimson">
+        <strong>Illustration: Sitting in a Chair</strong>
+        <p>When a person sits down in a chair, they are exercising a form of reckoning. They are trusting that the chair will hold their weight. They do not first spend time testing every joint and assessing every weld before committing themselves. They trust the chair based on sufficient reason, and they act on that trust.</p>
+        <p style="margin-top: 0.75rem;">They are not pretending the chair exists. They are not imagining that it is strong enough. They simply sit, trusting the object on which they have chosen to rest their weight. Reckoning works in the same way. The believer does not pretend they have died with Christ. They rest their weight on God's Word that this is so, and they act from that resting rather than from the perpetual self-analysis of whether they feel adequately dead.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 6 -->
+  <section id="faith-above-feeling" aria-labelledby="faith-feeling-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="faith-feeling-body" id="faith-feeling-title">
+      Faith Above Feeling
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="faith-feeling-body">
+      <p>One of the most consistent sources of confusion in the Christian life is the tendency to treat feelings as the authoritative measure of spiritual reality. When a believer feels close to God, they conclude that things are well. When they feel distant, they conclude that something must be wrong. When they reckon themselves dead to sin and still feel very much alive to it, they conclude that the reckoning must have failed.</p>
+      <p>Nee is careful to distinguish three distinct things that are often confused: the divine fact, faith in that fact, and the feeling that may or may not follow. These are not the same, and understanding their relationship is essential to a healthy Christian life.</p>
+
+      <div class="table-scroll">
+        <table class="compare-table" aria-label="Divine fact, faith, and feeling">
+          <thead>
+            <tr>
+              <th>Reality</th>
+              <th>Foundation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="color: var(--text);">Divine Fact</td>
+              <td style="color: var(--text-muted);">What God has accomplished and declared in Christ</td>
+            </tr>
+            <tr>
+              <td style="color: var(--text);">Faith</td>
+              <td style="color: var(--text-muted);">Resting on God's declared fact regardless of inner state</td>
+            </tr>
+            <tr>
+              <td style="color: var(--text);">Feeling</td>
+              <td style="color: var(--text-muted);">Variable inner experience that may or may not align with fact</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Feeling may eventually follow faith, as the inner life gradually aligns itself with what God has declared. But feeling cannot lead. When the believer waits for a feeling of deadness to sin before reckoning themselves dead to sin, they have reversed the order. They are asking experience to confirm God's Word before they will trust it, which is the very opposite of faith.</p>
+
+      <div class="key-truth" role="note">
+        <span class="kt-label">Key Truth</span>
+        <p>God's fact does not become true because I feel it. I begin to experience it because it is already true and I have received it by faith.</p>
+      </div>
+
+      <p>This does not mean that feelings are unimportant or that the believer should dismiss their inner life. It means that feelings occupy their proper place, downstream from fact and faith, not upstream from them. The believer honours their feelings as real without granting them authority they were never meant to have.</p>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 7 -->
+  <section id="living-from-fact" aria-labelledby="living-from-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="living-from-body" id="living-from-title">
+      Living from God's Fact
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="living-from-body">
+      <p>When reckoning becomes the believer's settled posture, the whole orientation of their Christian life shifts. They are no longer striving to achieve something that does not yet exist. They are learning to live from something that already does. They are not fighting for victory. They are beginning from Christ's accomplished victory and walking in what has been given.</p>
+      <p>This shift is fundamental. The believer who fights for victory is perpetually anxious, always uncertain whether they have done enough, always measuring progress against some internal standard that keeps moving. The believer who walks from victory has a different relationship to the Christian life altogether. Their energy is not spent on acquiring what they lack. It is spent on living from what they have.</p>
+
+      <div class="callout callout-crimson">
+        <strong>Illustration: The Inheritance Already Given</strong>
+        <p>Consider a child who has been left a substantial inheritance. The inheritance is fully settled. The legal documents are in order. The funds are in the account. The child did not labour to become an heir. They were born into the family, and the provision is theirs by gift. They do not need to earn it or achieve it or maintain it by performance. They simply need to live from what has already been given.</p>
+        <p style="margin-top: 0.75rem;">The Christian life in Christ is structured in the same way. What the believer has in Christ was not earned. It was given. The death, the resurrection, the new life, the freedom from sin's dominion: these were accomplished by Another and granted to those who are in Him. Reckoning is simply learning to live from this inheritance, treating it as fully real and presently available, because it is.</p>
+      </div>
+
+      <p>This does not produce complacency. A person who truly understands what they have been given in Christ does not treat it carelessly. They are moved by gratitude rather than anxiety, by wonder rather than effort. Their obedience is the natural response of someone who has seen the grace they live in, not the desperate striving of someone trying to secure a grace they are not sure they have.</p>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 8 -->
+  <section id="rest-not-striving" aria-labelledby="rest-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="rest-body" id="rest-title">
+      Rest Instead of Striving
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="rest-body">
+      <p>Self-effort in the Christian life is exhausting precisely because it never arrives. The believer who is striving to achieve a spiritual state they do not yet possess works without any assurance that the goal is reachable, because the measuring stick is always their own performance and their own inner condition. Progress feels perpetually insufficient. Every gain is shadowed by awareness of how much further there is to go.</p>
+      <p>Reckoning breaks this cycle because it changes what the believer is doing. They are no longer trying to achieve something. They are resting in something already achieved. This rest is not passivity. A person at rest is fully present, fully engaged, fully alive. But the energy they bring does not come from anxious striving. It comes from a settled position, a confidence in the completed work on which they stand.</p>
+
+      <div class="table-scroll">
+        <table class="compare-table" aria-label="Striving compared to reckoning">
+          <thead>
+            <tr>
+              <th>Striving</th>
+              <th>Reckoning</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-problem">Trying to achieve a spiritual state</td>
+              <td class="col-answer">Resting in Christ's accomplished work</td>
+            </tr>
+            <tr>
+              <td class="col-problem">Depending on self-effort</td>
+              <td class="col-answer">Depending on faith in God's declaration</td>
+            </tr>
+            <tr>
+              <td class="col-problem">Constant anxiety about sufficiency</td>
+              <td class="col-answer">Confidence grounded in Christ's sufficiency</td>
+            </tr>
+            <tr>
+              <td class="col-problem">Measuring by inward performance</td>
+              <td class="col-answer">Standing on God's Word above experience</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <strong>True Faith Produces Deeper Dependence</strong>
+        <p>The rest that reckoning produces is not the rest of indifference. It is the rest of dependence. The believer who is no longer striving for their own righteousness is freed to depend entirely on Christ's. And dependence on Christ is not a reduction of effort but a redirection of it. The energy that was spent on self-management is now available for obedience, for love, for the work of the kingdom, all of it flowing from a person who is resting in what God has already done.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 9: GUIDED REFLECTION -->
+  <section id="reflection" aria-labelledby="reflection-title">
+    <h2 id="reflection-title">Guided Reflection</h2>
+    <p style="color: var(--text-muted); margin-bottom: 1.75rem; font-size: 0.94rem;">Take time with each question. These are not meant to be answered quickly. Consider working through them in a journal or in a quiet conversation with God.</p>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 1</span>
+      <p class="question">Do I treat reckoning as an act of faith in what God has already declared, or as an attempt to convince myself of something I am not sure is true?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 2</span>
+      <p class="question">In which areas of my life do my feelings most strongly compete with God's Word? What would it mean to choose God's declaration over those feelings?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 3</span>
+      <p class="question">What is the practical difference between pretending something is true and reckoning on what God has said is true? Am I clear on this distinction in my own understanding?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 4</span>
+      <p class="question">Am I waiting to feel different before I will believe God's declaration about me in Christ? What would it mean to reverse that order and let faith precede feeling?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 5</span>
+      <p class="question">How does reckoning challenge my habitual tendency toward self-analysis? Where does constant inward monitoring replace resting on God's Word?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 6</span>
+      <p class="question">Where in my Christian life am I still striving for what Christ has already accomplished? What would it mean to stop striving and begin living from what is already given?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 7</span>
+      <p class="question">What would genuinely change in my daily life if I truly rested in the finished work of Christ rather than treating it as a goal still to be attained?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 8</span>
+      <p class="question">When my feelings contradict divine truth this week, how can I respond in faith rather than in reaction? What does a practical act of reckoning look like in that specific moment?</p>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 10: PAUSE AND PRAY -->
+  <section id="prayer" aria-labelledby="prayer-title">
+    <div class="prayer-section">
+      <h2 id="prayer-title">Pause and Pray</h2>
+      <div class="prayer-text">
+        <p>Heavenly Father,</p>
+        <br>
+        <p>I thank You for the finished work of Christ. I thank You that what He accomplished at the cross is complete, unchanging, and entirely sufficient. I thank You that my death with Christ is not a goal I must reach but a fact You have already established.</p>
+        <br>
+        <p>I confess that I have too often made my feelings the measure of Your truth. When I have felt distant, I have doubted Your declaration. When experience has seemed to contradict Your Word, I have given experience the final say. I have asked You to do what You have already done, and waited for feelings to confirm what faith should have already received.</p>
+        <br>
+        <p>I ask now for faith that truly rests on Your Word above my fluctuating inner state. Give me grace to reckon as true what You have declared: that I have died with Christ and am alive to God in Him. Not because I feel it, but because You have said it. Let this reckoning be genuine, grounded, and daily.</p>
+        <br>
+        <p>Deliver me from the exhaustion of striving for what is already mine in Christ. Let me live from Your inheritance rather than labour toward it. And where my feelings rise to contradict Your truth today, grant me the quiet confidence to stand on Your Word above all else.</p>
+        <br>
+        <p>Amen.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 11: CHAPTER SUMMARY -->
+  <section id="summary" aria-labelledby="summary-title">
+    <h2 id="summary-title">Chapter Summary</h2>
+    <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.94rem;">The following points gather together the major threads of this chapter.</p>
+
+    <div class="summary-item">
+      <div class="summary-num" aria-hidden="true">1</div>
+      <div class="summary-text"><strong>Reckoning Follows Knowing.</strong> Faith does not invent reality. It rests on divine reality already established. Reckoning can only be genuinely exercised when the knowing of Week 3 has already taken root.</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-num" aria-hidden="true">2</div>
+      <div class="summary-text"><strong>Faith Rests on What God Has Already Accomplished.</strong> Romans 6:11 calls believers to reckon themselves dead to sin and alive to God in Christ. This is not a command to produce a state. It is a command to treat a divine fact as operative truth.</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-num" aria-hidden="true">3</div>
+      <div class="summary-text"><strong>Reckoning Is Not Pretending or Imagination.</strong> Faith is grounded in objective fact, not in wishful thinking. God never asks the believer to claim something He has not first declared. Reckoning draws on what is already in the account.</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-num" aria-hidden="true">4</div>
+      <div class="summary-text"><strong>God's Fact Remains True Regardless of Feelings.</strong> Divine declaration does not fluctuate with inner experience. The believer must learn to stand on God's Word when feelings seem to point in the opposite direction. Feeling may follow faith, but it must not be permitted to lead.</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-num" aria-hidden="true">5</div>
+      <div class="summary-text"><strong>The Believer Is Called to Stand on God's Word.</strong> Reckoning is an act of allegiance: choosing God's declaration above personal experience. This is not dishonest. It is faith in the God who cannot lie, directed at what He has plainly said.</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-num" aria-hidden="true">6</div>
+      <div class="summary-text"><strong>Reckoning Leads from Striving into Rest.</strong> The believer who reckon discovers that they are not fighting for a victory that is uncertain. They are living from a victory already won. This produces rest, dependence, and a quality of obedience that self-effort could never generate.</div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 12: LOOKING AHEAD -->
+  <section id="looking-ahead" aria-labelledby="ahead-title">
+    <h2 id="ahead-title">Looking Ahead</h2>
+    <div class="ahead-card">
+      <div class="ahead-arrow" aria-hidden="true">&#8594;</div>
+      <div>
+        <p>Week 4 has established reckoning as the practical act of faith that responds to the divine fact of the believer's death with Christ. Reckoning is not pretending. It is not striving. It is the settled orientation of a person who has seen what God has done and is choosing to live from it.</p>
+        <p>Week 5 will take a step back to examine something Nee calls "the divide of the cross." The cross does not merely deal with individual sins or the individual old man. It creates a fundamental separation between two orders: the old creation and the new. Understanding what belongs to each order, and what the cross has divided, is essential for the practical outworking of the Christian life.</p>
+        <p>The believer who understands the divide the cross creates will have greater clarity about why certain things belong to the old life and cannot be carried into the new, and why the call to live from Christ's resurrection is not a partial renovation but a complete reorientation.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMORY AID -->
+  <div class="memory-aid" role="note" aria-label="A simple way to remember this chapter">
+    <span class="ma-label">A Simple Way to Remember This Chapter</span>
+    <div class="memory-line">
+      <span class="memory-label">God's fact</span>
+      <span class="memory-colon" aria-hidden="true">&#9135;</span>
+      <span class="memory-truth">I died with Christ</span>
+    </div>
+    <div class="memory-line">
+      <span class="memory-label">My response</span>
+      <span class="memory-colon" aria-hidden="true">&#9135;</span>
+      <span class="memory-truth">Count it true</span>
+    </div>
+    <div class="memory-line">
+      <span class="memory-label">My mistake</span>
+      <span class="memory-colon" aria-hidden="true">&#9135;</span>
+      <span class="memory-truth">Trusting feelings above God's Word</span>
+    </div>
+    <div class="memory-line">
+      <span class="memory-label">The result</span>
+      <span class="memory-colon" aria-hidden="true">&#9135;</span>
+      <span class="memory-truth">Rest instead of striving</span>
+    </div>
+  </div>
+
+  <!-- CHAPTER NAVIGATION -->
+  <nav class="chapter-nav" aria-label="Chapter navigation">
+    <a href="chapter-3.html" class="nav-prev">&#8592; Week 3: The Path of Progress: Knowing</a>
+    <span style="font-family: var(--font-sans); font-size: 10px; color: var(--text-subtle); letter-spacing: 0.1em; text-transform: uppercase;">Week 4 of 13</span>
+    <span class="nav-disabled" aria-disabled="true">Week 5: The Divide of the Cross &#8594;</span>
+  </nav>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer-inner">
+    <div>
+      <div class="footer-brand">The Normal Christian Life</div>
+      <div style="font-family: var(--font-sans); font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 0.25rem; letter-spacing: 0.08em; text-transform: uppercase;">A Guided Weekly Study</div>
+      <div class="footer-sub">&copy; 2026 &nbsp;&bull;&nbsp; A discipleship resource &nbsp;&bull;&nbsp; All rights reserved</div>
+    </div>
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <a href="../index.html">&#8592; Back to Home</a>
+      <a href="chapter-1.html">Week 1: The Blood of Christ</a>
+      <a href="chapter-2.html">Week 2: The Cross of Christ</a>
+      <a href="chapter-3.html">Week 3: The Path of Progress: Knowing</a>
+      <a href="chapter-4.html">Week 4: The Path of Progress: Reckoning</a>
+    </nav>
+  </div>
+</footer>
+
+<button id="back-top" aria-label="Back to top" title="Back to top">&#8593;</button>
+<script src="../script.js"></script>
+<script>
+(function() {
+  var HEADER_H    = 60;
+  var PRIMARY_H   = 42;
+  var SECONDARY_H = 34;
+  var SCROLL_OFFSET = HEADER_H + PRIMARY_H + 20;
+
+  var phaseMap = {
+    'foundation':  { subId: 'sub-foundation',  sections: ['why-reckoning','reckoning-follows'] },
+    'divine-fact': { subId: 'sub-divine-fact', sections: ['unchanging-fact','dead-indeed'] },
+    'faith':       { subId: 'sub-faith',       sections: ['not-pretending','faith-above-feeling'] },
+    'daily-life':  { subId: 'sub-daily-life',  sections: ['living-from-fact','rest-not-striving'] },
+    'close':       { subId: 'sub-close',       sections: ['reflection','prayer','summary','looking-ahead'] }
+  };
+
+  var phaseBtns = document.querySelectorAll('.phase-btn');
+  var subBtns   = document.querySelectorAll('.sub-btn');
+  var openPhase = null;
+
+  function closeAll() {
+    document.querySelectorAll('.section-nav-secondary').forEach(function(el) {
+      el.classList.remove('visible');
+    });
+    phaseBtns.forEach(function(b) {
+      b.classList.remove('open');
+      b.setAttribute('aria-expanded', 'false');
+    });
+    openPhase = null;
+  }
+
+  phaseBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var phase = btn.dataset.phase;
+      if (openPhase === phase) { closeAll(); return; }
+      closeAll();
+      var info = phaseMap[phase];
+      if (!info) return;
+      var subRow = document.getElementById(info.subId);
+      if (!subRow) return;
+      subRow.classList.add('visible');
+      btn.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+      openPhase = phase;
+    });
+  });
+
+  subBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var target = document.getElementById(btn.dataset.target);
+      if (!target) return;
+      var extraOffset = openPhase ? SECONDARY_H : 0;
+      var top = target.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET - extraOffset;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+      closeAll();
+    });
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.section-nav')) closeAll();
+  });
+
+  var allSectionIds = Object.values(phaseMap).reduce(function(acc, info) {
+    return acc.concat(info.sections);
+  }, []);
+
+  function getPhaseForSection(id) {
+    for (var phase in phaseMap) {
+      if (phaseMap[phase].sections.indexOf(id) !== -1) return phase;
+    }
+    return null;
+  }
+
+  function updateActivePhase() {
+    var threshold = SCROLL_OFFSET + 20;
+    var activeId  = allSectionIds[0];
+    allSectionIds.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top < threshold) activeId = id;
+    });
+    var activePhase = getPhaseForSection(activeId);
+    phaseBtns.forEach(function(b) {
+      b.classList.toggle('active', b.dataset.phase === activePhase);
+    });
+    subBtns.forEach(function(b) {
+      b.classList.toggle('active', b.dataset.target === activeId);
+    });
+  }
+
+  window.addEventListener('scroll', updateActivePhase, { passive: true });
+  updateActivePhase();
+}());
+</script>
+</body>
+</html>
