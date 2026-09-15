@@ -12,3 +12,4 @@ Copy-only archive. Nothing here is ever deleted or moved.
 | v001 | 2026-09-14 | 20:56 EDT | `chapter-3_2026-09-14_v001.html` | `7669e8c8c0ea` | Before adding Week 5/6 to nav, for consistency with existing site convention |
 | v002 | 2026-09-14 | 20:56 EDT | `chapter-2_2026-09-14_v002.html` | `896e47589bed` | Added Week 5 and Week 6 to header nav and footer nav |
 | v002 | 2026-09-14 | 20:56 EDT | `chapter-3_2026-09-14_v002.html` | `7e0d861f47b3` | Added Week 5 and Week 6 to header nav and footer nav |
+| v003 | 2026-09-14 | 20:57 EDT | `index_2026-09-14_v003.html` | `ab80e653ca68` | Current state after adding Week 5/6 to home page nav. Note: v001/v002 archive copies for index.html were reported as written by the versioning script but never actually persisted to disk in this sandbox (a filesystem inconsistency, confirmed by direct re-check); this is the first index.html snapshot that is verified to actually exist. |
