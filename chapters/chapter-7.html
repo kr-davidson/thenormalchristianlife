@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 7: The Eternal Purpose — The Normal Christian Life</title>
+<link rel="stylesheet" href="../styles.css">
+<style>
+  .collapsible-btn {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-style: normal;
+    font-size: clamp(1rem, 2.2vw, 1.4rem) !important;
+    font-family: var(--font-sans) !important;
+    font-weight: 500 !important;
+  }
+  h2 {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-style: normal;
+    font-size: clamp(1rem, 2.2vw, 1.4rem);
+    font-family: var(--font-sans);
+    font-weight: 500;
+  }
+  .card h3 { font-size: 11px; font-weight: 700; color: var(--text); letter-spacing: 0.18em; }
+  .reflection-card p.question { font-style: normal; }
+  .prayer-section .prayer-text { font-style: normal; }
+  .memory-truth { font-style: normal; }
+  .key-truth p { font-style: normal; }
+
+  /* ── TWO-ROW COLLAPSIBLE SECTION NAVIGATOR ── */
+  .section-nav {
+    position: sticky;
+    top: 60px;
+    z-index: 150;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border);
+    /* Prevent content from bleeding above on mobile */
+    box-shadow: 0 -4px 0 4px var(--bg-surface);
+  }
+  .section-nav-primary {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .section-nav-primary::-webkit-scrollbar { display: none; }
+  .phase-btn {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 0.85rem 1rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .phase-btn:hover { color: var(--text-muted); }
+  .phase-btn.active { color: var(--text); border-bottom-color: var(--text); }
+  .phase-btn.open { color: var(--text); }
+  .phase-chevron {
+    font-size: 8px;
+    transition: transform 0.2s;
+    opacity: 0.5;
+  }
+  .phase-btn.open .phase-chevron { transform: rotate(180deg); opacity: 1; }
+  .section-nav-secondary {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: none;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    background: var(--bg-raised);
+    border-top: 1px solid var(--border);
+  }
+  .section-nav-secondary::-webkit-scrollbar { display: none; }
+  .section-nav-secondary.visible { display: flex; }
+  .sub-btn {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+    background: none;
+    border: none;
+    border-bottom: 1px solid transparent;
+    padding: 0.65rem 0.9rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s;
+    flex-shrink: 0;
+  }
+  .sub-btn:hover { color: var(--text-muted); }
+  .sub-btn.active { color: var(--text); border-bottom-color: var(--text-subtle); }
+
+  @media (max-width: 700px) {
+    .section-nav-primary,
+    .section-nav-secondary { padding: 0 1.25rem; }
+    .phase-btn { padding: 0.8rem 0.75rem; font-size: 9px; }
+  }
+
+  /* ── PROGRESSION VISUALS (chapter-specific) ── */
+  .progression-line {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--text);
+    text-align: center;
+    line-height: 2;
+  }
+  @media (max-width: 560px) { .progression-line { font-size: 9.5px; letter-spacing: 0.06em; } }
+</style>
+<script>
+  (function(){var s=localStorage.getItem('ncl-font-size');if(s&&s!=='standard')document.documentElement.setAttribute('data-font',s);})();
+</script>
+</head>
+<body>
+
+<div id="progress-bar" role="progressbar" aria-label="Reading progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+<header class="site-header" role="banner">
+  <div class="site-header-inner">
+    <a href="../index.html" class="site-logo" aria-label="Home">The Normal Christian Life</a>
+    <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="chapter-1.html">Week 1</a>
+      <a href="chapter-2.html">Week 2</a>
+      <a href="chapter-3.html">Week 3</a>
+      <a href="chapter-4.html">Week 4</a>
+      <a href="chapter-5.html">Week 5</a>
+      <a href="chapter-6.html">Week 6</a>
+      <a href="chapter-7.html" class="active" aria-current="page">Week 7</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Toggle navigation">&#9776;</button>
+  </div>
+</header>
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <a href="../index.html">Home</a>
+  <span class="sep" aria-hidden="true">&#8250;</span>
+  <span class="current">Week 7: The Eternal Purpose</span>
+</nav>
+
+<!-- TWO-ROW SECTION NAVIGATOR -->
+<nav class="section-nav" aria-label="Chapter sections" id="chapter-nav">
+
+  <div class="section-nav-primary">
+    <button class="phase-btn active" data-phase="many-sons" aria-expanded="false">
+      Many Sons <span class="phase-chevron">&#9660;</span>
+    </button>
+    <button class="phase-btn" data-phase="choice" aria-expanded="false">
+      Adam's Choice <span class="phase-chevron">&#9660;</span>
+    </button>
+    <button class="phase-btn" data-phase="son" aria-expanded="false">
+      Life in the Son <span class="phase-chevron">&#9660;</span>
+    </button>
+    <button class="phase-btn" data-phase="daily-life" aria-expanded="false">
+      Daily Life <span class="phase-chevron">&#9660;</span>
+    </button>
+    <button class="phase-btn" data-phase="close" aria-expanded="false">
+      Reflect &amp; Close <span class="phase-chevron">&#9660;</span>
+    </button>
+  </div>
+
+  <div class="section-nav-secondary" id="sub-many-sons">
+    <button class="sub-btn" data-target="firstborn">Firstborn Among Many Brethren</button>
+    <button class="sub-btn" data-target="grain-of-wheat">The Grain of Wheat</button>
+  </div>
+
+  <div class="section-nav-secondary" id="sub-choice">
+    <button class="sub-btn" data-target="two-trees">The Choice That Confronted Adam</button>
+    <button class="sub-btn" data-target="adams-choice">Adam's Choice, the Reason for the Cross</button>
+  </div>
+
+  <div class="section-nav-secondary" id="sub-son">
+    <button class="sub-btn" data-target="son-hath-life">He That Hath the Son Hath the Life</button>
+    <button class="sub-btn" data-target="all-of-one">They Are All of One</button>
+  </div>
+
+  <div class="section-nav-secondary" id="sub-daily-life">
+    <button class="sub-btn" data-target="need-to-purpose">From Our Need to God's Purpose</button>
+    <button class="sub-btn" data-target="living-the-purpose">Living From God's Eternal Purpose</button>
+  </div>
+
+  <div class="section-nav-secondary" id="sub-close">
+    <button class="sub-btn" data-target="reflection">Guided Reflection</button>
+    <button class="sub-btn" data-target="prayer">Pause and Pray</button>
+    <button class="sub-btn" data-target="summary">Chapter Summary</button>
+    <button class="sub-btn" data-target="looking-ahead">Looking Ahead</button>
+  </div>
+
+</nav>
+
+<nav id="toc-float" aria-label="Page sections">
+  <div class="toc-dot" data-target="firstborn"          data-label="Firstborn Among Many"></div>
+  <div class="toc-dot" data-target="grain-of-wheat"      data-label="The Grain of Wheat"></div>
+  <div class="toc-dot" data-target="two-trees"           data-label="The Choice That Confronted Adam"></div>
+  <div class="toc-dot" data-target="adams-choice"        data-label="Adam's Choice, the Cross"></div>
+  <div class="toc-dot" data-target="son-hath-life"       data-label="He That Hath the Son"></div>
+  <div class="toc-dot" data-target="all-of-one"          data-label="They Are All of One"></div>
+  <div class="toc-dot" data-target="need-to-purpose"     data-label="Our Need to God's Purpose"></div>
+  <div class="toc-dot" data-target="living-the-purpose"  data-label="Living the Purpose"></div>
+  <div class="toc-dot" data-target="reflection"          data-label="Reflection"></div>
+  <div class="toc-dot" data-target="prayer"              data-label="Prayer"></div>
+  <div class="toc-dot" data-target="summary"             data-label="Summary"></div>
+  <div class="toc-dot" data-target="looking-ahead"       data-label="Looking Ahead"></div>
+</nav>
+
+<section class="chapter-hero" id="hero" aria-labelledby="chapter-title">
+  <div class="chapter-hero-inner">
+    <span class="series-label">The Normal Christian Life &nbsp;&bull;&nbsp; Watchman Nee</span>
+    <span class="chapter-num">Chapter Seven &nbsp;&bull;&nbsp; Week 7 of 13</span>
+    <h1 id="chapter-title">The Eternal<br>Purpose</h1>
+    <span class="hero-ornament" aria-hidden="true">&#10022;</span>
+    <p class="hero-intro">
+      Weeks 1 through 6 have traced what God has accomplished for us: forgiveness through the blood, deliverance through the cross, a divide between two creations, and a life presented to Him as one alive from the dead. Every one of those chapters answers a question that begins with us: our guilt, our old self, our ownership. Week 7 steps behind all of it to ask a more fundamental question. Before sin ever entered the picture, what was God after? Nee's answer reframes everything that has come before. Redemption is not God's ultimate goal. It serves a purpose that existed before the fall: to bring many sons to glory, sharing the very life of His Son.
+    </p>
+    <div class="key-truth" role="note">
+      <span class="kt-label">The Central Truth of This Chapter</span>
+      <p>God's eternal purpose is not merely to rescue us from sin. It is to bring many sons to glory, conformed to the image of His Son, sharing His very life.</p>
+    </div>
+  </div>
+</section>
+
+<main class="page-content" role="main" style="padding-top: 2.5rem;">
+
+  <!-- SECTION 1 -->
+  <section id="firstborn" aria-labelledby="firstborn-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="firstborn-body" id="firstborn-title">
+      Firstborn Among Many Brethren
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="firstborn-body">
+      <p>Romans 8:28 through 30 traces a sequence that is easy to read quickly and miss entirely: God foreknew, predestined, called, justified, and glorified. The hinge of the whole sequence is verse 29. Those God foreknew, He predestined to be conformed to the image of His Son, so that Christ would be the firstborn among many brethren. That single phrase reorients the entire study. Salvation is not simply a rescue operation for individuals in danger. It is the outworking of a Father's intention to have many sons, bearing the family likeness of His one, unique Son.</p>
+      <p>Scripture is careful with its language here. Christ is the only begotten Son, eternally and uniquely God's Son in a sense no creature shares. He is also, by a different and later title, the firstborn among many brethren: the first of a great company of sons and daughters whom God is bringing into His family and conforming to Christ's image. The two titles are not in tension. The first describes who Christ eternally is. The second describes the family He is bringing into being, a family that shares, by grace, in what was always uniquely His by nature.</p>
+      <p>This is why salvation must be understood from God's side, not only from ours. Most explanations of the gospel begin and end with human need: we are guilty, we are lost, we require rescue. All of that is true, and the earlier chapters of this study have taken it seriously. But Nee presses further. Before it is an answer to human need, salvation is the fulfilment of a divine intention. God is not merely solving a problem. He is pursuing a purpose He held before the problem existed.</p>
+      <p>Nee draws this out with Luke 15: the lost sheep, the lost coin, and the lost son. Each parable is usually read as a story about someone wayward being found, and it is that. But Nee asks a sharper question first.</p>
+      <div class="callout callout-crimson">
+        <strong>Who Experienced the Loss?</strong>
+        <p>The shepherd lost a sheep. The woman lost a coin. The father lost a son. In each case, the story is told from the perspective of the one who lost something precious, not only from the perspective of the thing that was lost. Redemption is, in part, the recovery of what belongs to God and matters to Him. It concerns the fulfilment of His purpose, not merely the relief of our distress.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 2 -->
+  <section id="grain-of-wheat" aria-labelledby="grain-of-wheat-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="grain-of-wheat-body" id="grain-of-wheat-title">
+      The Grain of Wheat
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="grain-of-wheat-body">
+      <p>John 12:24 gives Nee his central picture for this chapter, and it deserves to stand at the centre of this page as well. Jesus said that unless a grain of wheat falls into the ground and dies, it remains alone, but if it dies, it produces much grain. Before its death, the single grain genuinely possesses life. It is not empty or lifeless. But that life remains locked inside one solitary seed. It cannot be shared, multiplied, or given to anyone else while the grain stays whole and unburied.</p>
+      <p>Everything changes through death. The grain falls into the ground, and what looks like loss becomes the means of multiplication. The life that was confined to one grain is released and reproduced many times over. A single seed becomes a harvest. Jesus spoke these words about Himself, on the eve of His own death, and Nee reads them as a key to the whole meaning of the cross and resurrection.</p>
+
+      <div class="callout">
+        <p class="progression-line">One Grain &nbsp;&#8594;&nbsp; Death &nbsp;&#8594;&nbsp; Many Grains</p>
+      </div>
+
+      <p>Applied to Christ, this illustration carries the study well beyond where Weeks 1 through 6 left it. Those chapters have already established that the cross deals with sin, ends the old creation, and provides a new starting point in resurrection. The grain of wheat adds something further. Christ's death accomplishes more than the removal of sin. Through His death and resurrection, the very life that was His alone becomes available to be shared by many. What was one grain becomes, through death, an entire harvest carrying the same life.</p>
+      <p>One distinction must be kept carefully in view. Christ's death is unrepeatable and unique; He alone is the grain that fell into the ground on our behalf, and no believer re-enacts that death in the same sense He accomplished it. What believers share is not His unique identity as the one who died for the world's sin, but His resurrection life, now multiplied into many who receive it. The grain remains singular in its person. The life it releases becomes plural in its recipients.</p>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 3 -->
+  <section id="two-trees" aria-labelledby="two-trees-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="two-trees-body" id="two-trees-title">
+      The Choice That Confronted Adam
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="two-trees-body">
+      <p>Genesis 2 and 3 place two trees before Adam: the tree of life, and the tree of the knowledge of good and evil. It is tempting to read this simply as a contrast between obedience and disobedience, or between good and evil as categories of behaviour. Nee presses toward a different, deeper distinction, one that this study has already touched in earlier chapters without naming it from Genesis directly.</p>
+      <p>The tree of life represents receiving life as a continual gift from God, depending on Him moment by moment for what could not be generated from within. The tree of the knowledge of good and evil represents something else: the capacity to evaluate, judge, and act independently, drawing on one's own resources rather than depending on God for either the knowledge or the strength to act. The real issue at that tree was never limited to a single act of disobedience. It was the offer of an entire way of living apart from dependence on God, available under the guise of gaining wisdom.</p>
+      <p>This is precisely why Nee's point is more unsettling than a simple warning against wrongdoing. Independent human life can produce behaviour that looks, by every ordinary standard, impressive and good. Discipline, insight, moral seriousness, even religious devotion can all be exercised from the tree of knowledge rather than the tree of life, that is, from human resourcefulness rather than from dependence on God. The determining question is not whether the fruit looks good. It is which tree it was taken from.</p>
+      <div class="callout">
+        <strong>Not a Verdict on Human Ability</strong>
+        <p>None of this suggests that natural ability, reasoning, or responsible effort are themselves sinful. God made the human mind and will capable of remarkable things. The issue Nee presses is one of source and dependence: whether a life is lived by continually receiving from God, or by operating on its own resources, however admirable those resources may appear.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 4 -->
+  <section id="adams-choice" aria-labelledby="adams-choice-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="adams-choice-body" id="adams-choice-title">
+      Adam's Choice, the Reason for the Cross
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="adams-choice-body">
+      <p>Adam's choice at the tree of knowledge is the reason the cross had to take the shape it did. If the only problem with humanity were a list of wrong actions, a programme of moral correction might have been sufficient. But Adam's choice established an entire order of existence built on independence from God, an order every one of his descendants inherits simply by being born into it, regardless of how well or badly any individual within it behaves. Week 5 of this study named this directly: God's solution was never to improve the old humanity. It was to bring that entire order to its end.</p>
+      <p>This is why the cross cannot be reduced to a transaction that forgives individual wrongdoing, as vital as that forgiveness is. The cross brings the Adamic order, the whole independent way of living Genesis 3 introduced, to its decisive end. Resurrection then introduces something that owes nothing to that old order: a new creation, with its source and dependence restored to God in Christ. What the tree of life offered and Adam refused, resurrection now makes available on an entirely new footing.</p>
+
+      <div class="callout">
+        <p class="progression-line">Adam &nbsp;&#8594;&nbsp; Independent Life &nbsp;&#8594;&nbsp; Cross &nbsp;&#8594;&nbsp; Resurrection &nbsp;&#8594;&nbsp; Life in Christ</p>
+      </div>
+
+      <p>One distinction is worth holding firmly at this point, because the rest of the study depends on it. What Christ accomplished at the cross and in His resurrection is a finished, historical fact, settled once for all, not dependent on any believer's awareness or response. What Weeks 3 through 6 have traced, knowing, reckoning, and presenting, is the believer's participation in that accomplished fact, not a repetition or completion of it. The cross ended the old order. Resurrection began the new. Each believer enters what Christ has already done; no one adds to it.</p>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 5 -->
+  <section id="son-hath-life" aria-labelledby="son-hath-life-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="son-hath-life-body" id="son-hath-life-title">
+      He That Hath the Son Hath the Life
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="son-hath-life-body">
+      <p>First John 5:12 states the matter with striking simplicity: he that hath the Son hath life, and he that hath not the Son of God hath not life. Eternal life, in this verse, is not a substance or a quality that God dispenses independently of Christ, the way a grant might be issued separately from the one who authorizes it. Life is found in the Son. To have Him is to have life. Not to have Him is not to have it, whatever else may be true of a person's moral seriousness or religious activity.</p>
+      <p>This settles something the whole study has been building toward. The Christian life is not fundamentally a project of becoming a better version of oneself, however sincere that project might be. It is the ongoing reception of a life that exists nowhere else but in Christ, and that must be continually received rather than generated. This is the same truth Weeks 5 and 6 have already approached from other angles: newness of life is not a more disciplined old self, and presenting ourselves to God is not an offering of unimproved resources. Both chapters were describing, without yet naming it this way, what it means to have the Son and therefore to have the life.</p>
+      <div class="callout callout-crimson">
+        <strong>&ldquo;Not I, But Christ&rdquo;</strong>
+        <p>Galatians 2:20 gives this truth its sharpest expression: I have been crucified with Christ, and it is no longer I who live, but Christ who lives in me. This phrase quietly unifies everything the first seven chapters of this study have traced. Not a better I, improved and polished. Christ, genuinely living His life in and through the believer.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 6 -->
+  <section id="all-of-one" aria-labelledby="all-of-one-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="all-of-one-body" id="all-of-one-title">
+      They Are All of One
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="all-of-one-body">
+      <p>Hebrews 2:10 and 11 add a dimension easy to overlook when the Christian life is considered only one believer at a time. The writer describes Christ, the one who sanctifies, and those who are sanctified, as all being of one. God's eternal purpose was never to produce an enormous number of separately successful individual Christians, each pursuing personal spiritual achievement in isolation from the rest. Christ is the firstborn among many brethren, not an only child surrounded by distant admirers. The one grain that fell into the ground produces, by its very design, many grains that share a single life and a single source.</p>
+      <p>This corporate dimension does not erase anything personal or individual in the study so far. Knowing, reckoning, and presenting remain things each believer must do. But those individual responses are meant to issue in something larger than isolated private experience: a family of many sons and daughters, bearing a shared family likeness, expressing a single life that originates in Christ and is held in common rather than privately owned.</p>
+
+      <div class="callout">
+        <p class="progression-line">Christ in Me &nbsp;&#8594;&nbsp; Christ in Us</p>
+      </div>
+
+      <p>This study will return to this corporate dimension at length in a later chapter devoted to the Body of Christ. For now, it is enough to see the trajectory clearly. The life of Christ, received individually, is never meant to remain a private possession. It is meant to be expressed through an entire family of brethren who share one source and, increasingly, one likeness.</p>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 7 -->
+  <section id="need-to-purpose" aria-labelledby="need-to-purpose-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="need-to-purpose-body" id="need-to-purpose-title">
+      From Our Need to God's Purpose
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="need-to-purpose-body">
+      <p>It is worth pausing to see the shape of the whole argument this study has made so far, because Week 7 marks a genuine turn in it. The first six chapters, read in sequence, trace a believer's growing grasp of what God has done. Week 7 asks why He did it, and the answer reframes every chapter that came before.</p>
+
+      <div class="table-scroll">
+        <table class="compare-table" aria-label="The central question of each week so far">
+          <thead>
+            <tr>
+              <th>Week</th>
+              <th>Chapter</th>
+              <th>Central Question</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="color: var(--text);">1</td>
+              <td style="color: var(--text);">The Blood of Christ</td>
+              <td style="color: var(--text-muted);">How are our sins forgiven?</td>
+            </tr>
+            <tr>
+              <td style="color: var(--text);">2</td>
+              <td style="color: var(--text);">The Cross of Christ</td>
+              <td style="color: var(--text-muted);">How does God deal with what we are in Adam?</td>
+            </tr>
+            <tr>
+              <td style="color: var(--text);">3</td>
+              <td style="color: var(--text);">Knowing</td>
+              <td style="color: var(--text-muted);">How do we recognize what God has accomplished?</td>
+            </tr>
+            <tr>
+              <td style="color: var(--text);">4</td>
+              <td style="color: var(--text);">Reckoning</td>
+              <td style="color: var(--text-muted);">How do we account for God's accomplished work?</td>
+            </tr>
+            <tr>
+              <td style="color: var(--text);">5</td>
+              <td style="color: var(--text);">The Divide of the Cross</td>
+              <td style="color: var(--text-muted);">What separates the old creation from the new?</td>
+            </tr>
+            <tr>
+              <td style="color: var(--text);">6</td>
+              <td style="color: var(--text);">Presenting Ourselves to God</td>
+              <td style="color: var(--text-muted);">To whom does our new life belong?</td>
+            </tr>
+            <tr>
+              <td style="color: var(--text);">7</td>
+              <td style="color: var(--text);">The Eternal Purpose</td>
+              <td style="color: var(--text-muted);">Why has God brought us into this new life?</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Notice the movement across the table. Weeks 1 through 6 are all, in one way or another, answers to a question that begins with us: our guilt, our old self, our standing, our belonging. Week 7 is the first chapter whose question begins with God: not what do I need, but what has God always wanted. This is not a correction of the earlier chapters. Their questions were necessary and remain true. It is the moment the study steps back far enough to see that our need was never the whole story, only the occasion through which a much older purpose is being worked out.</p>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 8 -->
+  <section id="living-the-purpose" aria-labelledby="living-the-purpose-title">
+    <button class="collapsible-btn open" aria-expanded="true" data-section="living-the-purpose-body" id="living-the-purpose-title">
+      Living From God's Eternal Purpose
+      <span class="toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapsible-body open" id="living-the-purpose-body">
+      <p>Seeing God's eternal purpose is not meant to remain an elevated idea reserved for unusual moments of reflection. It has Monday-to-Saturday weight, the same kind of ordinary, practical weight every earlier chapter of this study has insisted on. If God's purpose is to bring many sons to glory, sharing the life of His Son, then the small decisions of an ordinary week, how time is spent, how disappointment is carried, how service is offered, are not separate from that purpose. They are some of the places where it is either expressed or quietly resisted.</p>
+      <p>This reframes some familiar struggles. A disappointment that feels like it has derailed a personal plan can be received instead as material through which God is doing something larger than that plan ever was. An act of ordinary obedience that seems too small to matter can be understood as one small expression of a life that is, in that moment, being shared rather than privately spent. Even the places where effort has clearly fallen short of impressiveness are not outside this purpose; God's aim was never to produce impressive people, but sons who increasingly bear the family likeness of His Son.</p>
+      <p>The practical question this chapter leaves is simple to state and searching to live with. Do I still measure my days mainly by whether my own plans are succeeding, or am I learning to see them as the actual material through which God is bringing many sons to glory? The answer will not be settled by a single decision. It is something a life increasingly learns to live from.</p>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 9: GUIDED REFLECTION -->
+  <section id="reflection" aria-labelledby="reflection-title">
+    <h2 id="reflection-title">Guided Reflection</h2>
+    <p style="color: var(--text-muted); margin-bottom: 1.75rem; font-size: 0.94rem;">Take time with each question. These are not meant to be answered quickly. Consider working through them in a journal or in a quiet conversation with God.</p>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 1</span>
+      <p class="question">Have I understood salvation primarily in terms of what God has done for me, rather than what God is accomplishing for Himself?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 2</span>
+      <p class="question">What changes when I understand that redemption serves God's eternal purpose, rather than being the purpose itself?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 3</span>
+      <p class="question">Where do I still approach Christianity as an exercise in personal improvement, rather than as receiving and living from the life of Christ?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 4</span>
+      <p class="question">What is the difference between doing good things for God and living from the life of Christ? Can I think of a recent example of each in my own life?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 5</span>
+      <p class="question">How does the grain of wheat change my understanding of Christ's death, beyond simply removing my sin?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 6</span>
+      <p class="question">What does it mean, practically, that God's purpose is corporate, bringing many sons to glory together, rather than merely individual?</p>
+    </div>
+
+    <div class="reflection-card">
+      <span class="q-num">Question 7</span>
+      <p class="question">How might understanding God's eternal purpose change the way I approach an ordinary decision I am facing this week?</p>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 10: PAUSE AND PRAY -->
+  <section id="prayer" aria-labelledby="prayer-title">
+    <div class="prayer-section">
+      <h2 id="prayer-title">Pause and Pray</h2>
+      <div class="prayer-text">
+        <p>Heavenly Father,</p>
+        <br>
+        <p>Thank You that Your purpose for me began long before I ever needed to be rescued. Thank You that redemption, as great as it is, serves something even larger: Your desire to bring many sons to glory, bearing the likeness of Your Son.</p>
+        <br>
+        <p>I confess that I have often treated my faith as a project of self-improvement, measuring my days by how good or impressive I appear rather than asking which life I am actually living from. Forgive me for the times I have drawn on my own independent resources, even for good and religious ends, rather than receiving continually from You.</p>
+        <br>
+        <p>Thank You for the grain of wheat that fell into the ground so that its life could be multiplied into many. Thank You that I am not meant to carry this life alone or privately, but as one among many brethren who share one source and one family likeness.</p>
+        <br>
+        <p>Teach me to see my ordinary days, my disappointments and my small obediences alike, as places where Your eternal purpose is quietly being worked out. Not I, but Christ. Let that be increasingly true, not only in word but in the actual shape of this week.</p>
+        <br>
+        <p>Amen.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 11: CHAPTER SUMMARY -->
+  <section id="summary" aria-labelledby="summary-title">
+    <h2 id="summary-title">Chapter Summary</h2>
+    <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.94rem;">The following points gather together the major threads of this chapter.</p>
+
+    <div class="summary-item">
+      <div class="summary-num" aria-hidden="true">1</div>
+      <div class="summary-text"><strong>God's Eternal Purpose Is Greater Than Redemption From Sin.</strong> Redemption is not God's ultimate goal; it serves a purpose that existed before the fall, to bring many sons to glory.</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-num" aria-hidden="true">2</div>
+      <div class="summary-text"><strong>Christ Is the Firstborn Among Many Brethren.</strong> God's intention is a family of many sons and daughters, conformed to the image of His uniquely begotten Son.</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-num" aria-hidden="true">3</div>
+      <div class="summary-text"><strong>Through Christ's Death and Resurrection, His Life Is Shared With the Many.</strong> The grain of wheat that fell into the ground and died is multiplied into a harvest that shares its life.</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-num" aria-hidden="true">4</div>
+      <div class="summary-text"><strong>The Christian Life Is Not the Improvement of Adam but Life in Christ.</strong> Eternal life is found in the Son, not dispensed apart from Him; the goal is "not I, but Christ," not a better version of the old self.</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-num" aria-hidden="true">5</div>
+      <div class="summary-text"><strong>God's Purpose Is to Bring Many Sons to Glory and Express Christ Through His People.</strong> Christ and those He sanctifies are all of one; the life received individually is meant to be shared within a family, not held privately.</div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <!-- SECTION 12: LOOKING AHEAD -->
+  <section id="looking-ahead" aria-labelledby="ahead-title">
+    <h2 id="ahead-title">Looking Ahead</h2>
+    <div class="ahead-card">
+      <div class="ahead-arrow" aria-hidden="true">&#8594;</div>
+      <div>
+        <p>Week 7 has stepped behind the earlier chapters to uncover the purpose they all serve: God's eternal intention to bring many sons to glory, sharing the life of His Son, Jesus Christ. Redemption is the means. This purpose is the end.</p>
+        <p>Week 8 asks a question this chapter's purpose assumes an answer to. If God's purpose is for Christ's life to be shared with and expressed through many sons, how does that life actually become operative in a believer, day by day? Nee's answer centres on the Holy Spirit, the One through whom the life of Christ, already given at the cross and in resurrection, becomes a living, present reality.</p>
+        <p>The believer who has grasped God's eternal purpose is ready to ask not only "what is God's purpose for my life" but "how does the life of Christ actually become real and active within me."</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMORY AID -->
+  <div class="memory-aid" role="note" aria-label="A simple way to remember this chapter">
+    <span class="ma-label">A Simple Way to Remember This Chapter</span>
+    <div class="memory-line">
+      <span class="memory-label">One Grain</span>
+      <span class="memory-colon" aria-hidden="true">&#9135;</span>
+      <span class="memory-truth">Falls, dies, and is multiplied into many grains</span>
+    </div>
+    <div class="memory-line">
+      <span class="memory-label">One Son</span>
+      <span class="memory-colon" aria-hidden="true">&#9135;</span>
+      <span class="memory-truth">Dies, rises, and brings many sons to glory</span>
+    </div>
+    <div class="memory-line">
+      <span class="memory-label">God's purpose</span>
+      <span class="memory-colon" aria-hidden="true">&#9135;</span>
+      <span class="memory-truth">Not merely to rescue us from sin, but to bring us into the life and likeness of His Son</span>
+    </div>
+  </div>
+
+  <!-- CHAPTER NAVIGATION -->
+  <nav class="chapter-nav" aria-label="Chapter navigation">
+    <a href="chapter-6.html" class="nav-prev">&#8592; Week 6: Presenting Ourselves to God</a>
+    <span style="font-family: var(--font-sans); font-size: 10px; color: var(--text-subtle); letter-spacing: 0.1em; text-transform: uppercase;">Week 7 of 13</span>
+    <span class="nav-disabled" aria-disabled="true">Week 8: The Holy Spirit &#8594;</span>
+  </nav>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer-inner">
+    <div>
+      <div class="footer-brand">The Normal Christian Life</div>
+      <div style="font-family: var(--font-sans); font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 0.25rem; letter-spacing: 0.08em; text-transform: uppercase;">A Guided Weekly Study</div>
+      <div class="footer-sub">&copy; 2026 &nbsp;&bull;&nbsp; A discipleship resource &nbsp;&bull;&nbsp; All rights reserved</div>
+    </div>
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <a href="../index.html">&#8592; Back to Home</a>
+      <a href="chapter-1.html">Week 1: The Blood of Christ</a>
+      <a href="chapter-2.html">Week 2: The Cross of Christ</a>
+      <a href="chapter-3.html">Week 3: The Path of Progress: Knowing</a>
+      <a href="chapter-4.html">Week 4: The Path of Progress: Reckoning</a>
+      <a href="chapter-5.html">Week 5: The Divide of the Cross</a>
+      <a href="chapter-6.html">Week 6: Presenting Ourselves to God</a>
+      <a href="chapter-7.html">Week 7: The Eternal Purpose</a>
+    </nav>
+  </div>
+</footer>
+
+<button id="back-top" aria-label="Back to top" title="Back to top">&#8593;</button>
+<script src="../script.js"></script>
+<script>
+(function() {
+  var HEADER_H    = 60;
+  var PRIMARY_H   = 42;
+  var SECONDARY_H = 34;
+  var SCROLL_OFFSET = HEADER_H + PRIMARY_H + 20;
+
+  var phaseMap = {
+    'many-sons':  { subId: 'sub-many-sons', sections: ['firstborn','grain-of-wheat'] },
+    'choice':     { subId: 'sub-choice',    sections: ['two-trees','adams-choice'] },
+    'son':        { subId: 'sub-son',       sections: ['son-hath-life','all-of-one'] },
+    'daily-life': { subId: 'sub-daily-life',sections: ['need-to-purpose','living-the-purpose'] },
+    'close':      { subId: 'sub-close',     sections: ['reflection','prayer','summary','looking-ahead'] }
+  };
+
+  var phaseBtns = document.querySelectorAll('.phase-btn');
+  var subBtns   = document.querySelectorAll('.sub-btn');
+  var openPhase = null;
+
+  function closeAll() {
+    document.querySelectorAll('.section-nav-secondary').forEach(function(el) {
+      el.classList.remove('visible');
+    });
+    phaseBtns.forEach(function(b) {
+      b.classList.remove('open');
+      b.setAttribute('aria-expanded', 'false');
+    });
+    openPhase = null;
+  }
+
+  phaseBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var phase = btn.dataset.phase;
+      if (openPhase === phase) { closeAll(); return; }
+      closeAll();
+      var info = phaseMap[phase];
+      if (!info) return;
+      var subRow = document.getElementById(info.subId);
+      if (!subRow) return;
+      subRow.classList.add('visible');
+      btn.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+      openPhase = phase;
+    });
+  });
+
+  subBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var target = document.getElementById(btn.dataset.target);
+      if (!target) return;
+      var extraOffset = openPhase ? SECONDARY_H : 0;
+      var top = target.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET - extraOffset;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+      closeAll();
+    });
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.section-nav')) closeAll();
+  });
+
+  var allSectionIds = Object.values(phaseMap).reduce(function(acc, info) {
+    return acc.concat(info.sections);
+  }, []);
+
+  function getPhaseForSection(id) {
+    for (var phase in phaseMap) {
+      if (phaseMap[phase].sections.indexOf(id) !== -1) return phase;
+    }
+    return null;
+  }
+
+  function updateActivePhase() {
+    var threshold = SCROLL_OFFSET + 20;
+    var activeId  = allSectionIds[0];
+    allSectionIds.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top < threshold) activeId = id;
+    });
+    var activePhase = getPhaseForSection(activeId);
+    phaseBtns.forEach(function(b) {
+      b.classList.toggle('active', b.dataset.phase === activePhase);
+    });
+    subBtns.forEach(function(b) {
+      b.classList.toggle('active', b.dataset.target === activeId);
+    });
+  }
+
+  window.addEventListener('scroll', updateActivePhase, { passive: true });
+  updateActivePhase();
+}());
+</script>
+</body>
+</html>
